@@ -7939,7 +7939,10 @@ components:
         minimum: 1
         maximum: 200
       description: Filter by the items per page number
-  securitySchemes: {}
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
   responses:
     '400':
       description: Example response
