@@ -67,8 +67,6 @@ class LearnWorldsClientV2 extends Client
 
         $authData = json_decode($response->getBody()->getContents());
         $accessToken = $authData->tokenData->access_token;
-        echo $accessToken . "\n";
-        //$refreshToken = $authData['tokenData']['refresh_token'];
 
         $authenticationRegistry = new AuthenticationRegistry([new BearerAuthAuthentication($accessToken), new LwClientAuthentication($clientId)]);
 
