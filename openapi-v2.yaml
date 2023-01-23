@@ -6418,8 +6418,6 @@ components:
             lc_country:
               type: string
               description: Last click country
-        '':
-          type: string
       required:
         - email
         - username
