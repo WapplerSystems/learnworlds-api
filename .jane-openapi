@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'openapi-file' => __DIR__ . '/openapi.yaml',
-    'namespace' => 'WapplerSystems\LearnWorldsApi',
-    'directory' => __DIR__ . '/src',
+    'openapi-file' => __DIR__ . '/openapi-v2.yaml',
+    'namespace' => 'WapplerSystems\LearnWorldsApi\V2',
+    'directory' => __DIR__ . '/src/V2',
 ];
