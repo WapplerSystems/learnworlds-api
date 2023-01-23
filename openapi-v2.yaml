@@ -4840,61 +4840,99 @@ components:
           description: 'Default sign up fields for the School. If custom sign up fields are enabled within the school settings, they are going to be included here too.'
           properties:
             bio:
-              type: string
+              type:
+                - string
+                - 'null'
               description: A short biography text
             location:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User location
             url:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User website URL
             fb:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Facebook URL
             twitter:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Twitter URL
             instagram:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Instagram URL
             linkedin:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Linkedin URL
             skype:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Skype URL
             behance:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Behance URL
             dribbble:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Dribbble URL
             github:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Github URL
             phone:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Phone
             address:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Address
             country:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Country
             birthday:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Birthday
             company:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Company
             company_size:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Company Size
             university:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User University
             graduation_year:
-              type: string
+              type:
+                - string
+                - 'null'
               description: User Graduation Year
         tags:
           type: array
