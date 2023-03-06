@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Authentication;
 
 class LwClientAuthentication implements \Jane\Component\OpenApiRuntime\Client\AuthenticationPlugin

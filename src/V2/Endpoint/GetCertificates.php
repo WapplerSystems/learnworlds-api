@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class GetCertificates extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
@@ -12,7 +19,7 @@ class GetCertificates extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
      *     @var string $user_id Filter by user id or email
      * }
      */
-    public function __construct(array $queryParameters = array())
+    public function __construct(array $queryParameters = [])
     {
         $this->queryParameters = $queryParameters;
     }
@@ -27,20 +34,20 @@ class GetCertificates extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('course_id', 'user_id'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->addAllowedTypes('course_id', array('string'));
-        $optionsResolver->addAllowedTypes('user_id', array('string'));
+        $optionsResolver->setDefined(['course_id', 'user_id']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->addAllowedTypes('course_id', ['string']);
+        $optionsResolver->addAllowedTypes('user_id', ['string']);
         return $optionsResolver;
     }
     /**
@@ -59,6 +66,6 @@ class GetCertificates extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class V2AffiliatesIdPayoutsDueGetResponse200 extends \ArrayObject
@@ -7,19 +14,19 @@ class V2AffiliatesIdPayoutsDueGetResponse200 extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * 
+     *
      *
      * @var PayoutDueUpcoming[]
      */
     protected $data;
     /**
-     * 
+     *
      *
      * @return PayoutDueUpcoming[]
      */
@@ -28,7 +35,7 @@ class V2AffiliatesIdPayoutsDueGetResponse200 extends \ArrayObject
         return $this->data;
     }
     /**
-     * 
+     *
      *
      * @param PayoutDueUpcoming[] $data
      *

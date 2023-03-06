@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class PayoutCompleted extends \ArrayObject
@@ -7,7 +14,7 @@ class PayoutCompleted extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
@@ -43,13 +50,13 @@ class PayoutCompleted extends \ArrayObject
      */
     protected $created;
     /**
-     * 
+     *
      *
      * @var Payment[]
      */
     protected $payments;
     /**
-     * 
+     *
      *
      * @var PayoutCompletedCompletedBy
      */
@@ -165,7 +172,7 @@ class PayoutCompleted extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return Payment[]
      */
@@ -174,7 +181,7 @@ class PayoutCompleted extends \ArrayObject
         return $this->payments;
     }
     /**
-     * 
+     *
      *
      * @param Payment[] $payments
      *
@@ -187,7 +194,7 @@ class PayoutCompleted extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return PayoutCompletedCompletedBy
      */
@@ -196,7 +203,7 @@ class PayoutCompleted extends \ArrayObject
         return $this->completedBy;
     }
     /**
-     * 
+     *
      *
      * @param PayoutCompletedCompletedBy $completedBy
      *

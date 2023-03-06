@@ -1,19 +1,26 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class GetAffiliateLeads extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
-     * Retrieves all the leads connected with the affiliate specified by the provided affiliate id. The leads are in sorted order, with the most recently created lead appearing first, and the list is paginated, with a limit of 20 leads per page. 
+     * Retrieves all the leads connected with the affiliate specified by the provided affiliate id. The leads are in sorted order, with the most recently created lead appearing first, and the list is paginated, with a limit of 20 leads per page.
      *
      * @param string $id Affiliate Id or email (encoded string)
      * @param array $queryParameters {
      *     @var int $page Filter by the page number. In case page number is higher than the maximum one, the results of last page will be returned
      * }
      */
-    public function __construct(string $id, array $queryParameters = array())
+    public function __construct(string $id, array $queryParameters = [])
     {
         $this->id = $id;
         $this->queryParameters = $queryParameters;
@@ -25,23 +32,23 @@ class GetAffiliateLeads extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client
     }
     public function getUri() : string
     {
-        return str_replace(array('{id}'), array($this->id), '/v2/affiliates/{id}/leads');
+        return str_replace(['{id}'], [$this->id], '/v2/affiliates/{id}/leads');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('page'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array('page' => 1));
-        $optionsResolver->addAllowedTypes('page', array('int'));
+        $optionsResolver->setDefined(['page']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults(['page' => 1]);
+        $optionsResolver->addAllowedTypes('page', ['int']);
         return $optionsResolver;
     }
     /**
@@ -60,6 +67,6 @@ class GetAffiliateLeads extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

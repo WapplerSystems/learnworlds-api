@@ -1,21 +1,29 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Runtime\Client;
 
 use Http\Message\MultipartStream\MultipartStreamBuilder;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Serializer\SerializerInterface;
+
 abstract class BaseEndpoint implements Endpoint
 {
     protected $queryParameters = [];
     protected $headerParameters = [];
     protected $body;
-    public abstract function getMethod() : string;
-    public abstract function getBody(SerializerInterface $serializer, $streamFactory = null) : array;
-    public abstract function getUri() : string;
-    public abstract function getAuthenticationScopes() : array;
-    protected abstract function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null);
+    abstract public function getMethod() : string;
+    abstract public function getBody(SerializerInterface $serializer, $streamFactory = null) : array;
+    abstract public function getUri() : string;
+    abstract public function getAuthenticationScopes() : array;
+    abstract protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null);
     protected function getExtraHeaders() : array
     {
         return [];

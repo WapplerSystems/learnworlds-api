@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class PromotionRequestModelCouponsItem extends \ArrayObject
@@ -7,37 +14,37 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * 
+     *
      *
      * @var string
      */
     protected $code;
     /**
-     * 
+     *
      *
      * @var int
      */
     protected $quantity;
     /**
-     * 
+     *
      *
      * @var string
      */
     protected $expires;
     /**
-     * 
+     *
      *
      * @var int
      */
     protected $timesUsed;
     /**
-     * 
+     *
      *
      * @return string
      */
@@ -46,7 +53,7 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
         return $this->code;
     }
     /**
-     * 
+     *
      *
      * @param string $code
      *
@@ -59,7 +66,7 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return int
      */
@@ -68,7 +75,7 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
         return $this->quantity;
     }
     /**
-     * 
+     *
      *
      * @param int $quantity
      *
@@ -81,7 +88,7 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return string
      */
@@ -90,7 +97,7 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
         return $this->expires;
     }
     /**
-     * 
+     *
      *
      * @param string $expires
      *
@@ -103,7 +110,7 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return int
      */
@@ -112,7 +119,7 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
         return $this->timesUsed;
     }
     /**
-     * 
+     *
      *
      * @param int $timesUsed
      *

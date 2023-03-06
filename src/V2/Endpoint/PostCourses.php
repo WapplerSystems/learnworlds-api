@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class PostCourses extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
@@ -7,12 +14,12 @@ class PostCourses extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseE
     /**
      * Creates a new course. The endpoint response is the created Course resource.
      *
-     * @param null|\WapplerSystems\LearnWorldsApi\V2\Model\V2CoursesPostBody $requestBody 
+     * @param null|\WapplerSystems\LearnWorldsApi\V2\Model\V2CoursesPostBody $requestBody
      * @param array $headerParameters {
      *     @var string $Accept application/json
      * }
      */
-    public function __construct(?\WapplerSystems\LearnWorldsApi\V2\Model\V2CoursesPostBody $requestBody = null, array $headerParameters = array())
+    public function __construct(?\WapplerSystems\LearnWorldsApi\V2\Model\V2CoursesPostBody $requestBody = null, array $headerParameters = [])
     {
         $this->body = $requestBody;
         $this->headerParameters = $headerParameters;
@@ -29,21 +36,21 @@ class PostCourses extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseE
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
         if ($this->body instanceof \WapplerSystems\LearnWorldsApi\V2\Model\V2CoursesPostBody) {
-            return array(array('Content-Type' => array('application/json')), $serializer->serialize($this->body, 'json'));
+            return [['Content-Type' => ['application/json']], $serializer->serialize($this->body, 'json')];
         }
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getHeadersOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('Accept'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->addAllowedTypes('Accept', array('string'));
+        $optionsResolver->setDefined(['Accept']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->addAllowedTypes('Accept', ['string']);
         return $optionsResolver;
     }
     /**
@@ -62,6 +69,6 @@ class PostCourses extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseE
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

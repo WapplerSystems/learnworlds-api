@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class PostPromotionsPidCoupons extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
@@ -9,12 +16,12 @@ class PostPromotionsPidCoupons extends \WapplerSystems\LearnWorldsApi\V2\Runtime
      * Creates a coupon for the promotion specified by the provided promotion id. The endpoint response is the created coupon resource.
      *
      * @param string $pid Promotion Id
-     * @param null|\WapplerSystems\LearnWorldsApi\V2\Model\V2PromotionsPidCouponsPostBody $requestBody 
+     * @param null|\WapplerSystems\LearnWorldsApi\V2\Model\V2PromotionsPidCouponsPostBody $requestBody
      * @param array $headerParameters {
      *     @var string $Content-Type application/json
      * }
      */
-    public function __construct(string $pid, ?\WapplerSystems\LearnWorldsApi\V2\Model\V2PromotionsPidCouponsPostBody $requestBody = null, array $headerParameters = array())
+    public function __construct(string $pid, ?\WapplerSystems\LearnWorldsApi\V2\Model\V2PromotionsPidCouponsPostBody $requestBody = null, array $headerParameters = [])
     {
         $this->pid = $pid;
         $this->body = $requestBody;
@@ -27,26 +34,26 @@ class PostPromotionsPidCoupons extends \WapplerSystems\LearnWorldsApi\V2\Runtime
     }
     public function getUri() : string
     {
-        return str_replace(array('{pid}'), array($this->pid), '/v2/promotions/{pid}/coupons');
+        return str_replace(['{pid}'], [$this->pid], '/v2/promotions/{pid}/coupons');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
         if ($this->body instanceof \WapplerSystems\LearnWorldsApi\V2\Model\V2PromotionsPidCouponsPostBody) {
-            return array(array('Content-Type' => array('application/json')), $serializer->serialize($this->body, 'json'));
+            return [['Content-Type' => ['application/json']], $serializer->serialize($this->body, 'json')];
         }
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getHeadersOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('Content-Type'));
-        $optionsResolver->setRequired(array('Content-Type'));
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->addAllowedTypes('Content-Type', array('string'));
+        $optionsResolver->setDefined(['Content-Type']);
+        $optionsResolver->setRequired(['Content-Type']);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->addAllowedTypes('Content-Type', ['string']);
         return $optionsResolver;
     }
     /**
@@ -65,6 +72,6 @@ class PostPromotionsPidCoupons extends \WapplerSystems\LearnWorldsApi\V2\Runtime
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

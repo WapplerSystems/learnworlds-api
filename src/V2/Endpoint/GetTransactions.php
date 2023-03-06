@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class GetTransactions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
@@ -16,7 +23,7 @@ class GetTransactions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
      *     @var int $items_per_page Filter by the items per page number
      * }
      */
-    public function __construct(array $queryParameters = array())
+    public function __construct(array $queryParameters = [])
     {
         $this->queryParameters = $queryParameters;
     }
@@ -31,24 +38,24 @@ class GetTransactions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('product_type', 'user_id', 'affiliate_id', 'product_id', 'page', 'items_per_page'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array('page' => 1));
-        $optionsResolver->addAllowedTypes('product_type', array('string'));
-        $optionsResolver->addAllowedTypes('user_id', array('string'));
-        $optionsResolver->addAllowedTypes('affiliate_id', array('string'));
-        $optionsResolver->addAllowedTypes('product_id', array('string'));
-        $optionsResolver->addAllowedTypes('page', array('int'));
-        $optionsResolver->addAllowedTypes('items_per_page', array('int'));
+        $optionsResolver->setDefined(['product_type', 'user_id', 'affiliate_id', 'product_id', 'page', 'items_per_page']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults(['page' => 1]);
+        $optionsResolver->addAllowedTypes('product_type', ['string']);
+        $optionsResolver->addAllowedTypes('user_id', ['string']);
+        $optionsResolver->addAllowedTypes('affiliate_id', ['string']);
+        $optionsResolver->addAllowedTypes('product_id', ['string']);
+        $optionsResolver->addAllowedTypes('page', ['int']);
+        $optionsResolver->addAllowedTypes('items_per_page', ['int']);
         return $optionsResolver;
     }
     /**
@@ -67,6 +74,6 @@ class GetTransactions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

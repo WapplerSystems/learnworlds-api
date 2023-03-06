@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class UserFields extends \ArrayObject
@@ -7,7 +14,7 @@ class UserFields extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
@@ -15,134 +22,134 @@ class UserFields extends \ArrayObject
     /**
      * A short biography text
      *
-     * @var string
+     * @var mixed
      */
     protected $bio;
     /**
      * User location
      *
-     * @var string
+     * @var mixed
      */
     protected $location;
     /**
      * User website URL
      *
-     * @var string
+     * @var mixed
      */
     protected $url;
     /**
      * User Facebook URL
      *
-     * @var string
+     * @var mixed
      */
     protected $fb;
     /**
      * User Twitter URL
      *
-     * @var string
+     * @var mixed
      */
     protected $twitter;
     /**
      * User Instagram URL
      *
-     * @var string
+     * @var mixed
      */
     protected $instagram;
     /**
      * User Linkedin URL
      *
-     * @var string
+     * @var mixed
      */
     protected $linkedin;
     /**
      * User Skype URL
      *
-     * @var string
+     * @var mixed
      */
     protected $skype;
     /**
      * User Behance URL
      *
-     * @var string
+     * @var mixed
      */
     protected $behance;
     /**
      * User Dribbble URL
      *
-     * @var string
+     * @var mixed
      */
     protected $dribbble;
     /**
      * User Github URL
      *
-     * @var string
+     * @var mixed
      */
     protected $github;
     /**
      * User Phone
      *
-     * @var string
+     * @var mixed
      */
     protected $phone;
     /**
      * User Address
      *
-     * @var string
+     * @var mixed
      */
     protected $address;
     /**
      * User Country
      *
-     * @var string
+     * @var mixed
      */
     protected $country;
     /**
      * User Birthday
      *
-     * @var string
+     * @var mixed
      */
     protected $birthday;
     /**
      * User Company
      *
-     * @var string
+     * @var mixed
      */
     protected $company;
     /**
      * User Company Size
      *
-     * @var string
+     * @var mixed
      */
     protected $companySize;
     /**
      * User University
      *
-     * @var string
+     * @var mixed
      */
     protected $university;
     /**
      * User Graduation Year
      *
-     * @var string
+     * @var mixed
      */
     protected $graduationYear;
     /**
      * A short biography text
      *
-     * @return string
+     * @return mixed
      */
-    public function getBio() : string
+    public function getBio()
     {
         return $this->bio;
     }
     /**
      * A short biography text
      *
-     * @param string $bio
+     * @param mixed $bio
      *
      * @return self
      */
-    public function setBio(string $bio) : self
+    public function setBio($bio) : self
     {
         $this->initialized['bio'] = true;
         $this->bio = $bio;
@@ -151,20 +158,20 @@ class UserFields extends \ArrayObject
     /**
      * User location
      *
-     * @return string
+     * @return mixed
      */
-    public function getLocation() : string
+    public function getLocation()
     {
         return $this->location;
     }
     /**
      * User location
      *
-     * @param string $location
+     * @param mixed $location
      *
      * @return self
      */
-    public function setLocation(string $location) : self
+    public function setLocation($location) : self
     {
         $this->initialized['location'] = true;
         $this->location = $location;
@@ -173,20 +180,20 @@ class UserFields extends \ArrayObject
     /**
      * User website URL
      *
-     * @return string
+     * @return mixed
      */
-    public function getUrl() : string
+    public function getUrl()
     {
         return $this->url;
     }
     /**
      * User website URL
      *
-     * @param string $url
+     * @param mixed $url
      *
      * @return self
      */
-    public function setUrl(string $url) : self
+    public function setUrl($url) : self
     {
         $this->initialized['url'] = true;
         $this->url = $url;
@@ -195,20 +202,20 @@ class UserFields extends \ArrayObject
     /**
      * User Facebook URL
      *
-     * @return string
+     * @return mixed
      */
-    public function getFb() : string
+    public function getFb()
     {
         return $this->fb;
     }
     /**
      * User Facebook URL
      *
-     * @param string $fb
+     * @param mixed $fb
      *
      * @return self
      */
-    public function setFb(string $fb) : self
+    public function setFb($fb) : self
     {
         $this->initialized['fb'] = true;
         $this->fb = $fb;
@@ -217,20 +224,20 @@ class UserFields extends \ArrayObject
     /**
      * User Twitter URL
      *
-     * @return string
+     * @return mixed
      */
-    public function getTwitter() : string
+    public function getTwitter()
     {
         return $this->twitter;
     }
     /**
      * User Twitter URL
      *
-     * @param string $twitter
+     * @param mixed $twitter
      *
      * @return self
      */
-    public function setTwitter(string $twitter) : self
+    public function setTwitter($twitter) : self
     {
         $this->initialized['twitter'] = true;
         $this->twitter = $twitter;
@@ -239,20 +246,20 @@ class UserFields extends \ArrayObject
     /**
      * User Instagram URL
      *
-     * @return string
+     * @return mixed
      */
-    public function getInstagram() : string
+    public function getInstagram()
     {
         return $this->instagram;
     }
     /**
      * User Instagram URL
      *
-     * @param string $instagram
+     * @param mixed $instagram
      *
      * @return self
      */
-    public function setInstagram(string $instagram) : self
+    public function setInstagram($instagram) : self
     {
         $this->initialized['instagram'] = true;
         $this->instagram = $instagram;
@@ -261,20 +268,20 @@ class UserFields extends \ArrayObject
     /**
      * User Linkedin URL
      *
-     * @return string
+     * @return mixed
      */
-    public function getLinkedin() : string
+    public function getLinkedin()
     {
         return $this->linkedin;
     }
     /**
      * User Linkedin URL
      *
-     * @param string $linkedin
+     * @param mixed $linkedin
      *
      * @return self
      */
-    public function setLinkedin(string $linkedin) : self
+    public function setLinkedin($linkedin) : self
     {
         $this->initialized['linkedin'] = true;
         $this->linkedin = $linkedin;
@@ -283,20 +290,20 @@ class UserFields extends \ArrayObject
     /**
      * User Skype URL
      *
-     * @return string
+     * @return mixed
      */
-    public function getSkype() : string
+    public function getSkype()
     {
         return $this->skype;
     }
     /**
      * User Skype URL
      *
-     * @param string $skype
+     * @param mixed $skype
      *
      * @return self
      */
-    public function setSkype(string $skype) : self
+    public function setSkype($skype) : self
     {
         $this->initialized['skype'] = true;
         $this->skype = $skype;
@@ -305,20 +312,20 @@ class UserFields extends \ArrayObject
     /**
      * User Behance URL
      *
-     * @return string
+     * @return mixed
      */
-    public function getBehance() : string
+    public function getBehance()
     {
         return $this->behance;
     }
     /**
      * User Behance URL
      *
-     * @param string $behance
+     * @param mixed $behance
      *
      * @return self
      */
-    public function setBehance(string $behance) : self
+    public function setBehance($behance) : self
     {
         $this->initialized['behance'] = true;
         $this->behance = $behance;
@@ -327,20 +334,20 @@ class UserFields extends \ArrayObject
     /**
      * User Dribbble URL
      *
-     * @return string
+     * @return mixed
      */
-    public function getDribbble() : string
+    public function getDribbble()
     {
         return $this->dribbble;
     }
     /**
      * User Dribbble URL
      *
-     * @param string $dribbble
+     * @param mixed $dribbble
      *
      * @return self
      */
-    public function setDribbble(string $dribbble) : self
+    public function setDribbble($dribbble) : self
     {
         $this->initialized['dribbble'] = true;
         $this->dribbble = $dribbble;
@@ -349,20 +356,20 @@ class UserFields extends \ArrayObject
     /**
      * User Github URL
      *
-     * @return string
+     * @return mixed
      */
-    public function getGithub() : string
+    public function getGithub()
     {
         return $this->github;
     }
     /**
      * User Github URL
      *
-     * @param string $github
+     * @param mixed $github
      *
      * @return self
      */
-    public function setGithub(string $github) : self
+    public function setGithub($github) : self
     {
         $this->initialized['github'] = true;
         $this->github = $github;
@@ -371,20 +378,20 @@ class UserFields extends \ArrayObject
     /**
      * User Phone
      *
-     * @return string
+     * @return mixed
      */
-    public function getPhone() : string
+    public function getPhone()
     {
         return $this->phone;
     }
     /**
      * User Phone
      *
-     * @param string $phone
+     * @param mixed $phone
      *
      * @return self
      */
-    public function setPhone(string $phone) : self
+    public function setPhone($phone) : self
     {
         $this->initialized['phone'] = true;
         $this->phone = $phone;
@@ -393,20 +400,20 @@ class UserFields extends \ArrayObject
     /**
      * User Address
      *
-     * @return string
+     * @return mixed
      */
-    public function getAddress() : string
+    public function getAddress()
     {
         return $this->address;
     }
     /**
      * User Address
      *
-     * @param string $address
+     * @param mixed $address
      *
      * @return self
      */
-    public function setAddress(string $address) : self
+    public function setAddress($address) : self
     {
         $this->initialized['address'] = true;
         $this->address = $address;
@@ -415,20 +422,20 @@ class UserFields extends \ArrayObject
     /**
      * User Country
      *
-     * @return string
+     * @return mixed
      */
-    public function getCountry() : string
+    public function getCountry()
     {
         return $this->country;
     }
     /**
      * User Country
      *
-     * @param string $country
+     * @param mixed $country
      *
      * @return self
      */
-    public function setCountry(string $country) : self
+    public function setCountry($country) : self
     {
         $this->initialized['country'] = true;
         $this->country = $country;
@@ -437,20 +444,20 @@ class UserFields extends \ArrayObject
     /**
      * User Birthday
      *
-     * @return string
+     * @return mixed
      */
-    public function getBirthday() : string
+    public function getBirthday()
     {
         return $this->birthday;
     }
     /**
      * User Birthday
      *
-     * @param string $birthday
+     * @param mixed $birthday
      *
      * @return self
      */
-    public function setBirthday(string $birthday) : self
+    public function setBirthday($birthday) : self
     {
         $this->initialized['birthday'] = true;
         $this->birthday = $birthday;
@@ -459,20 +466,20 @@ class UserFields extends \ArrayObject
     /**
      * User Company
      *
-     * @return string
+     * @return mixed
      */
-    public function getCompany() : string
+    public function getCompany()
     {
         return $this->company;
     }
     /**
      * User Company
      *
-     * @param string $company
+     * @param mixed $company
      *
      * @return self
      */
-    public function setCompany(string $company) : self
+    public function setCompany($company) : self
     {
         $this->initialized['company'] = true;
         $this->company = $company;
@@ -481,20 +488,20 @@ class UserFields extends \ArrayObject
     /**
      * User Company Size
      *
-     * @return string
+     * @return mixed
      */
-    public function getCompanySize() : string
+    public function getCompanySize()
     {
         return $this->companySize;
     }
     /**
      * User Company Size
      *
-     * @param string $companySize
+     * @param mixed $companySize
      *
      * @return self
      */
-    public function setCompanySize(string $companySize) : self
+    public function setCompanySize($companySize) : self
     {
         $this->initialized['companySize'] = true;
         $this->companySize = $companySize;
@@ -503,20 +510,20 @@ class UserFields extends \ArrayObject
     /**
      * User University
      *
-     * @return string
+     * @return mixed
      */
-    public function getUniversity() : string
+    public function getUniversity()
     {
         return $this->university;
     }
     /**
      * User University
      *
-     * @param string $university
+     * @param mixed $university
      *
      * @return self
      */
-    public function setUniversity(string $university) : self
+    public function setUniversity($university) : self
     {
         $this->initialized['university'] = true;
         $this->university = $university;
@@ -525,20 +532,20 @@ class UserFields extends \ArrayObject
     /**
      * User Graduation Year
      *
-     * @return string
+     * @return mixed
      */
-    public function getGraduationYear() : string
+    public function getGraduationYear()
     {
         return $this->graduationYear;
     }
     /**
      * User Graduation Year
      *
-     * @param string $graduationYear
+     * @param mixed $graduationYear
      *
      * @return self
      */
-    public function setGraduationYear(string $graduationYear) : self
+    public function setGraduationYear($graduationYear) : self
     {
         $this->initialized['graduationYear'] = true;
         $this->graduationYear = $graduationYear;

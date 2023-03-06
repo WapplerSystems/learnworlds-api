@@ -1,17 +1,24 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class GetPromotions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
     /**
-     * Returns a list with all the promotions of the school. The promotions are in sorted order, with the most recently created promotion appearing first, and the list is paginated, with a limit of 20 promotions per page. 
+     * Returns a list with all the promotions of the school. The promotions are in sorted order, with the most recently created promotion appearing first, and the list is paginated, with a limit of 20 promotions per page.
      *
      * @param array $queryParameters {
      *     @var int $page Filter by the page number. In case page number is higher than the maximum one, the results of last page will be returned
      * }
      */
-    public function __construct(array $queryParameters = array())
+    public function __construct(array $queryParameters = [])
     {
         $this->queryParameters = $queryParameters;
     }
@@ -26,19 +33,19 @@ class GetPromotions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Bas
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('page'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array('page' => 1));
-        $optionsResolver->addAllowedTypes('page', array('int'));
+        $optionsResolver->setDefined(['page']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults(['page' => 1]);
+        $optionsResolver->addAllowedTypes('page', ['int']);
         return $optionsResolver;
     }
     /**
@@ -57,6 +64,6 @@ class GetPromotions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Bas
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

@@ -1,0 +1,14 @@
+{
+	"name": "learnworlds-api",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"init": "rm -f .php-cs-fixer.cache",
+		"generate": "../../bin/jane-openapi generate",
+		"php-cs-fixer": "../../bin/php-cs-fixer fix",
+		"run": "npm run init && npm run generate && npm run php-cs-fixer"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}

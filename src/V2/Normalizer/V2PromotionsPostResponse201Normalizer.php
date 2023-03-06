@@ -1,17 +1,24 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
-use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
+use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
@@ -29,7 +36,7 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -59,9 +66,9 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
             unset($data['name']);
         }
         if (\array_key_exists('coupons', $data)) {
-            $values = array();
+            $values = [];
             foreach ($data['coupons'] as $value) {
-                $values_1 = new \ArrayObject(array(), \ArrayObject::ARRAY_AS_PROPS);
+                $values_1 = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
                 foreach ($value as $key => $value_1) {
                     $values_1[$key] = $value_1;
                 }
@@ -71,7 +78,7 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
             unset($data['coupons']);
         }
         if (\array_key_exists('applies_to_all', $data)) {
-            $values_2 = array();
+            $values_2 = [];
             foreach ($data['applies_to_all'] as $value_2) {
                 $values_2[] = $value_2;
             }
@@ -79,7 +86,7 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
             unset($data['applies_to_all']);
         }
         if (\array_key_exists('products', $data)) {
-            $values_3 = array();
+            $values_3 = [];
             foreach ($data['products'] as $value_3) {
                 $values_3[] = $this->denormalizer->denormalize($value_3, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PromotionsPostResponse201ProductsItem', 'json', $context);
             }
@@ -112,9 +119,9 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
-        $data = array();
+        $data = [];
         if ($object->isInitialized('id') && null !== $object->getId()) {
             $data['id'] = $object->getId();
         }
@@ -122,9 +129,9 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
             $data['name'] = $object->getName();
         }
         if ($object->isInitialized('coupons') && null !== $object->getCoupons()) {
-            $values = array();
+            $values = [];
             foreach ($object->getCoupons() as $value) {
-                $values_1 = array();
+                $values_1 = [];
                 foreach ($value as $key => $value_1) {
                     $values_1[$key] = $value_1;
                 }
@@ -133,14 +140,14 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
             $data['coupons'] = $values;
         }
         if ($object->isInitialized('appliesToAll') && null !== $object->getAppliesToAll()) {
-            $values_2 = array();
+            $values_2 = [];
             foreach ($object->getAppliesToAll() as $value_2) {
                 $values_2[] = $value_2;
             }
             $data['applies_to_all'] = $values_2;
         }
         if ($object->isInitialized('products') && null !== $object->getProducts()) {
-            $values_3 = array();
+            $values_3 = [];
             foreach ($object->getProducts() as $value_3) {
                 $values_3[] = $this->normalizer->normalize($value_3, 'json', $context);
             }

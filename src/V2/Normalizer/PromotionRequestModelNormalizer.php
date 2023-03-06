@@ -1,17 +1,24 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
-use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
+use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 class PromotionRequestModelNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
@@ -29,7 +36,7 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -46,7 +53,7 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
             unset($data['name']);
         }
         if (\array_key_exists('coupons', $data)) {
-            $values = array();
+            $values = [];
             foreach ($data['coupons'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PromotionRequestModelCouponsItem', 'json', $context);
             }
@@ -54,9 +61,9 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
             unset($data['coupons']);
         }
         if (\array_key_exists('product_ids', $data)) {
-            $values_1 = array();
+            $values_1 = [];
             foreach ($data['product_ids'] as $value_1) {
-                $values_2 = new \ArrayObject(array(), \ArrayObject::ARRAY_AS_PROPS);
+                $values_2 = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
                 foreach ($value_1 as $key => $value_2) {
                     $values_2[$key] = $value_2;
                 }
@@ -87,21 +94,21 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
-        $data = array();
+        $data = [];
         $data['name'] = $object->getName();
         if ($object->isInitialized('coupons') && null !== $object->getCoupons()) {
-            $values = array();
+            $values = [];
             foreach ($object->getCoupons() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }
             $data['coupons'] = $values;
         }
         if ($object->isInitialized('productIds') && null !== $object->getProductIds()) {
-            $values_1 = array();
+            $values_1 = [];
             foreach ($object->getProductIds() as $value_1) {
-                $values_2 = array();
+                $values_2 = [];
                 foreach ($value_1 as $key => $value_2) {
                     $values_2[$key] = $value_2;
                 }

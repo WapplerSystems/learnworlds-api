@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class UserResponseAnswersItem extends \ArrayObject
@@ -7,7 +14,7 @@ class UserResponseAnswersItem extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
@@ -49,7 +56,7 @@ class UserResponseAnswersItem extends \ArrayObject
      */
     protected $blockMaxScore;
     /**
-     * 
+     *
      *
      * @var mixed
      */
@@ -187,7 +194,7 @@ class UserResponseAnswersItem extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return mixed
      */
@@ -196,7 +203,7 @@ class UserResponseAnswersItem extends \ArrayObject
         return $this->answerData;
     }
     /**
-     * 
+     *
      *
      * @param mixed $answerData
      *

@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class Course extends \ArrayObject
@@ -7,7 +14,7 @@ class Course extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
@@ -31,7 +38,7 @@ class Course extends \ArrayObject
      */
     protected $expires;
     /**
-     * Expiration timeframe type / unit, defines the expiration timeframe, together with the actual value in the "expires" field. 
+     * Expiration timeframe type / unit, defines the expiration timeframe, together with the actual value in the "expires" field.
      *
      * @var mixed
      */
@@ -187,7 +194,7 @@ class Course extends \ArrayObject
         return $this;
     }
     /**
-     * Expiration timeframe type / unit, defines the expiration timeframe, together with the actual value in the "expires" field. 
+     * Expiration timeframe type / unit, defines the expiration timeframe, together with the actual value in the "expires" field.
      *
      * @return mixed
      */
@@ -196,7 +203,7 @@ class Course extends \ArrayObject
         return $this->expiresType;
     }
     /**
-     * Expiration timeframe type / unit, defines the expiration timeframe, together with the actual value in the "expires" field. 
+     * Expiration timeframe type / unit, defines the expiration timeframe, together with the actual value in the "expires" field.
      *
      * @param mixed $expiresType
      *

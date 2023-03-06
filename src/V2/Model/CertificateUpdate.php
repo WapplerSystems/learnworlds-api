@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class CertificateUpdate extends \ArrayObject
@@ -7,7 +14,7 @@ class CertificateUpdate extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
@@ -19,7 +26,7 @@ class CertificateUpdate extends \ArrayObject
      */
     protected $issued;
     /**
-     * 
+     *
      *
      * @var CertificateUpdateForm
      */
@@ -47,7 +54,7 @@ class CertificateUpdate extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return CertificateUpdateForm
      */
@@ -56,7 +63,7 @@ class CertificateUpdate extends \ArrayObject
         return $this->form;
     }
     /**
-     * 
+     *
      *
      * @param CertificateUpdateForm $form
      *

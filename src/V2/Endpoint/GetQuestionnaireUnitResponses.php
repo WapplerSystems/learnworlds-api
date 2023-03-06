@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class GetQuestionnaireUnitResponses extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
@@ -15,7 +22,7 @@ class GetQuestionnaireUnitResponses extends \WapplerSystems\LearnWorldsApi\V2\Ru
      *     @var int $items_per_page Filter by the items per page number
      * }
      */
-    public function __construct(string $id, array $queryParameters = array())
+    public function __construct(string $id, array $queryParameters = [])
     {
         $this->id = $id;
         $this->queryParameters = $queryParameters;
@@ -27,25 +34,25 @@ class GetQuestionnaireUnitResponses extends \WapplerSystems\LearnWorldsApi\V2\Ru
     }
     public function getUri() : string
     {
-        return str_replace(array('{id}'), array($this->id), '/v2/assessments/{id}/responses');
+        return str_replace(['{id}'], [$this->id], '/v2/assessments/{id}/responses');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('page', 'users', 'items_per_page'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array('page' => 1));
-        $optionsResolver->addAllowedTypes('page', array('int'));
-        $optionsResolver->addAllowedTypes('users', array('string'));
-        $optionsResolver->addAllowedTypes('items_per_page', array('int'));
+        $optionsResolver->setDefined(['page', 'users', 'items_per_page']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults(['page' => 1]);
+        $optionsResolver->addAllowedTypes('page', ['int']);
+        $optionsResolver->addAllowedTypes('users', ['string']);
+        $optionsResolver->addAllowedTypes('items_per_page', ['int']);
         return $optionsResolver;
     }
     /**
@@ -64,6 +71,6 @@ class GetQuestionnaireUnitResponses extends \WapplerSystems\LearnWorldsApi\V2\Ru
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

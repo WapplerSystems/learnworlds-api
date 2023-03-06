@@ -1,8 +1,15 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class DeleteCertificatesId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class DeleteCertificateById extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -21,11 +28,11 @@ class DeleteCertificatesId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Cli
     }
     public function getUri() : string
     {
-        return str_replace(array('{id}'), array($this->id), '/v2/certificates/{id}');
+        return str_replace(['{id}'], [$this->id], '/v2/certificates/{id}');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     /**
      * {@inheritdoc}
@@ -43,6 +50,6 @@ class DeleteCertificatesId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Cli
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

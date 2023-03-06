@@ -1,18 +1,25 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class GetPromotionsCoupon extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class GetPromotionById extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
-    protected $pid;
+    protected $id;
     /**
-     * Returns all coupons for the promotion specified by the provided promotion id. 
+     * Returns the promotion specified by the provided promotion id.
      *
-     * @param string $pid Promotion Id
+     * @param string $id Promotion Id
      */
-    public function __construct(string $pid)
+    public function __construct(string $id)
     {
-        $this->pid = $pid;
+        $this->id = $id;
     }
     use \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
@@ -21,32 +28,32 @@ class GetPromotionsCoupon extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Clie
     }
     public function getUri() : string
     {
-        return str_replace(array('{pid}'), array($this->pid), '/v2/promotions/{pid}/coupons');
+        return str_replace(['{id}'], [$this->id], '/v2/promotions/{id}');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     /**
      * {@inheritdoc}
      *
      *
-     * @return null|\WapplerSystems\LearnWorldsApi\V2\Model\V2PromotionsPidCouponsGetResponse200
+     * @return null|\WapplerSystems\LearnWorldsApi\V2\Model\Promotion
      */
     protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
-            return $serializer->deserialize($body, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PromotionsPidCouponsGetResponse200', 'json');
+            return $serializer->deserialize($body, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Promotion', 'json');
         }
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

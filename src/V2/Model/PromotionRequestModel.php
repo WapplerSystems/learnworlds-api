@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class PromotionRequestModel extends \ArrayObject
@@ -7,49 +14,49 @@ class PromotionRequestModel extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * 
+     *
      *
      * @var string
      */
     protected $name;
     /**
-     * 
+     *
      *
      * @var PromotionRequestModelCouponsItem[]
      */
     protected $coupons;
     /**
-     * 
+     *
      *
      * @var mixed[][]
      */
     protected $productIds;
     /**
-     * 
+     *
      *
      * @var string
      */
     protected $type;
     /**
-     * 
+     *
      *
      * @var string
      */
     protected $value;
     /**
-     * 
+     *
      *
      * @var string
      */
     protected $access;
     /**
-     * 
+     *
      *
      * @return string
      */
@@ -58,7 +65,7 @@ class PromotionRequestModel extends \ArrayObject
         return $this->name;
     }
     /**
-     * 
+     *
      *
      * @param string $name
      *
@@ -71,7 +78,7 @@ class PromotionRequestModel extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return PromotionRequestModelCouponsItem[]
      */
@@ -80,7 +87,7 @@ class PromotionRequestModel extends \ArrayObject
         return $this->coupons;
     }
     /**
-     * 
+     *
      *
      * @param PromotionRequestModelCouponsItem[] $coupons
      *
@@ -93,7 +100,7 @@ class PromotionRequestModel extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return mixed[][]
      */
@@ -102,7 +109,7 @@ class PromotionRequestModel extends \ArrayObject
         return $this->productIds;
     }
     /**
-     * 
+     *
      *
      * @param mixed[][] $productIds
      *
@@ -115,7 +122,7 @@ class PromotionRequestModel extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return string
      */
@@ -124,7 +131,7 @@ class PromotionRequestModel extends \ArrayObject
         return $this->type;
     }
     /**
-     * 
+     *
      *
      * @param string $type
      *
@@ -137,7 +144,7 @@ class PromotionRequestModel extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return string
      */
@@ -146,7 +153,7 @@ class PromotionRequestModel extends \ArrayObject
         return $this->value;
     }
     /**
-     * 
+     *
      *
      * @param string $value
      *
@@ -159,7 +166,7 @@ class PromotionRequestModel extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return string
      */
@@ -168,7 +175,7 @@ class PromotionRequestModel extends \ArrayObject
         return $this->access;
     }
     /**
-     * 
+     *
      *
      * @param string $access
      *

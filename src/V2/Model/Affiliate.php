@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class Affiliate extends \ArrayObject
@@ -7,7 +14,7 @@ class Affiliate extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
@@ -67,7 +74,7 @@ class Affiliate extends \ArrayObject
      */
     protected $sales;
     /**
-     * Total commission amount 
+     * Total commission amount
      *
      * @var float
      */
@@ -307,7 +314,7 @@ class Affiliate extends \ArrayObject
         return $this;
     }
     /**
-     * Total commission amount 
+     * Total commission amount
      *
      * @return float
      */
@@ -316,7 +323,7 @@ class Affiliate extends \ArrayObject
         return $this->commissions;
     }
     /**
-     * Total commission amount 
+     * Total commission amount
      *
      * @param float $commissions
      *

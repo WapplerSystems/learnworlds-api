@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class GetCouponRedemptions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
@@ -15,7 +22,7 @@ class GetCouponRedemptions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Cli
      *     @var int $page Filter by the page number. In case page number is higher than the maximum one, the results of last page will be returned
      * }
      */
-    public function __construct(string $pid, string $cid, array $queryParameters = array())
+    public function __construct(string $pid, string $cid, array $queryParameters = [])
     {
         $this->pid = $pid;
         $this->cid = $cid;
@@ -28,23 +35,23 @@ class GetCouponRedemptions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Cli
     }
     public function getUri() : string
     {
-        return str_replace(array('{pid}', '{cid}'), array($this->pid, $this->cid), '/v2/promotions/{pid}/coupons/{cid}/usage');
+        return str_replace(['{pid}', '{cid}'], [$this->pid, $this->cid], '/v2/promotions/{pid}/coupons/{cid}/usage');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('page'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array('page' => 1));
-        $optionsResolver->addAllowedTypes('page', array('int'));
+        $optionsResolver->setDefined(['page']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults(['page' => 1]);
+        $optionsResolver->addAllowedTypes('page', ['int']);
         return $optionsResolver;
     }
     /**
@@ -63,6 +70,6 @@ class GetCouponRedemptions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Cli
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

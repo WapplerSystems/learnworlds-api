@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class V2UsersIdTagsPutBody extends \ArrayObject
@@ -7,7 +14,7 @@ class V2UsersIdTagsPutBody extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
@@ -19,7 +26,7 @@ class V2UsersIdTagsPutBody extends \ArrayObject
      */
     protected $tags;
     /**
-     * The exact action to be performed with the aforementioned tags to the specified user; 'attach' is the indication to add these tags to the user and 'detach' is the indication to remove them from the user. 
+     * The exact action to be performed with the aforementioned tags to the specified user; 'attach' is the indication to add these tags to the user and 'detach' is the indication to remove them from the user.
      *
      * @var string
      */
@@ -47,7 +54,7 @@ class V2UsersIdTagsPutBody extends \ArrayObject
         return $this;
     }
     /**
-     * The exact action to be performed with the aforementioned tags to the specified user; 'attach' is the indication to add these tags to the user and 'detach' is the indication to remove them from the user. 
+     * The exact action to be performed with the aforementioned tags to the specified user; 'attach' is the indication to add these tags to the user and 'detach' is the indication to remove them from the user.
      *
      * @return string
      */
@@ -56,7 +63,7 @@ class V2UsersIdTagsPutBody extends \ArrayObject
         return $this->action;
     }
     /**
-     * The exact action to be performed with the aforementioned tags to the specified user; 'attach' is the indication to add these tags to the user and 'detach' is the indication to remove them from the user. 
+     * The exact action to be performed with the aforementioned tags to the specified user; 'attach' is the indication to add these tags to the user and 'detach' is the indication to remove them from the user.
      *
      * @param string $action
      *

@@ -1,15 +1,22 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class PutUsersId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class UpdateUser extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
      * Updates user information. The endpoint response is the updated User resource.
      *
      * @param string $id User Id or email (encoded string)
-     * @param null|\WapplerSystems\LearnWorldsApi\V2\Model\UserRequestPutModel $requestBody 
+     * @param null|\WapplerSystems\LearnWorldsApi\V2\Model\UserRequestPutModel $requestBody
      */
     public function __construct(string $id, ?\WapplerSystems\LearnWorldsApi\V2\Model\UserRequestPutModel $requestBody = null)
     {
@@ -23,18 +30,18 @@ class PutUsersId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEn
     }
     public function getUri() : string
     {
-        return str_replace(array('{id}'), array($this->id), '/v2/users/{id}');
+        return str_replace(['{id}'], [$this->id], '/v2/users/{id}');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
         if ($this->body instanceof \WapplerSystems\LearnWorldsApi\V2\Model\UserRequestPutModel) {
-            return array(array('Content-Type' => array('application/json')), $serializer->serialize($this->body, 'json'));
+            return [['Content-Type' => ['application/json']], $serializer->serialize($this->body, 'json')];
         }
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     /**
      * {@inheritdoc}
@@ -52,6 +59,6 @@ class PutUsersId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEn
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

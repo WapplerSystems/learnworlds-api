@@ -1,15 +1,22 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class PostAffiliatesId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class MakeAffiliate extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
      * Makes a user specified by the provided user id an affiliate. The endpoint response is the affiliate resource.
      *
      * @param string $id User Id or email (encoded string)
-     * @param null|\WapplerSystems\LearnWorldsApi\V2\Model\AffiliatePostRequest $requestBody 
+     * @param null|\WapplerSystems\LearnWorldsApi\V2\Model\AffiliatePostRequest $requestBody
      */
     public function __construct(string $id, ?\WapplerSystems\LearnWorldsApi\V2\Model\AffiliatePostRequest $requestBody = null)
     {
@@ -23,18 +30,18 @@ class PostAffiliatesId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\
     }
     public function getUri() : string
     {
-        return str_replace(array('{id}'), array($this->id), '/v2/affiliates/{id}');
+        return str_replace(['{id}'], [$this->id], '/v2/affiliates/{id}');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
         if ($this->body instanceof \WapplerSystems\LearnWorldsApi\V2\Model\AffiliatePostRequest) {
-            return array(array('Content-Type' => array('application/json')), $serializer->serialize($this->body, 'json'));
+            return [['Content-Type' => ['application/json']], $serializer->serialize($this->body, 'json')];
         }
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     /**
      * {@inheritdoc}
@@ -52,6 +59,6 @@ class PostAffiliatesId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

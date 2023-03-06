@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class Grade extends \ArrayObject
@@ -7,7 +14,7 @@ class Grade extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
@@ -55,7 +62,7 @@ class Grade extends \ArrayObject
      */
     protected $submittedTimestamp;
     /**
-     * 
+     *
      *
      * @var GradeLearningUnit
      */
@@ -215,7 +222,7 @@ class Grade extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return GradeLearningUnit
      */
@@ -224,7 +231,7 @@ class Grade extends \ArrayObject
         return $this->learningUnit;
     }
     /**
-     * 
+     *
      *
      * @param GradeLearningUnit $learningUnit
      *

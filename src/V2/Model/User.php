@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class User extends \ArrayObject
@@ -7,13 +14,13 @@ class User extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * Unique identifier of the user 
+     * Unique identifier of the user
      *
      * @var string
      */
@@ -133,7 +140,7 @@ class User extends \ArrayObject
      */
     protected $npsComment;
     /**
-     * Unique identifier of the user 
+     * Unique identifier of the user
      *
      * @return string
      */
@@ -142,7 +149,7 @@ class User extends \ArrayObject
         return $this->id;
     }
     /**
-     * Unique identifier of the user 
+     * Unique identifier of the user
      *
      * @param string $id
      *

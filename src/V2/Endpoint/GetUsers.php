@@ -1,12 +1,19 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class GetUsers extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
     /**
-    * Returns a list with all the users of the school. The users are in sorted order, with the most recently created user appearing first, and the list is paginated, with a default limit of 20 users per page. 
-    To refine the list of users, there are a number of query params outlined in the following section; In case more than one Query param is provided, then all of them will be applied (AND operator). 
+    * Returns a list with all the users of the school. The users are in sorted order, with the most recently created user appearing first, and the list is paginated, with a default limit of 20 users per page.
+    To refine the list of users, there are a number of query params outlined in the following section; In case more than one Query param is provided, then all of them will be applied (AND operator).
     *
     * @param array $queryParameters {
     *     @var float $registration_after Filter by registration after the given datetime (expected in UNIX timestamp format)
@@ -20,7 +27,7 @@ class GetUsers extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndp
     *     @var string $include_suspended Filter by include_suspended flag. The default value is false.
     * }
     */
-    public function __construct(array $queryParameters = array())
+    public function __construct(array $queryParameters = [])
     {
         $this->queryParameters = $queryParameters;
     }
@@ -35,27 +42,27 @@ class GetUsers extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndp
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('registration_after', 'status', 'role', 'tags', 'page', 'cf_$field_name', 'registration_before', 'items_per_page', 'include_suspended'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array('page' => 1));
-        $optionsResolver->addAllowedTypes('registration_after', array('float'));
-        $optionsResolver->addAllowedTypes('status', array('string'));
-        $optionsResolver->addAllowedTypes('role', array('string'));
-        $optionsResolver->addAllowedTypes('tags', array('string'));
-        $optionsResolver->addAllowedTypes('page', array('int'));
-        $optionsResolver->addAllowedTypes('cf_$field_name', array('string'));
-        $optionsResolver->addAllowedTypes('registration_before', array('float'));
-        $optionsResolver->addAllowedTypes('items_per_page', array('int'));
-        $optionsResolver->addAllowedTypes('include_suspended', array('string'));
+        $optionsResolver->setDefined(['registration_after', 'status', 'role', 'tags', 'page', 'cf_$field_name', 'registration_before', 'items_per_page', 'include_suspended']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults(['page' => 1]);
+        $optionsResolver->addAllowedTypes('registration_after', ['float']);
+        $optionsResolver->addAllowedTypes('status', ['string']);
+        $optionsResolver->addAllowedTypes('role', ['string']);
+        $optionsResolver->addAllowedTypes('tags', ['string']);
+        $optionsResolver->addAllowedTypes('page', ['int']);
+        $optionsResolver->addAllowedTypes('cf_$field_name', ['string']);
+        $optionsResolver->addAllowedTypes('registration_before', ['float']);
+        $optionsResolver->addAllowedTypes('items_per_page', ['int']);
+        $optionsResolver->addAllowedTypes('include_suspended', ['string']);
         return $optionsResolver;
     }
     /**
@@ -74,6 +81,6 @@ class GetUsers extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndp
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

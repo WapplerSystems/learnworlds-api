@@ -1,17 +1,24 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
-use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
+use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 class UserRequestPutModelNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
@@ -29,7 +36,7 @@ class UserRequestPutModelNormalizer implements DenormalizerInterface, Normalizer
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -66,7 +73,7 @@ class UserRequestPutModelNormalizer implements DenormalizerInterface, Normalizer
             unset($data['fields']);
         }
         if (\array_key_exists('tags', $data)) {
-            $values = array();
+            $values = [];
             foreach ($data['tags'] as $value) {
                 $values[] = $value;
             }
@@ -87,9 +94,9 @@ class UserRequestPutModelNormalizer implements DenormalizerInterface, Normalizer
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
-        $data = array();
+        $data = [];
         if ($object->isInitialized('email') && null !== $object->getEmail()) {
             $data['email'] = $object->getEmail();
         }
@@ -109,7 +116,7 @@ class UserRequestPutModelNormalizer implements DenormalizerInterface, Normalizer
             $data['fields'] = $this->normalizer->normalize($object->getFields(), 'json', $context);
         }
         if ($object->isInitialized('tags') && null !== $object->getTags()) {
-            $values = array();
+            $values = [];
             foreach ($object->getTags() as $value) {
                 $values[] = $value;
             }

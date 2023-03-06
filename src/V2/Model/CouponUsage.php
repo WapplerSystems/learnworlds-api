@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class CouponUsage extends \ArrayObject
@@ -7,31 +14,31 @@ class CouponUsage extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * 
+     *
      *
      * @var Coupon
      */
     protected $usage;
     /**
-     * 
+     *
      *
      * @var Payment[]
      */
     protected $payments;
     /**
-     * 
+     *
      *
      * @var Meta
      */
     protected $meta;
     /**
-     * 
+     *
      *
      * @return Coupon
      */
@@ -40,7 +47,7 @@ class CouponUsage extends \ArrayObject
         return $this->usage;
     }
     /**
-     * 
+     *
      *
      * @param Coupon $usage
      *
@@ -53,7 +60,7 @@ class CouponUsage extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return Payment[]
      */
@@ -62,7 +69,7 @@ class CouponUsage extends \ArrayObject
         return $this->payments;
     }
     /**
-     * 
+     *
      *
      * @param Payment[] $payments
      *
@@ -75,7 +82,7 @@ class CouponUsage extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return Meta
      */
@@ -84,7 +91,7 @@ class CouponUsage extends \ArrayObject
         return $this->meta;
     }
     /**
-     * 
+     *
      *
      * @param Meta $meta
      *

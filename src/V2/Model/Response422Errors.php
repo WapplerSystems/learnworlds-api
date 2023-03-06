@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class Response422Errors extends \ArrayObject
@@ -7,19 +14,19 @@ class Response422Errors extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * 
+     *
      *
      * @var Response422ErrorsCompanyItem[]
      */
     protected $company;
     /**
-     * 
+     *
      *
      * @return Response422ErrorsCompanyItem[]
      */
@@ -28,7 +35,7 @@ class Response422Errors extends \ArrayObject
         return $this->company;
     }
     /**
-     * 
+     *
      *
      * @param Response422ErrorsCompanyItem[] $company
      *

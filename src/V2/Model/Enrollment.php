@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class Enrollment extends \ArrayObject
@@ -7,7 +14,7 @@ class Enrollment extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
@@ -25,7 +32,7 @@ class Enrollment extends \ArrayObject
      */
     protected $expires;
     /**
-     * 
+     *
      *
      * @var Course
      */
@@ -75,7 +82,7 @@ class Enrollment extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return Course
      */
@@ -84,7 +91,7 @@ class Enrollment extends \ArrayObject
         return $this->course;
     }
     /**
-     * 
+     *
      *
      * @param Course $course
      *

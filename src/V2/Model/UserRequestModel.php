@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class UserRequestModel extends \ArrayObject
@@ -7,7 +14,7 @@ class UserRequestModel extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
@@ -66,12 +73,6 @@ class UserRequestModel extends \ArrayObject
      * @var UserRequestModelUtms
      */
     protected $utms;
-    /**
-     * 
-     *
-     * @var string
-     */
-    protected $;
     /**
      * Email account of the user
      *
@@ -268,28 +269,6 @@ class UserRequestModel extends \ArrayObject
     {
         $this->initialized['utms'] = true;
         $this->utms = $utms;
-        return $this;
-    }
-    /**
-     * 
-     *
-     * @return string
-     */
-    public function get() : string
-    {
-        return $this->;
-    }
-    /**
-     * 
-     *
-     * @param string $
-     *
-     * @return self
-     */
-    public function set(string $) : self
-    {
-        $this->initialized[''] = true;
-        $this-> = $;
         return $this;
     }
 }

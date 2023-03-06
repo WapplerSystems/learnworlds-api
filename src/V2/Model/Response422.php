@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class Response422 extends \ArrayObject
@@ -7,37 +14,37 @@ class Response422 extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * 
+     *
      *
      * @var float
      */
     protected $statusCode;
     /**
-     * 
+     *
      *
      * @var string
      */
     protected $error;
     /**
-     * 
+     *
      *
      * @var string
      */
     protected $message;
     /**
-     * 
+     *
      *
      * @var Response422Errors
      */
     protected $errors;
     /**
-     * 
+     *
      *
      * @return float
      */
@@ -46,7 +53,7 @@ class Response422 extends \ArrayObject
         return $this->statusCode;
     }
     /**
-     * 
+     *
      *
      * @param float $statusCode
      *
@@ -59,7 +66,7 @@ class Response422 extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return string
      */
@@ -68,7 +75,7 @@ class Response422 extends \ArrayObject
         return $this->error;
     }
     /**
-     * 
+     *
      *
      * @param string $error
      *
@@ -81,7 +88,7 @@ class Response422 extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return string
      */
@@ -90,7 +97,7 @@ class Response422 extends \ArrayObject
         return $this->message;
     }
     /**
-     * 
+     *
      *
      * @param string $message
      *
@@ -103,7 +110,7 @@ class Response422 extends \ArrayObject
         return $this;
     }
     /**
-     * 
+     *
      *
      * @return Response422Errors
      */
@@ -112,7 +119,7 @@ class Response422 extends \ArrayObject
         return $this->errors;
     }
     /**
-     * 
+     *
      *
      * @param Response422Errors $errors
      *

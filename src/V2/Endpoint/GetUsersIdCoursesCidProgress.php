@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class GetUsersIdCoursesCidProgress extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
@@ -24,15 +31,15 @@ class GetUsersIdCoursesCidProgress extends \WapplerSystems\LearnWorldsApi\V2\Run
     }
     public function getUri() : string
     {
-        return str_replace(array('{id}', '{cid}'), array($this->id, $this->cid), '/v2/users/{id}/courses/{cid}/progress');
+        return str_replace(['{id}', '{cid}'], [$this->id, $this->cid], '/v2/users/{id}/courses/{cid}/progress');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     /**
      * {@inheritdoc}
@@ -50,6 +57,6 @@ class GetUsersIdCoursesCidProgress extends \WapplerSystems\LearnWorldsApi\V2\Run
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

@@ -1,19 +1,26 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class GetUsersId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class GetUserById extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
-     * Returns the user specified by the provided user id. 
+     * Returns the user specified by the provided user id.
      *
      * @param string $id User Id or email (encoded string)
      * @param array $queryParameters {
      *     @var string $include_suspended Filter by include_suspended flag. The default value is false.
      * }
      */
-    public function __construct(string $id, array $queryParameters = array())
+    public function __construct(string $id, array $queryParameters = [])
     {
         $this->id = $id;
         $this->queryParameters = $queryParameters;
@@ -25,23 +32,23 @@ class GetUsersId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEn
     }
     public function getUri() : string
     {
-        return str_replace(array('{id}'), array($this->id), '/v2/users/{id}');
+        return str_replace(['{id}'], [$this->id], '/v2/users/{id}');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('include_suspended'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->addAllowedTypes('include_suspended', array('string'));
+        $optionsResolver->setDefined(['include_suspended']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->addAllowedTypes('include_suspended', ['string']);
         return $optionsResolver;
     }
     /**
@@ -60,6 +67,6 @@ class GetUsersId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEn
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

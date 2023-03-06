@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class GetEventLogs extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
@@ -13,10 +20,10 @@ class GetEventLogs extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Base
      *     @var string $created_after Filter by event log creation after the given datetime (expected in UNIX timestamp format)
      *     @var string $created_before Filter by event log creation before the given datetime (expected in UNIX timestamp format)
      *     @var int $page Filter by the page number. In case page number is higher than the maximum one, the results of last page will be returned
-     *     @var string $sort Sort by creation timestamp in ascending or descending order. 
+     *     @var string $sort Sort by creation timestamp in ascending or descending order.
      * }
      */
-    public function __construct(array $queryParameters = array())
+    public function __construct(array $queryParameters = [])
     {
         $this->queryParameters = $queryParameters;
     }
@@ -31,24 +38,24 @@ class GetEventLogs extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Base
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('user_id', 'activity', 'created_after', 'created_before', 'page', 'sort'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array('page' => 1, 'sort' => 'desc'));
-        $optionsResolver->addAllowedTypes('user_id', array('string'));
-        $optionsResolver->addAllowedTypes('activity', array('string'));
-        $optionsResolver->addAllowedTypes('created_after', array('string'));
-        $optionsResolver->addAllowedTypes('created_before', array('string'));
-        $optionsResolver->addAllowedTypes('page', array('int'));
-        $optionsResolver->addAllowedTypes('sort', array('string'));
+        $optionsResolver->setDefined(['user_id', 'activity', 'created_after', 'created_before', 'page', 'sort']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults(['page' => 1, 'sort' => 'desc']);
+        $optionsResolver->addAllowedTypes('user_id', ['string']);
+        $optionsResolver->addAllowedTypes('activity', ['string']);
+        $optionsResolver->addAllowedTypes('created_after', ['string']);
+        $optionsResolver->addAllowedTypes('created_before', ['string']);
+        $optionsResolver->addAllowedTypes('page', ['int']);
+        $optionsResolver->addAllowedTypes('sort', ['string']);
         return $optionsResolver;
     }
     /**
@@ -67,6 +74,6 @@ class GetEventLogs extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Base
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

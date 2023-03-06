@@ -1,8 +1,15 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class GetCoursesIdGrades extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class GetCourseGrades extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -16,7 +23,7 @@ class GetCoursesIdGrades extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Clien
      *     @var int $items_per_page Filter by the items per page number
      * }
      */
-    public function __construct(string $id, array $queryParameters = array())
+    public function __construct(string $id, array $queryParameters = [])
     {
         $this->id = $id;
         $this->queryParameters = $queryParameters;
@@ -28,26 +35,26 @@ class GetCoursesIdGrades extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Clien
     }
     public function getUri() : string
     {
-        return str_replace(array('{id}'), array($this->id), '/v2/courses/{id}/grades');
+        return str_replace(['{id}'], [$this->id], '/v2/courses/{id}/grades');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('users', 'learningUnits', 'page', 'items_per_page'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array('page' => 1));
-        $optionsResolver->addAllowedTypes('users', array('string'));
-        $optionsResolver->addAllowedTypes('learningUnits', array('string'));
-        $optionsResolver->addAllowedTypes('page', array('int'));
-        $optionsResolver->addAllowedTypes('items_per_page', array('int'));
+        $optionsResolver->setDefined(['users', 'learningUnits', 'page', 'items_per_page']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults(['page' => 1]);
+        $optionsResolver->addAllowedTypes('users', ['string']);
+        $optionsResolver->addAllowedTypes('learningUnits', ['string']);
+        $optionsResolver->addAllowedTypes('page', ['int']);
+        $optionsResolver->addAllowedTypes('items_per_page', ['int']);
         return $optionsResolver;
     }
     /**
@@ -66,6 +73,6 @@ class GetCoursesIdGrades extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Clien
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

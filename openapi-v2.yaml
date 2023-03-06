@@ -311,7 +311,7 @@ paths:
                     access: paid
                     created: 1510243831.36581
                     modified: 1621412603.921979
-      operationId: get-courses-id
+      operationId: get-course-by-id
       description: 'Returns information about the course specified by the provided course id. '
     put:
       summary: Update a course
@@ -413,7 +413,7 @@ paths:
                     avg_time_to_finish: 0
                     social_interactions: 7
                     certificates_issued: 3
-      operationId: get-courses-id-analytics
+      operationId: get-course-analytics
       description: Returns analytics about the course specified by the provided course id.
       tags:
         - Reporting
@@ -450,7 +450,7 @@ paths:
                     avg_study_time: 6502
                     total_study_time: 9295
                     avg_score_rate: 0
-      operationId: get-courses-cid-unit-uid-analytics
+      operationId: get-course-unit-analytics
       description: Returns analytics about a learning activity of a course specified by the provided course id and learning activity id.
       tags:
         - Reporting
@@ -535,7 +535,7 @@ paths:
       summary: Get a bundle
       tags:
         - Bundles
-      operationId: get-bundles-id
+      operationId: get-bundle-by-id
       description: Returns the bundle specified by the provided bundle id.
       responses:
         '200':
@@ -646,7 +646,7 @@ paths:
         description: Subscription plan Id
     get:
       summary: Get subscription plan
-      operationId: get-subscription-plans-id
+      operationId: get-subscription-plans-by-id
       responses:
         '200':
           description: OK
@@ -872,7 +872,7 @@ paths:
                             location: my office
                             scheduledEventId: f5675834-57e6-4a16-ae57-167f68127dcd
                             eventTypeId: 8dfd6800-9b06-4d9f-ad3e-052f3792ba57
-      operationId: get-courses-name-live-sessions
+      operationId: get-school-events
       description: 'Returns all the upcoming scheduled school events, regarding course drip feed, file assignment and live session.  '
       tags:
         - Calendar
@@ -1055,7 +1055,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-      operationId: post-users
+      operationId: create-user
       description: Creates a new user. The endpoint response is the created User resource.
       requestBody:
         content:
@@ -1082,7 +1082,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-      operationId: put-users-id
+      operationId: update-user
       description: Updates user information. The endpoint response is the updated User resource.
       requestBody:
         content:
@@ -1091,7 +1091,7 @@ paths:
               $ref: '#/components/schemas/UserRequestPutModel'
     get:
       summary: Get a user
-      operationId: get-users-id
+      operationId: get-user-by-id
       responses:
         '200':
           description: OK
@@ -1346,7 +1346,7 @@ paths:
                       totalItems: 1
                       totalPages: 1
                       itemsPerPage: 20
-      operationId: get-courses-id-users
+      operationId: get-course-users
       description: 'Retrieves all the users enrolled in the course specified by the provided course id. The users are in sorted order, with the most recently created user appearing first, and the list is paginated, with a default limit of 20 users per page. '
       parameters:
         - $ref: '#/components/parameters/page'
@@ -1415,7 +1415,7 @@ paths:
                         access: paid
                         drip: null
                         learningUnits: []
-      operationId: post-courses-id-sections
+      operationId: post-course-sections
       description: 'Creates a new course section in the course, specified by the course id. The endpoint response is the course contents including the newly created section.'
       requestBody:
         content:
@@ -1613,7 +1613,7 @@ paths:
                     payment_plan_total_payments: null
                     gateway: stripe
                     created: 1626852950
-      operationId: get-transactions-id
+      operationId: get-transaction
       tags:
         - Payments
       security: []
@@ -1630,7 +1630,7 @@ paths:
       summary: Get contents of a course
       tags:
         - Courses
-      operationId: get-courses-id-contents
+      operationId: get-course-contents
       responses:
         '200':
           description: OK
@@ -1782,7 +1782,7 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Product'
-      operationId: get-user-id-products
+      operationId: get-user-products
       description: Returns a list with all the products of the user specified by the provided user id.
   '/v2/users/{id}/tags':
     parameters:
@@ -1885,7 +1885,7 @@ paths:
                         bulk: true
                         prefix: coup
                         times_used: 0
-      operationId: get-promotions-coupon
+      operationId: get-promotion-coupons
       description: 'Returns all coupons for the promotion specified by the provided promotion id. '
     post:
       summary: Create a coupon in a promotion
@@ -2042,7 +2042,7 @@ paths:
                   success:
                     type: boolean
                     description: 'Indication about whether the action of the enrollment was successful; true if it was successful, or false if it was not.'
-      operationId: post-users-id-product-enrollment-pid
+      operationId: enroll-user-to-product
       description: 'Enroll user to product, regarding course, bundle, manual subscription '
       requestBody:
         content:
@@ -2344,7 +2344,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Certificate'
               examples: {}
-      operationId: put-certificates-id
+      operationId: update-certificate
       description: Updates the certificate specified by the provided certificate id.
       requestBody:
         content:
@@ -2366,7 +2366,7 @@ paths:
         - Certificates
     delete:
       summary: Delete a certificate (Revoke / Invalidate)
-      operationId: delete-certificates-id
+      operationId: delete-certificate-by-id
       responses:
         '204':
           description: No Content
@@ -2721,7 +2721,7 @@ paths:
                       $ref: '#/components/schemas/User'
                   meta:
                     $ref: '#/components/schemas/Meta'
-      operationId: get-affiliates-id-customers
+      operationId: get-customers-per-affiliate
       parameters:
         - $ref: '#/components/parameters/page'
       description: |
@@ -2808,7 +2808,7 @@ paths:
                       totalItems: 1
                       totalPages: 1
                       itemsPerPage: 20
-      operationId: get-affiliates-id-payments
+      operationId: get-affiliate-payments
       description: 'Returns a list with all the affiliate payments. The payments are in sorted order, with the most recently created payment appearing first, and the list is paginated, with a limit of 50 payments per page. To refine the list of payments, there are a number of query params outlined in the following section; In case more than one Query param is provided, then all of them will be applied (AND operator).'
       parameters:
         - $ref: '#/components/parameters/page'
@@ -2854,7 +2854,7 @@ paths:
                     invoice: '00001'
                     url: 'https://learnworldsdev.blob.core.windows.net/dev-private/invoices/invoice-00001-10-secrets-of-sleep-walking-5a006b8043c90b75078b4567.pdf?sv=2014-02-14&st=2021-09-08T12%3A28%3A40Z&se=2021-09-08T12%3A29%3A40Z&sr=b&sp=r&rscd=&sig=t6mq58yaMAcKRApYRiiBVMzppHOt5AObuMEFbvKxeKI%3D'
                     expires_at: 1631104180
-      operationId: get-payments-id-invoice_link
+      operationId: get-payments-invoicelink
       description: Returns the invoice number and a private expiring link to acccess the invoice.
   '/v2/users/{id}/courses/{cid}/progress':
     parameters:
@@ -2912,7 +2912,7 @@ paths:
                       - segmentId: 5fb6774110a74510ed7000b2
                         name: learnworlds
                         description: lw
-      operationId: get-school-segments
+      operationId: get-user-segments
       description: Returns a list of all user segments in the school.
       tags:
         - Users
@@ -3079,7 +3079,7 @@ paths:
                     value: 20
                     created: 1522913229.399585
                     modified: 1522913229.399585
-      operationId: get-promotions-id
+      operationId: get-promotion-by-id
       description: Returns the promotion specified by the provided promotion id.
   /v2/users/by-segment:
     get:
@@ -3467,7 +3467,7 @@ paths:
                       totalItems: 1
                       totalPages: 1
                       itemsPerPage: 20
-      operationId: get-affiliates-id-payouts-completed
+      operationId: get-completed-affiliate-payouts
       description: 'Returns a list with all the completed payouts related to the provided affiliate. The payouts are in sorted order, with the most recently created payouts appearing first, and the list is paginated, with a limit of 20 payouts per page.'
   '/v2/promotions/{id}/coupons-bulk':
     post:
@@ -3504,7 +3504,7 @@ paths:
                       bulk: true
                       prefix: bulk_prono
                       times_used: 0
-      operationId: 'post-promotions-:id-coupons-bulk'
+      operationId: 'create-promotion-coupons-bulk'
       requestBody:
         content:
           application/json:
@@ -3690,7 +3690,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Affiliate'
-      operationId: post-affiliates-id
+      operationId: make-affiliate
       description: Makes a user specified by the provided user id an affiliate. The endpoint response is the affiliate resource.
       requestBody:
         content:
@@ -3780,7 +3780,7 @@ paths:
                       totalItems: 1
                       totalPages: 1
                       itemsPerPage: 20
-      operationId: get-users-id-progress
+      operationId: get-user-progress
       description: 'Returns information about the user progress, for the user specified by the provided user id, for all courses the user is enrolled in. The result also includes the breakdown of user progress data per learning activity. The list is paginated, with a default limit of 20 course progress data per page. '
       x-internal: false
       parameters:
@@ -3836,7 +3836,7 @@ paths:
                       totalItems: 1
                       totalPages: 1
                       itemsPerPage: 20
-      operationId: get-courses-id-grades
+      operationId: get-course-grades
       parameters:
         - schema:
             type: string

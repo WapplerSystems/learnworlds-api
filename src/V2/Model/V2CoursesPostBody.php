@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class V2CoursesPostBody extends \ArrayObject
@@ -7,13 +14,13 @@ class V2CoursesPostBody extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * Unique identifier of the course title. If it is empty the identifier is formed based on the provided title. 
+     * Unique identifier of the course title. If it is empty the identifier is formed based on the provided title.
      *
      * @var string
      */
@@ -55,7 +62,7 @@ class V2CoursesPostBody extends \ArrayObject
      */
     protected $categories;
     /**
-     * Unique identifier of the course title. If it is empty the identifier is formed based on the provided title. 
+     * Unique identifier of the course title. If it is empty the identifier is formed based on the provided title.
      *
      * @return string
      */
@@ -64,7 +71,7 @@ class V2CoursesPostBody extends \ArrayObject
         return $this->titleId;
     }
     /**
-     * Unique identifier of the course title. If it is empty the identifier is formed based on the provided title. 
+     * Unique identifier of the course title. If it is empty the identifier is formed based on the provided title.
      *
      * @param string $titleId
      *

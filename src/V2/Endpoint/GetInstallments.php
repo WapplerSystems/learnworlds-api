@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class GetInstallments extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
@@ -14,7 +21,7 @@ class GetInstallments extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
      *     @var int $page Filter by the page number. In case page number is higher than the maximum one, no results will be returned
      * }
      */
-    public function __construct(array $queryParameters = array())
+    public function __construct(array $queryParameters = [])
     {
         $this->queryParameters = $queryParameters;
     }
@@ -29,22 +36,22 @@ class GetInstallments extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('product_id', 'user_id', 'product_type', 'page'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array('page' => 1));
-        $optionsResolver->addAllowedTypes('product_id', array('string'));
-        $optionsResolver->addAllowedTypes('user_id', array('string'));
-        $optionsResolver->addAllowedTypes('product_type', array('string'));
-        $optionsResolver->addAllowedTypes('page', array('int'));
+        $optionsResolver->setDefined(['product_id', 'user_id', 'product_type', 'page']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults(['page' => 1]);
+        $optionsResolver->addAllowedTypes('product_id', ['string']);
+        $optionsResolver->addAllowedTypes('user_id', ['string']);
+        $optionsResolver->addAllowedTypes('product_type', ['string']);
+        $optionsResolver->addAllowedTypes('page', ['int']);
         return $optionsResolver;
     }
     /**
@@ -63,6 +70,6 @@ class GetInstallments extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

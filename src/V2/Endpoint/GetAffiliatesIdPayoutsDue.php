@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
 class GetAffiliatesIdPayoutsDue extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
@@ -21,15 +28,15 @@ class GetAffiliatesIdPayoutsDue extends \WapplerSystems\LearnWorldsApi\V2\Runtim
     }
     public function getUri() : string
     {
-        return str_replace(array('{id}'), array($this->id), '/v2/affiliates/{id}/payouts/due');
+        return str_replace(['{id}'], [$this->id], '/v2/affiliates/{id}/payouts/due');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        return array(array(), null);
+        return [[], null];
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
     /**
      * {@inheritdoc}
@@ -47,6 +54,6 @@ class GetAffiliatesIdPayoutsDue extends \WapplerSystems\LearnWorldsApi\V2\Runtim
     }
     public function getAuthenticationScopes() : array
     {
-        return array('BearerAuth', 'LwClient');
+        return ['BearerAuth', 'LwClient'];
     }
 }

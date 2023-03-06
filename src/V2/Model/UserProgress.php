@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package wapplersystems/learnworlds-api.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace WapplerSystems\LearnWorldsApi\V2\Model;
 
 class UserProgress extends \ArrayObject
@@ -7,7 +14,7 @@ class UserProgress extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
+    protected $initialized = [];
     public function isInitialized($property) : bool
     {
         return array_key_exists($property, $this->initialized);
@@ -37,13 +44,13 @@ class UserProgress extends \ArrayObject
      */
     protected $timeOnCourse;
     /**
-     * Total number of course learning activities 
+     * Total number of course learning activities
      *
      * @var int
      */
     protected $totalUnits;
     /**
-     * Total number of completed course learning activities by the user 
+     * Total number of completed course learning activities by the user
      *
      * @var int
      */
@@ -143,7 +150,7 @@ class UserProgress extends \ArrayObject
         return $this;
     }
     /**
-     * Total number of course learning activities 
+     * Total number of course learning activities
      *
      * @return int
      */
@@ -152,7 +159,7 @@ class UserProgress extends \ArrayObject
         return $this->totalUnits;
     }
     /**
-     * Total number of course learning activities 
+     * Total number of course learning activities
      *
      * @param int $totalUnits
      *
@@ -165,7 +172,7 @@ class UserProgress extends \ArrayObject
         return $this;
     }
     /**
-     * Total number of completed course learning activities by the user 
+     * Total number of completed course learning activities by the user
      *
      * @return int
      */
@@ -174,7 +181,7 @@ class UserProgress extends \ArrayObject
         return $this->completedUnits;
     }
     /**
-     * Total number of completed course learning activities by the user 
+     * Total number of completed course learning activities by the user
      *
      * @param int $completedUnits
      *
