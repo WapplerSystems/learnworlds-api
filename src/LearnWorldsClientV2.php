@@ -23,21 +23,17 @@ use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Serializer;
 use WapplerSystems\LearnWorldsApi\V2\Authentication\BearerAuthAuthentication;
 use WapplerSystems\LearnWorldsApi\V2\Authentication\LwClientAuthentication;
-use WapplerSystems\LearnWorldsApi\V2\Normalizer\JaneObjectNormalizer;
 use WapplerSystems\LearnWorldsApi\V2\Client;
+use WapplerSystems\LearnWorldsApi\V2\Normalizer\JaneObjectNormalizer;
 
 class LearnWorldsClientV2 extends Client
 {
     protected static string $refreshToken;
 
     /**
-     * @param string $school
-     * @param string $clientId
-     * @param string $clientSecret
      * @param string $email
      * @param string $password
      * @param $httpClient
-     * @return Client
      * @throws ClientExceptionInterface
      */
     public static function createAuthorized(string $school, string $clientId, string $clientSecret, $httpClient = null): Client
@@ -57,7 +53,7 @@ class LearnWorldsClientV2 extends Client
         $request = Psr17FactoryDiscovery::findRequestFactory()->createRequest('POST', $uri)
             ->withHeader('Content-Type', 'application/json')
             ->withHeader('Lw-Client', $clientId)
-            ->withBody(Psr17FactoryDiscovery::findStreamFactory()->createStream(json_encode($data)));
+            ->withBody(Psr17FactoryDiscovery::findStreamFactory()->createStream(json_encode($data, JSON_THROW_ON_ERROR)));
 
         $response = $httpClient->sendRequest($request);
 
@@ -65,14 +61,13 @@ class LearnWorldsClientV2 extends Client
             // throw exception
         }
 
-        $authData = json_decode($response->getBody()->getContents());
+        $authData = json_decode((string) $response->getBody()->getContents(), null, 512, JSON_THROW_ON_ERROR);
         $accessToken = $authData->tokenData->access_token;
 
         $authenticationRegistry = new AuthenticationRegistry([new BearerAuthAuthentication($accessToken), new LwClientAuthentication($clientId)]);
 
         $additionalPlugins = [$authenticationRegistry];
         $additionalNormalizers = [];
-
 
         $plugins = [];
         $uri = Psr17FactoryDiscovery::findUriFactory()->createUri('https://' . $school . '/admin/api');
@@ -81,6 +76,7 @@ class LearnWorldsClientV2 extends Client
         if (count($additionalPlugins) > 0) {
             $plugins = array_merge($plugins, $additionalPlugins);
         }
+
         $httpClient = new PluginClient($httpClient, $plugins);
 
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
@@ -89,10 +85,10 @@ class LearnWorldsClientV2 extends Client
         if (count($additionalNormalizers) > 0) {
             $normalizers = array_merge($normalizers, $additionalNormalizers);
         }
+
         $serializer = new Serializer($normalizers, [new JsonEncoder(new JsonEncode(), new JsonDecode(['json_decode_associative' => true]))]);
         return new static($httpClient, $requestFactory, $serializer, $streamFactory);
     }
-
 
     public function refresh()
     {
