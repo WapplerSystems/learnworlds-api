@@ -9,7 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class PutUsersIdUnsuspend extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class UnsuspendUser extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
     protected $id;
     /**

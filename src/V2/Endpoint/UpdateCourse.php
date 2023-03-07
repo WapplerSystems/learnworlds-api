@@ -9,7 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class PutCoursesId extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class UpdateCourse extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
     protected $id;
     /**

@@ -62,9 +62,9 @@ class Client extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Client
      *
      * @return null|\WapplerSystems\LearnWorldsApi\V2\Model\Course|\Psr\Http\Message\ResponseInterface
      */
-    public function putCoursesId(string $id, ?\WapplerSystems\LearnWorldsApi\V2\Model\V2CoursesIdPutBody $requestBody = null, string $fetch = self::FETCH_OBJECT)
+    public function updateCourse(string $id, ?\WapplerSystems\LearnWorldsApi\V2\Model\V2CoursesIdPutBody $requestBody = null, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \WapplerSystems\LearnWorldsApi\V2\Endpoint\PutCoursesId($id, $requestBody), $fetch);
+        return $this->executeEndpoint(new \WapplerSystems\LearnWorldsApi\V2\Endpoint\UpdateCourse($id, $requestBody), $fetch);
     }
     /**
      * Returns analytics about the course specified by the provided course id.
@@ -375,9 +375,9 @@ class Client extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Client
      *
      * @return null|\WapplerSystems\LearnWorldsApi\V2\Model\User|\Psr\Http\Message\ResponseInterface
      */
-    public function putUsersIdTags(string $id, ?\WapplerSystems\LearnWorldsApi\V2\Model\V2UsersIdTagsPutBody $requestBody = null, string $fetch = self::FETCH_OBJECT)
+    public function updateUserTags(string $id, ?\WapplerSystems\LearnWorldsApi\V2\Model\V2UsersIdTagsPutBody $requestBody = null, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \WapplerSystems\LearnWorldsApi\V2\Endpoint\PutUsersIdTags($id, $requestBody), $fetch);
+        return $this->executeEndpoint(new \WapplerSystems\LearnWorldsApi\V2\Endpoint\UpdateUserTags($id, $requestBody), $fetch);
     }
     /**
      * Returns all coupons for the promotion specified by the provided promotion id.
@@ -601,9 +601,9 @@ class Client extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Client
      *
      * @return null|\WapplerSystems\LearnWorldsApi\V2\Model\User|\Psr\Http\Message\ResponseInterface
      */
-    public function putUsersIdSuspend(string $id, string $fetch = self::FETCH_OBJECT)
+    public function suspendUser(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \WapplerSystems\LearnWorldsApi\V2\Endpoint\PutUsersIdSuspend($id), $fetch);
+        return $this->executeEndpoint(new \WapplerSystems\LearnWorldsApi\V2\Endpoint\SuspendUser($id), $fetch);
     }
     /**
      * Unsuspends a user. The endpoint response is the unsuspended User resource.
@@ -613,9 +613,9 @@ class Client extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Client
      *
      * @return null|\WapplerSystems\LearnWorldsApi\V2\Model\User|\Psr\Http\Message\ResponseInterface
      */
-    public function putUsersIdUnsuspend(string $id, string $fetch = self::FETCH_OBJECT)
+    public function unsuspendUser(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \WapplerSystems\LearnWorldsApi\V2\Endpoint\PutUsersIdUnsuspend($id), $fetch);
+        return $this->executeEndpoint(new \WapplerSystems\LearnWorldsApi\V2\Endpoint\UnsuspendUser($id), $fetch);
     }
     /**
      * Returns a list with certificates. The certificates are in sorted order, with the most recently created user appearing first, and the list is paginated, with a limit of 20 certificates per page. To refine the list of certificates, there are a number of query params outlined in the following section; In case more than one Query param is provided, then all of them will be applied (AND operator). At least one query parameter is required.

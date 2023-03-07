@@ -9,17 +9,19 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class PutUsersIdSuspend extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class UpdateUserTags extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
-     * Suspends a user from loging in or creating another account. The endpoint response is the suspended User resource.
+     * Updates the tags of the user specified by the provided user Id or email. The endpoint response is the updated User resource.
      *
-     * @param string $id User id or email (encoded string)
+     * @param string $id User Id or email (encoded string)
+     * @param null|\WapplerSystems\LearnWorldsApi\V2\Model\V2UsersIdTagsPutBody $requestBody
      */
-    public function __construct(string $id)
+    public function __construct(string $id, ?\WapplerSystems\LearnWorldsApi\V2\Model\V2UsersIdTagsPutBody $requestBody = null)
     {
         $this->id = $id;
+        $this->body = $requestBody;
     }
     use \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
@@ -28,10 +30,13 @@ class PutUsersIdSuspend extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client
     }
     public function getUri() : string
     {
-        return str_replace(['{id}'], [$this->id], '/v2/users/{id}/suspend');
+        return str_replace(['{id}'], [$this->id], '/v2/users/{id}/tags');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
+        if ($this->body instanceof \WapplerSystems\LearnWorldsApi\V2\Model\V2UsersIdTagsPutBody) {
+            return [['Content-Type' => ['application/json']], $serializer->serialize($this->body, 'json')];
+        }
         return [[], null];
     }
     public function getExtraHeaders() : array

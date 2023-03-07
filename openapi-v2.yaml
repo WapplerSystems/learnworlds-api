@@ -324,7 +324,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Course'
-      operationId: put-courses-id
+      operationId: update-course
       requestBody:
         content:
           application/json:
@@ -1794,7 +1794,7 @@ paths:
         description: User Id or email (encoded string)
     put:
       summary: Update user tags
-      operationId: put-users-id-tags
+      operationId: update-user-tags
       responses:
         '200':
           description: OK
@@ -2936,7 +2936,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-      operationId: put-users-id-suspend
+      operationId: suspend-user
       description: Suspends a user from loging in or creating another account. The endpoint response is the suspended User resource.
   '/v2/users/{id}/unsuspend':
     parameters:
@@ -2957,7 +2957,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-      operationId: put-users-id-unsuspend
+      operationId: unsuspend-user
       description: Unsuspends a user. The endpoint response is the unsuspended User resource.
   /v2/certificates:
     get:
