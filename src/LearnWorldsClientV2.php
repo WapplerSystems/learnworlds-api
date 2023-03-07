@@ -31,10 +31,13 @@ class LearnWorldsClientV2 extends Client
     protected static string $refreshToken;
 
     /**
-     * @param string $email
-     * @param string $password
-     * @param $httpClient
+     * @param string $school
+     * @param string $clientId
+     * @param string $clientSecret
+     * @param null $httpClient
+     * @return Client
      * @throws ClientExceptionInterface
+     * @throws \JsonException
      */
     public static function createAuthorized(string $school, string $clientId, string $clientSecret, $httpClient = null): Client
     {
