@@ -9,7 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class CreatePromotionCouponsBulk extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class CreatePromotionCouponsBulk extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint
 {
     protected $id;
     /**

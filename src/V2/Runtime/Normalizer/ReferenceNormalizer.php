@@ -17,17 +17,26 @@ class ReferenceNormalizer implements NormalizerInterface
     /**
      * {@inheritdoc}
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize(mixed $data, ?string $format = null, array $context = []): float|int|bool|\ArrayObject|array|string|null
     {
         $ref = [];
-        $ref['$ref'] = (string) $object->getReferenceUri();
+        $ref['$ref'] = (string)$data->getReferenceUri();
         return $ref;
     }
+
     /**
      * {@inheritdoc}
+     * @param mixed $data
+     * @param null $format
+     * @param array $context
      */
-    public function supportsNormalization($data, $format = null) : bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
         return $data instanceof Reference;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [Reference::class => false];
     }
 }

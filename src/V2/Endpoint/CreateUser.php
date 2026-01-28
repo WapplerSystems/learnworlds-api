@@ -9,7 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class CreateUser extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class CreateUser extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint
 {
     /**
      * Creates a new user. The endpoint response is the created User resource.
@@ -20,26 +20,32 @@ class CreateUser extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEn
     {
         $this->body = $requestBody;
     }
+
     use \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\EndpointTrait;
-    public function getMethod() : string
+
+    public function getMethod(): string
     {
         return 'POST';
     }
-    public function getUri() : string
+
+    public function getUri(): string
     {
         return '/v2/users';
     }
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
+
+    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
         if ($this->body instanceof \WapplerSystems\LearnWorldsApi\V2\Model\UserRequestModel) {
             return [['Content-Type' => ['application/json']], $serializer->serialize($this->body, 'json')];
         }
         return [[], null];
     }
-    public function getExtraHeaders() : array
+
+    public function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
+
     /**
      * {@inheritdoc}
      *
@@ -49,12 +55,13 @@ class CreateUser extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEn
     protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
-        $body = (string) $response->getBody();
+        $body = (string)$response->getBody();
         if (is_null($contentType) === false && (201 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\User', 'json');
         }
     }
-    public function getAuthenticationScopes() : array
+
+    public function getAuthenticationScopes(): array
     {
         return ['BearerAuth', 'LwClient'];
     }

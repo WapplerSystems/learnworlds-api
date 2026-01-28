@@ -9,7 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Endpoint;
 
-class DeleteCertificateById extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint implements \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\Endpoint
+class DeleteCertificateById extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\BaseEndpoint
 {
     protected $id;
     /**
