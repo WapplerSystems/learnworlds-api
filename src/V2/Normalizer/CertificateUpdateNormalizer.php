@@ -9,15 +9,20 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\CertificateUpdate;
+use WapplerSystems\LearnWorldsApi\V2\Model\CertificateUpdateForm;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class CertificateUpdateNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +31,21 @@ class CertificateUpdateNormalizer implements DenormalizerInterface, NormalizerIn
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CertificateUpdate';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CertificateUpdate';
+        return $data instanceof CertificateUpdate;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,23 +53,23 @@ class CertificateUpdateNormalizer implements DenormalizerInterface, NormalizerIn
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\CertificateUpdate();
-        if (\array_key_exists('issued', $data) && \is_int($data['issued'])) {
+        $object = new CertificateUpdate();
+        if (array_key_exists('issued', $data) && is_int($data['issued'])) {
             $data['issued'] = (double)$data['issued'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('issued', $data)) {
+        if (array_key_exists('issued', $data)) {
             $object->setIssued($data['issued']);
             unset($data['issued']);
         }
-        if (\array_key_exists('form', $data)) {
-            $object->setForm($this->denormalizer->denormalize($data['form'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CertificateUpdateForm', 'json', $context));
+        if (array_key_exists('form', $data)) {
+            $object->setForm($this->denormalizer->denormalize($data['form'], CertificateUpdateForm::class, 'json', $context));
             unset($data['form']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -71,9 +77,10 @@ class CertificateUpdateNormalizer implements DenormalizerInterface, NormalizerIn
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         $data['issued'] = $object->getIssued();
@@ -84,5 +91,10 @@ class CertificateUpdateNormalizer implements DenormalizerInterface, NormalizerIn
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [CertificateUpdate::class => false];
     }
 }

@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\CourseIdentifiers;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class CourseIdentifiersNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class CourseIdentifiersNormalizer implements DenormalizerInterface, NormalizerIn
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseIdentifiers';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseIdentifiers';
+        return $data instanceof CourseIdentifiers;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,15 +50,15 @@ class CourseIdentifiersNormalizer implements DenormalizerInterface, NormalizerIn
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\CourseIdentifiers();
-        if (null === $data || false === \is_array($data)) {
+        $object = new CourseIdentifiers();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('google_store_id', $data)) {
+        if (array_key_exists('google_store_id', $data)) {
             $object->setGoogleStoreId($data['google_store_id']);
             unset($data['google_store_id']);
         }
-        if (\array_key_exists('apple_store_id', $data)) {
+        if (array_key_exists('apple_store_id', $data)) {
             $object->setAppleStoreId($data['apple_store_id']);
             unset($data['apple_store_id']);
         }
@@ -68,9 +71,9 @@ class CourseIdentifiersNormalizer implements DenormalizerInterface, NormalizerIn
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('googleStoreId') && null !== $object->getGoogleStoreId()) {
@@ -85,5 +88,10 @@ class CourseIdentifiersNormalizer implements DenormalizerInterface, NormalizerIn
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [CourseIdentifiers::class => false];
     }
 }

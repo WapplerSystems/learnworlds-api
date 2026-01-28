@@ -9,15 +9,20 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\Product;
+use WapplerSystems\LearnWorldsApi\V2\Model\V2UsersIdProductsGetResponse200;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class V2UsersIdProductsGetResponse200Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +31,21 @@ class V2UsersIdProductsGetResponse200Normalizer implements DenormalizerInterface
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2UsersIdProductsGetResponse200';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2UsersIdProductsGetResponse200';
+        return $data instanceof V2UsersIdProductsGetResponse200;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,14 +53,14 @@ class V2UsersIdProductsGetResponse200Normalizer implements DenormalizerInterface
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\V2UsersIdProductsGetResponse200();
-        if (null === $data || false === \is_array($data)) {
+        $object = new V2UsersIdProductsGetResponse200();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('data', $data)) {
+        if (array_key_exists('data', $data)) {
             $values = [];
             foreach ($data['data'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Product', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, Product::class, 'json', $context);
             }
             $object->setData($values);
             unset($data['data']);
@@ -68,9 +74,10 @@ class V2UsersIdProductsGetResponse200Normalizer implements DenormalizerInterface
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('data') && null !== $object->getData()) {
@@ -86,5 +93,9 @@ class V2UsersIdProductsGetResponse200Normalizer implements DenormalizerInterface
             }
         }
         return $data;
+    }
+    public function getSupportedTypes(?string $format): array
+    {
+        return [V2UsersIdProductsGetResponse200::class => false];
     }
 }

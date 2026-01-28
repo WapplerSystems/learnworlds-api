@@ -16,6 +16,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\Affiliate;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
 
@@ -26,20 +27,20 @@ class AffiliateNormalizer implements DenormalizerInterface, NormalizerInterface,
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Affiliate';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Affiliate';
+        return $data instanceof Affiliate;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,100 +48,100 @@ class AffiliateNormalizer implements DenormalizerInterface, NormalizerInterface,
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Affiliate();
-        if (\array_key_exists('date', $data) && \is_int($data['date'])) {
+        $object = new Affiliate();
+        if (array_key_exists('date', $data) && is_int($data['date'])) {
             $data['date'] = (double)$data['date'];
         }
-        if (\array_key_exists('sales', $data) && \is_int($data['sales'])) {
+        if (array_key_exists('sales', $data) && is_int($data['sales'])) {
             $data['sales'] = (double)$data['sales'];
         }
-        if (\array_key_exists('commissions', $data) && \is_int($data['commissions'])) {
+        if (array_key_exists('commissions', $data) && is_int($data['commissions'])) {
             $data['commissions'] = (double)$data['commissions'];
         }
-        if (\array_key_exists('customers', $data) && \is_int($data['customers'])) {
+        if (array_key_exists('customers', $data) && is_int($data['customers'])) {
             $data['customers'] = (double)$data['customers'];
         }
-        if (\array_key_exists('payouts', $data) && \is_int($data['payouts'])) {
+        if (array_key_exists('payouts', $data) && is_int($data['payouts'])) {
             $data['payouts'] = (double)$data['payouts'];
         }
-        if (\array_key_exists('pending', $data) && \is_int($data['pending'])) {
+        if (array_key_exists('pending', $data) && is_int($data['pending'])) {
             $data['pending'] = (double)$data['pending'];
         }
-        if (\array_key_exists('due', $data) && \is_int($data['due'])) {
+        if (array_key_exists('due', $data) && is_int($data['due'])) {
             $data['due'] = (double)$data['due'];
         }
-        if (\array_key_exists('commission_percentage', $data) && \is_int($data['commission_percentage'])) {
+        if (array_key_exists('commission_percentage', $data) && is_int($data['commission_percentage'])) {
             $data['commission_percentage'] = (double)$data['commission_percentage'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('id', $data)) {
+        if (array_key_exists('id', $data)) {
             $object->setId($data['id']);
             unset($data['id']);
         }
-        if (\array_key_exists('email', $data)) {
+        if (array_key_exists('email', $data)) {
             $object->setEmail($data['email']);
             unset($data['email']);
         }
-        if (\array_key_exists('username', $data)) {
+        if (array_key_exists('username', $data)) {
             $object->setUsername($data['username']);
             unset($data['username']);
         }
-        if (\array_key_exists('code', $data)) {
+        if (array_key_exists('code', $data)) {
             $object->setCode($data['code']);
             unset($data['code']);
         }
-        if (\array_key_exists('paymentMethod', $data)) {
+        if (array_key_exists('paymentMethod', $data)) {
             $object->setPaymentMethod($data['paymentMethod']);
             unset($data['paymentMethod']);
         }
-        if (\array_key_exists('paymentNotes', $data)) {
+        if (array_key_exists('paymentNotes', $data)) {
             $object->setPaymentNotes($data['paymentNotes']);
             unset($data['paymentNotes']);
         }
-        if (\array_key_exists('date', $data)) {
+        if (array_key_exists('date', $data)) {
             $object->setDate($data['date']);
             unset($data['date']);
         }
-        if (\array_key_exists('clicks', $data)) {
+        if (array_key_exists('clicks', $data)) {
             $object->setClicks($data['clicks']);
             unset($data['clicks']);
         }
-        if (\array_key_exists('sales', $data)) {
+        if (array_key_exists('sales', $data)) {
             $object->setSales($data['sales']);
             unset($data['sales']);
         }
-        if (\array_key_exists('commissions', $data)) {
+        if (array_key_exists('commissions', $data)) {
             $object->setCommissions($data['commissions']);
             unset($data['commissions']);
         }
-        if (\array_key_exists('leads', $data)) {
+        if (array_key_exists('leads', $data)) {
             $object->setLeads($data['leads']);
             unset($data['leads']);
         }
-        if (\array_key_exists('customers', $data)) {
+        if (array_key_exists('customers', $data)) {
             $object->setCustomers($data['customers']);
             unset($data['customers']);
         }
-        if (\array_key_exists('payouts', $data)) {
+        if (array_key_exists('payouts', $data)) {
             $object->setPayouts($data['payouts']);
             unset($data['payouts']);
         }
-        if (\array_key_exists('pending', $data)) {
+        if (array_key_exists('pending', $data)) {
             $object->setPending($data['pending']);
             unset($data['pending']);
         }
-        if (\array_key_exists('due', $data)) {
+        if (array_key_exists('due', $data)) {
             $object->setDue($data['due']);
             unset($data['due']);
         }
-        if (\array_key_exists('commission_percentage', $data)) {
+        if (array_key_exists('commission_percentage', $data)) {
             $object->setCommissionPercentage($data['commission_percentage']);
             unset($data['commission_percentage']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -148,9 +149,9 @@ class AffiliateNormalizer implements DenormalizerInterface, NormalizerInterface,
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $data = [];
         if ($object->isInitialized('id') && null !== $object->getId()) {
@@ -207,5 +208,9 @@ class AffiliateNormalizer implements DenormalizerInterface, NormalizerInterface,
             }
         }
         return $data;
+    }
+    public function getSupportedTypes(?string $format): array
+    {
+        return [Affiliate::class => false];
     }
 }

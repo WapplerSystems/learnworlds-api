@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\UserProgressProgressPerSectionUnitItemUnitsItem;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class UserProgressProgressPerSectionUnitItemUnitsItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class UserProgressProgressPerSectionUnitItemUnitsItemNormalizer implements Denor
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserProgressProgressPerSectionUnitItemUnitsItem';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserProgressProgressPerSectionUnitItemUnitsItem';
+        return $data instanceof UserProgressProgressPerSectionUnitItemUnitsItem;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,43 +50,43 @@ class UserProgressProgressPerSectionUnitItemUnitsItemNormalizer implements Denor
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\UserProgressProgressPerSectionUnitItemUnitsItem();
-        if (null === $data || false === \is_array($data)) {
+        $object = new UserProgressProgressPerSectionUnitItemUnitsItem();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('unit_section_name', $data)) {
+        if (array_key_exists('unit_section_name', $data)) {
             $object->setUnitSectionName($data['unit_section_name']);
             unset($data['unit_section_name']);
         }
-        if (\array_key_exists('unit_id', $data)) {
+        if (array_key_exists('unit_id', $data)) {
             $object->setUnitId($data['unit_id']);
             unset($data['unit_id']);
         }
-        if (\array_key_exists('unit_name', $data)) {
+        if (array_key_exists('unit_name', $data)) {
             $object->setUnitName($data['unit_name']);
             unset($data['unit_name']);
         }
-        if (\array_key_exists('unit_type', $data)) {
+        if (array_key_exists('unit_type', $data)) {
             $object->setUnitType($data['unit_type']);
             unset($data['unit_type']);
         }
-        if (\array_key_exists('unit_status', $data)) {
+        if (array_key_exists('unit_status', $data)) {
             $object->setUnitStatus($data['unit_status']);
             unset($data['unit_status']);
         }
-        if (\array_key_exists('unit_duration', $data)) {
+        if (array_key_exists('unit_duration', $data)) {
             $object->setUnitDuration($data['unit_duration']);
             unset($data['unit_duration']);
         }
-        if (\array_key_exists('time_on_unit', $data)) {
+        if (array_key_exists('time_on_unit', $data)) {
             $object->setTimeOnUnit($data['time_on_unit']);
             unset($data['time_on_unit']);
         }
-        if (\array_key_exists('score_on_unit', $data)) {
+        if (array_key_exists('score_on_unit', $data)) {
             $object->setScoreOnUnit($data['score_on_unit']);
             unset($data['score_on_unit']);
         }
-        if (\array_key_exists('unit_progress_rate', $data)) {
+        if (array_key_exists('unit_progress_rate', $data)) {
             $object->setUnitProgressRate($data['unit_progress_rate']);
             unset($data['unit_progress_rate']);
         }
@@ -96,9 +99,9 @@ class UserProgressProgressPerSectionUnitItemUnitsItemNormalizer implements Denor
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('unitSectionName') && null !== $object->getUnitSectionName()) {
@@ -134,5 +137,10 @@ class UserProgressProgressPerSectionUnitItemUnitsItemNormalizer implements Denor
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [UserProgressProgressPerSectionUnitItemUnitsItem::class => false];
     }
 }

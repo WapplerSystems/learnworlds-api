@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\Response422ErrorsCompanyItem;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class Response422ErrorsCompanyItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class Response422ErrorsCompanyItemNormalizer implements DenormalizerInterface, N
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Response422ErrorsCompanyItem';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Response422ErrorsCompanyItem';
+        return $data instanceof Response422ErrorsCompanyItem;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,11 +50,11 @@ class Response422ErrorsCompanyItemNormalizer implements DenormalizerInterface, N
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Response422ErrorsCompanyItem();
-        if (null === $data || false === \is_array($data)) {
+        $object = new Response422ErrorsCompanyItem();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('0', $data)) {
+        if (array_key_exists('0', $data)) {
             $object->set0($data['0']);
             unset($data['0']);
         }
@@ -64,9 +67,9 @@ class Response422ErrorsCompanyItemNormalizer implements DenormalizerInterface, N
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('n0') && null !== $object->get0()) {
@@ -78,5 +81,10 @@ class Response422ErrorsCompanyItemNormalizer implements DenormalizerInterface, N
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [Response422ErrorsCompanyItem::class => false];
     }
 }

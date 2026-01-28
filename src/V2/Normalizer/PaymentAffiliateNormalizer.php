@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\PaymentAffiliate;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class PaymentAffiliateNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class PaymentAffiliateNormalizer implements DenormalizerInterface, NormalizerInt
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PaymentAffiliate';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PaymentAffiliate';
+        return $data instanceof PaymentAffiliate;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,42 +50,42 @@ class PaymentAffiliateNormalizer implements DenormalizerInterface, NormalizerInt
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\PaymentAffiliate();
-        if (\array_key_exists('commission_percentage', $data) && \is_int($data['commission_percentage'])) {
+        $object = new PaymentAffiliate();
+        if (array_key_exists('commission_percentage', $data) && is_int($data['commission_percentage'])) {
             $data['commission_percentage'] = (double)$data['commission_percentage'];
         }
-        if (\array_key_exists('commission_amount', $data) && \is_int($data['commission_amount'])) {
+        if (array_key_exists('commission_amount', $data) && is_int($data['commission_amount'])) {
             $data['commission_amount'] = (double)$data['commission_amount'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('id', $data)) {
+        if (array_key_exists('id', $data)) {
             $object->setId($data['id']);
             unset($data['id']);
         }
-        if (\array_key_exists('username', $data)) {
+        if (array_key_exists('username', $data)) {
             $object->setUsername($data['username']);
             unset($data['username']);
         }
-        if (\array_key_exists('code', $data)) {
+        if (array_key_exists('code', $data)) {
             $object->setCode($data['code']);
             unset($data['code']);
         }
-        if (\array_key_exists('commission_percentage', $data)) {
+        if (array_key_exists('commission_percentage', $data)) {
             $object->setCommissionPercentage($data['commission_percentage']);
             unset($data['commission_percentage']);
         }
-        if (\array_key_exists('commission_amount', $data)) {
+        if (array_key_exists('commission_amount', $data)) {
             $object->setCommissionAmount($data['commission_amount']);
             unset($data['commission_amount']);
         }
-        if (\array_key_exists('payment_status', $data)) {
+        if (array_key_exists('payment_status', $data)) {
             $object->setPaymentStatus($data['payment_status']);
             unset($data['payment_status']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -90,9 +93,9 @@ class PaymentAffiliateNormalizer implements DenormalizerInterface, NormalizerInt
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('id') && null !== $object->getId()) {
@@ -119,5 +122,10 @@ class PaymentAffiliateNormalizer implements DenormalizerInterface, NormalizerInt
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [PaymentAffiliate::class => false];
     }
 }

@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\V2CoursesIdPutBody;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class V2CoursesIdPutBodyNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class V2CoursesIdPutBodyNormalizer implements DenormalizerInterface, NormalizerI
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2CoursesIdPutBody';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2CoursesIdPutBody';
+        return $data instanceof V2CoursesIdPutBody;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,34 +50,34 @@ class V2CoursesIdPutBodyNormalizer implements DenormalizerInterface, NormalizerI
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\V2CoursesIdPutBody();
-        if (\array_key_exists('price', $data) && \is_int($data['price'])) {
+        $object = new V2CoursesIdPutBody();
+        if (array_key_exists('price', $data) && is_int($data['price'])) {
             $data['price'] = (double)$data['price'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('title', $data)) {
+        if (array_key_exists('title', $data)) {
             $object->setTitle($data['title']);
             unset($data['title']);
         }
-        if (\array_key_exists('description', $data)) {
+        if (array_key_exists('description', $data)) {
             $object->setDescription($data['description']);
             unset($data['description']);
         }
-        if (\array_key_exists('price', $data)) {
+        if (array_key_exists('price', $data)) {
             $object->setPrice($data['price']);
             unset($data['price']);
         }
-        if (\array_key_exists('dripFeed', $data)) {
+        if (array_key_exists('dripFeed', $data)) {
             $object->setDripFeed($data['dripFeed']);
             unset($data['dripFeed']);
         }
-        if (\array_key_exists('access', $data)) {
+        if (array_key_exists('access', $data)) {
             $object->setAccess($data['access']);
             unset($data['access']);
         }
-        if (\array_key_exists('categories', $data)) {
+        if (array_key_exists('categories', $data)) {
             $values = [];
             foreach ($data['categories'] as $value) {
                 $values[] = $value;
@@ -83,7 +86,7 @@ class V2CoursesIdPutBodyNormalizer implements DenormalizerInterface, NormalizerI
             unset($data['categories']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value_1;
             }
         }
@@ -91,9 +94,9 @@ class V2CoursesIdPutBodyNormalizer implements DenormalizerInterface, NormalizerI
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('title') && null !== $object->getTitle()) {
@@ -124,5 +127,9 @@ class V2CoursesIdPutBodyNormalizer implements DenormalizerInterface, NormalizerI
             }
         }
         return $data;
+    }
+    public function getSupportedTypes(?string $format): array
+    {
+        return [V2CoursesIdPutBody::class => false];
     }
 }

@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\BundleProducts;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class BundleProductsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class BundleProductsNormalizer implements DenormalizerInterface, NormalizerInter
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\BundleProducts';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\BundleProducts';
+        return $data instanceof BundleProducts;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,14 +50,14 @@ class BundleProductsNormalizer implements DenormalizerInterface, NormalizerInter
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\BundleProducts();
-        if (null === $data || false === \is_array($data)) {
+        $object = new BundleProducts();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('courses', $data)) {
+        if (array_key_exists('courses', $data)) {
             $values = [];
             foreach ($data['courses'] as $value) {
-                $values_1 = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
+                $values_1 = new ArrayObject([], ArrayObject::ARRAY_AS_PROPS);
                 foreach ($value as $key => $value_1) {
                     $values_1[$key] = $value_1;
                 }
@@ -72,27 +75,31 @@ class BundleProductsNormalizer implements DenormalizerInterface, NormalizerInter
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        $data = [];
-        if ($object->isInitialized('courses') && null !== $object->getCourses()) {
+        $result = [];
+        if ($data->isInitialized('courses') && null !== $data->getCourses()) {
             $values = [];
-            foreach ($object->getCourses() as $value) {
+            foreach ($data->getCourses() as $value) {
                 $values_1 = [];
                 foreach ($value as $key => $value_1) {
                     $values_1[$key] = $value_1;
                 }
                 $values[] = $values_1;
             }
-            $data['courses'] = $values;
+            $result['courses'] = $values;
         }
-        foreach ($object as $key_1 => $value_2) {
+        foreach ($data as $key_1 => $value_2) {
             if (preg_match('/.*/', (string)$key_1)) {
-                $data[$key_1] = $value_2;
+                $result[$key_1] = $value_2;
             }
         }
-        return $data;
+        return $result;
+    }
+    public function getSupportedTypes(?string $format): array
+    {
+        return [BundleProducts::class => false];
     }
 }

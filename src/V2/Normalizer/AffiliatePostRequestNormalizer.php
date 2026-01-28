@@ -16,6 +16,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\AffiliatePostRequest;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
 
@@ -26,20 +27,20 @@ class AffiliatePostRequestNormalizer implements DenormalizerInterface, Normalize
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\AffiliatePostRequest';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\AffiliatePostRequest';
+        return $data instanceof AffiliatePostRequest;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,27 +48,27 @@ class AffiliatePostRequestNormalizer implements DenormalizerInterface, Normalize
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\AffiliatePostRequest();
-        if (\array_key_exists('commission_percentage', $data) && \is_int($data['commission_percentage'])) {
+        $object = new AffiliatePostRequest();
+        if (array_key_exists('commission_percentage', $data) && is_int($data['commission_percentage'])) {
             $data['commission_percentage'] = (double)$data['commission_percentage'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('commission_percentage', $data)) {
+        if (array_key_exists('commission_percentage', $data)) {
             $object->setCommissionPercentage($data['commission_percentage']);
             unset($data['commission_percentage']);
         }
-        if (\array_key_exists('paymentMethod', $data)) {
+        if (array_key_exists('paymentMethod', $data)) {
             $object->setPaymentMethod($data['paymentMethod']);
             unset($data['paymentMethod']);
         }
-        if (\array_key_exists('paymentNotes', $data)) {
+        if (array_key_exists('paymentNotes', $data)) {
             $object->setPaymentNotes($data['paymentNotes']);
             unset($data['paymentNotes']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -75,9 +76,9 @@ class AffiliatePostRequestNormalizer implements DenormalizerInterface, Normalize
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $data = [];
         if ($object->isInitialized('commissionPercentage') && null !== $object->getCommissionPercentage()) {
@@ -95,5 +96,9 @@ class AffiliatePostRequestNormalizer implements DenormalizerInterface, Normalize
             }
         }
         return $data;
+    }
+    public function getSupportedTypes(?string $format): array
+    {
+        return [AffiliatePostRequest::class => false];
     }
 }

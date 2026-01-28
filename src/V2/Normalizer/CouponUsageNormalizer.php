@@ -9,15 +9,22 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\Coupon;
+use WapplerSystems\LearnWorldsApi\V2\Model\CouponUsage;
+use WapplerSystems\LearnWorldsApi\V2\Model\Meta;
+use WapplerSystems\LearnWorldsApi\V2\Model\Payment;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class CouponUsageNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +33,23 @@ class CouponUsageNormalizer implements DenormalizerInterface, NormalizerInterfac
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CouponUsage';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CouponUsage';
+        return $data instanceof CouponUsage;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,24 +57,24 @@ class CouponUsageNormalizer implements DenormalizerInterface, NormalizerInterfac
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\CouponUsage();
-        if (null === $data || false === \is_array($data)) {
+        $object = new CouponUsage();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('usage', $data)) {
-            $object->setUsage($this->denormalizer->denormalize($data['usage'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Coupon', 'json', $context));
+        if (array_key_exists('usage', $data)) {
+            $object->setUsage($this->denormalizer->denormalize($data['usage'], Coupon::class, 'json', $context));
             unset($data['usage']);
         }
-        if (\array_key_exists('payments', $data)) {
+        if (array_key_exists('payments', $data)) {
             $values = [];
             foreach ($data['payments'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Payment', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, Payment::class, 'json', $context);
             }
             $object->setPayments($values);
             unset($data['payments']);
         }
-        if (\array_key_exists('meta', $data)) {
-            $object->setMeta($this->denormalizer->denormalize($data['meta'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Meta', 'json', $context));
+        if (array_key_exists('meta', $data)) {
+            $object->setMeta($this->denormalizer->denormalize($data['meta'], Meta::class, 'json', $context));
             unset($data['meta']);
         }
         foreach ($data as $key => $value_1) {
@@ -76,9 +86,12 @@ class CouponUsageNormalizer implements DenormalizerInterface, NormalizerInterfac
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('usage') && null !== $object->getUsage()) {
@@ -100,5 +113,10 @@ class CouponUsageNormalizer implements DenormalizerInterface, NormalizerInterfac
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [CouponUsage::class => false];
     }
 }

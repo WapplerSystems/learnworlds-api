@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\Coupon;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class CouponNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class CouponNormalizer implements DenormalizerInterface, NormalizerInterface, De
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Coupon';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Coupon';
+        return $data instanceof Coupon;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,31 +50,31 @@ class CouponNormalizer implements DenormalizerInterface, NormalizerInterface, De
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Coupon();
-        if (null === $data || false === \is_array($data)) {
+        $object = new Coupon();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('code', $data)) {
+        if (array_key_exists('code', $data)) {
             $object->setCode($data['code']);
             unset($data['code']);
         }
-        if (\array_key_exists('quantity', $data)) {
+        if (array_key_exists('quantity', $data)) {
             $object->setQuantity($data['quantity']);
             unset($data['quantity']);
         }
-        if (\array_key_exists('expires', $data)) {
+        if (array_key_exists('expires', $data)) {
             $object->setExpires($data['expires']);
             unset($data['expires']);
         }
-        if (\array_key_exists('bulk', $data)) {
+        if (array_key_exists('bulk', $data)) {
             $object->setBulk($data['bulk']);
             unset($data['bulk']);
         }
-        if (\array_key_exists('prefix', $data)) {
+        if (array_key_exists('prefix', $data)) {
             $object->setPrefix($data['prefix']);
             unset($data['prefix']);
         }
-        if (\array_key_exists('times_used', $data)) {
+        if (array_key_exists('times_used', $data)) {
             $object->setTimesUsed($data['times_used']);
             unset($data['times_used']);
         }
@@ -84,9 +87,9 @@ class CouponNormalizer implements DenormalizerInterface, NormalizerInterface, De
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('code') && null !== $object->getCode()) {
@@ -113,5 +116,10 @@ class CouponNormalizer implements DenormalizerInterface, NormalizerInterface, De
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [Coupon::class => false];
     }
 }

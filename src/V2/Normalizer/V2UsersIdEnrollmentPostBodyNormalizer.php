@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\V2UsersIdEnrollmentPostBody;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class V2UsersIdEnrollmentPostBodyNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class V2UsersIdEnrollmentPostBodyNormalizer implements DenormalizerInterface, No
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2UsersIdEnrollmentPostBody';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2UsersIdEnrollmentPostBody';
+        return $data instanceof V2UsersIdEnrollmentPostBody;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,39 +50,39 @@ class V2UsersIdEnrollmentPostBodyNormalizer implements DenormalizerInterface, No
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\V2UsersIdEnrollmentPostBody();
-        if (\array_key_exists('price', $data) && \is_int($data['price'])) {
+        $object = new V2UsersIdEnrollmentPostBody();
+        if (array_key_exists('price', $data) && is_int($data['price'])) {
             $data['price'] = (double)$data['price'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('productId', $data)) {
+        if (array_key_exists('productId', $data)) {
             $object->setProductId($data['productId']);
             unset($data['productId']);
         }
-        if (\array_key_exists('productType', $data)) {
+        if (array_key_exists('productType', $data)) {
             $object->setProductType($data['productType']);
             unset($data['productType']);
         }
-        if (\array_key_exists('justification', $data)) {
+        if (array_key_exists('justification', $data)) {
             $object->setJustification($data['justification']);
             unset($data['justification']);
         }
-        if (\array_key_exists('price', $data)) {
+        if (array_key_exists('price', $data)) {
             $object->setPrice($data['price']);
             unset($data['price']);
         }
-        if (\array_key_exists('duration_type', $data)) {
+        if (array_key_exists('duration_type', $data)) {
             $object->setDurationType($data['duration_type']);
             unset($data['duration_type']);
         }
-        if (\array_key_exists('duration', $data)) {
+        if (array_key_exists('duration', $data)) {
             $object->setDuration($data['duration']);
             unset($data['duration']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -87,9 +90,9 @@ class V2UsersIdEnrollmentPostBodyNormalizer implements DenormalizerInterface, No
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         $data['productId'] = $object->getProductId();
@@ -110,5 +113,9 @@ class V2UsersIdEnrollmentPostBodyNormalizer implements DenormalizerInterface, No
             }
         }
         return $data;
+    }
+    public function getSupportedTypes(?string $format): array
+    {
+        return [V2UsersIdEnrollmentPostBody::class => false];
     }
 }

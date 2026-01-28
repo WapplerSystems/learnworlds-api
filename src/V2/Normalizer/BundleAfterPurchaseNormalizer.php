@@ -9,13 +9,17 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\BundleAfterPurchase;
+use WapplerSystems\LearnWorldsApi\V2\Model\BundleAfterPurchaseSettings;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
 
@@ -26,20 +30,21 @@ class BundleAfterPurchaseNormalizer implements DenormalizerInterface, Normalizer
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\BundleAfterPurchase';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\BundleAfterPurchase';
+        return $data instanceof BundleAfterPurchase;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,16 +52,16 @@ class BundleAfterPurchaseNormalizer implements DenormalizerInterface, Normalizer
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\BundleAfterPurchase();
-        if (null === $data || false === \is_array($data)) {
+        $object = new BundleAfterPurchase();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('type', $data)) {
+        if (array_key_exists('type', $data)) {
             $object->setType($data['type']);
             unset($data['type']);
         }
-        if (\array_key_exists('settings', $data)) {
-            $object->setSettings($this->denormalizer->denormalize($data['settings'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\BundleAfterPurchaseSettings', 'json', $context));
+        if (array_key_exists('settings', $data)) {
+            $object->setSettings($this->denormalizer->denormalize($data['settings'], BundleAfterPurchaseSettings::class, 'json', $context));
             unset($data['settings']);
         }
         foreach ($data as $key => $value) {
@@ -68,9 +73,10 @@ class BundleAfterPurchaseNormalizer implements DenormalizerInterface, Normalizer
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('type') && null !== $object->getType()) {
@@ -85,5 +91,10 @@ class BundleAfterPurchaseNormalizer implements DenormalizerInterface, Normalizer
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [BundleAfterPurchase::class => false];
     }
 }

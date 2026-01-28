@@ -9,15 +9,20 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\Certificate;
+use WapplerSystems\LearnWorldsApi\V2\Model\CertificateUser;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class CertificateNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +31,21 @@ class CertificateNormalizer implements DenormalizerInterface, NormalizerInterfac
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Certificate';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Certificate';
+        return $data instanceof Certificate;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,59 +53,59 @@ class CertificateNormalizer implements DenormalizerInterface, NormalizerInterfac
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Certificate();
-        if (\array_key_exists('issued', $data) && \is_int($data['issued'])) {
+        $object = new Certificate();
+        if (array_key_exists('issued', $data) && is_int($data['issued'])) {
             $data['issued'] = (double)$data['issued'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('id', $data)) {
+        if (array_key_exists('id', $data)) {
             $object->setId($data['id']);
             unset($data['id']);
         }
-        if (\array_key_exists('title', $data)) {
+        if (array_key_exists('title', $data)) {
             $object->setTitle($data['title']);
             unset($data['title']);
         }
-        if (\array_key_exists('issued', $data)) {
+        if (array_key_exists('issued', $data)) {
             $object->setIssued($data['issued']);
             unset($data['issued']);
         }
-        if (\array_key_exists('attempts', $data)) {
+        if (array_key_exists('attempts', $data)) {
             $object->setAttempts($data['attempts']);
             unset($data['attempts']);
         }
-        if (\array_key_exists('type', $data)) {
+        if (array_key_exists('type', $data)) {
             $object->setType($data['type']);
             unset($data['type']);
         }
-        if (\array_key_exists('status', $data)) {
+        if (array_key_exists('status', $data)) {
             $object->setStatus($data['status']);
             unset($data['status']);
         }
-        if (\array_key_exists('score', $data)) {
+        if (array_key_exists('score', $data)) {
             $object->setScore($data['score']);
             unset($data['score']);
         }
-        if (\array_key_exists('short_url', $data)) {
+        if (array_key_exists('short_url', $data)) {
             $object->setShortUrl($data['short_url']);
             unset($data['short_url']);
         }
-        if (\array_key_exists('form', $data)) {
+        if (array_key_exists('form', $data)) {
             $object->setForm($data['form']);
             unset($data['form']);
         }
-        if (\array_key_exists('user', $data)) {
-            $object->setUser($this->denormalizer->denormalize($data['user'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CertificateUser', 'json', $context));
+        if (array_key_exists('user', $data)) {
+            $object->setUser($this->denormalizer->denormalize($data['user'], CertificateUser::class, 'json', $context));
             unset($data['user']);
         }
-        if (\array_key_exists('course_id', $data)) {
+        if (array_key_exists('course_id', $data)) {
             $object->setCourseId($data['course_id']);
             unset($data['course_id']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -107,9 +113,10 @@ class CertificateNormalizer implements DenormalizerInterface, NormalizerInterfac
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('id') && null !== $object->getId()) {
@@ -151,5 +158,10 @@ class CertificateNormalizer implements DenormalizerInterface, NormalizerInterfac
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [Certificate::class => false];
     }
 }

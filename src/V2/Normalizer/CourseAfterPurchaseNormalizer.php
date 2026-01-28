@@ -9,15 +9,20 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\CourseAfterPurchase;
+use WapplerSystems\LearnWorldsApi\V2\Model\CourseAfterPurchaseSettings;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class CourseAfterPurchaseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +31,21 @@ class CourseAfterPurchaseNormalizer implements DenormalizerInterface, Normalizer
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseAfterPurchase';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseAfterPurchase';
+        return $data instanceof CourseAfterPurchase;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,16 +53,16 @@ class CourseAfterPurchaseNormalizer implements DenormalizerInterface, Normalizer
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\CourseAfterPurchase();
-        if (null === $data || false === \is_array($data)) {
+        $object = new CourseAfterPurchase();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('type', $data)) {
+        if (array_key_exists('type', $data)) {
             $object->setType($data['type']);
             unset($data['type']);
         }
-        if (\array_key_exists('settings', $data)) {
-            $object->setSettings($this->denormalizer->denormalize($data['settings'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseAfterPurchaseSettings', 'json', $context));
+        if (array_key_exists('settings', $data)) {
+            $object->setSettings($this->denormalizer->denormalize($data['settings'], CourseAfterPurchaseSettings::class, 'json', $context));
             unset($data['settings']);
         }
         foreach ($data as $key => $value) {
@@ -68,9 +74,10 @@ class CourseAfterPurchaseNormalizer implements DenormalizerInterface, Normalizer
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('type') && null !== $object->getType()) {
@@ -85,5 +92,10 @@ class CourseAfterPurchaseNormalizer implements DenormalizerInterface, Normalizer
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [CourseAfterPurchase::class => false];
     }
 }

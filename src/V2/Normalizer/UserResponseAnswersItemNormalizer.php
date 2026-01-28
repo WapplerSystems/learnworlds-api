@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\UserResponseAnswersItem;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class UserResponseAnswersItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class UserResponseAnswersItemNormalizer implements DenormalizerInterface, Normal
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserResponseAnswersItem';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserResponseAnswersItem';
+        return $data instanceof UserResponseAnswersItem;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,35 +50,35 @@ class UserResponseAnswersItemNormalizer implements DenormalizerInterface, Normal
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\UserResponseAnswersItem();
-        if (null === $data || false === \is_array($data)) {
+        $object = new UserResponseAnswersItem();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('blockId', $data)) {
+        if (array_key_exists('blockId', $data)) {
             $object->setBlockId($data['blockId']);
             unset($data['blockId']);
         }
-        if (\array_key_exists('blockType', $data)) {
+        if (array_key_exists('blockType', $data)) {
             $object->setBlockType($data['blockType']);
             unset($data['blockType']);
         }
-        if (\array_key_exists('description', $data)) {
+        if (array_key_exists('description', $data)) {
             $object->setDescription($data['description']);
             unset($data['description']);
         }
-        if (\array_key_exists('answer', $data)) {
+        if (array_key_exists('answer', $data)) {
             $object->setAnswer($data['answer']);
             unset($data['answer']);
         }
-        if (\array_key_exists('points', $data)) {
+        if (array_key_exists('points', $data)) {
             $object->setPoints($data['points']);
             unset($data['points']);
         }
-        if (\array_key_exists('blockMaxScore', $data)) {
+        if (array_key_exists('blockMaxScore', $data)) {
             $object->setBlockMaxScore($data['blockMaxScore']);
             unset($data['blockMaxScore']);
         }
-        if (\array_key_exists('answerData', $data)) {
+        if (array_key_exists('answerData', $data)) {
             $object->setAnswerData($data['answerData']);
             unset($data['answerData']);
         }
@@ -88,9 +91,9 @@ class UserResponseAnswersItemNormalizer implements DenormalizerInterface, Normal
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('blockId') && null !== $object->getBlockId()) {
@@ -120,5 +123,10 @@ class UserResponseAnswersItemNormalizer implements DenormalizerInterface, Normal
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [UserResponseAnswersItem::class => false];
     }
 }

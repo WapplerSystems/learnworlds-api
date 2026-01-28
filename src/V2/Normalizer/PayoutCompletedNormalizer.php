@@ -9,15 +9,21 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\Payment;
+use WapplerSystems\LearnWorldsApi\V2\Model\PayoutCompleted;
+use WapplerSystems\LearnWorldsApi\V2\Model\PayoutCompletedCompletedBy;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class PayoutCompletedNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +32,22 @@ class PayoutCompletedNormalizer implements DenormalizerInterface, NormalizerInte
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PayoutCompleted';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PayoutCompleted';
+        return $data instanceof PayoutCompleted;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,50 +55,50 @@ class PayoutCompletedNormalizer implements DenormalizerInterface, NormalizerInte
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\PayoutCompleted();
-        if (\array_key_exists('amount', $data) && \is_int($data['amount'])) {
+        $object = new PayoutCompleted();
+        if (array_key_exists('amount', $data) && is_int($data['amount'])) {
             $data['amount'] = (double)$data['amount'];
         }
-        if (\array_key_exists('created', $data) && \is_int($data['created'])) {
+        if (array_key_exists('created', $data) && is_int($data['created'])) {
             $data['created'] = (double)$data['created'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('id', $data)) {
+        if (array_key_exists('id', $data)) {
             $object->setId($data['id']);
             unset($data['id']);
         }
-        if (\array_key_exists('amount', $data)) {
+        if (array_key_exists('amount', $data)) {
             $object->setAmount($data['amount']);
             unset($data['amount']);
         }
-        if (\array_key_exists('paymentMethod', $data)) {
+        if (array_key_exists('paymentMethod', $data)) {
             $object->setPaymentMethod($data['paymentMethod']);
             unset($data['paymentMethod']);
         }
-        if (\array_key_exists('paymentNotes', $data)) {
+        if (array_key_exists('paymentNotes', $data)) {
             $object->setPaymentNotes($data['paymentNotes']);
             unset($data['paymentNotes']);
         }
-        if (\array_key_exists('created', $data)) {
+        if (array_key_exists('created', $data)) {
             $object->setCreated($data['created']);
             unset($data['created']);
         }
-        if (\array_key_exists('payments', $data)) {
+        if (array_key_exists('payments', $data)) {
             $values = [];
             foreach ($data['payments'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Payment', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, Payment::class, 'json', $context);
             }
             $object->setPayments($values);
             unset($data['payments']);
         }
-        if (\array_key_exists('completedBy', $data)) {
-            $object->setCompletedBy($this->denormalizer->denormalize($data['completedBy'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PayoutCompletedCompletedBy', 'json', $context));
+        if (array_key_exists('completedBy', $data)) {
+            $object->setCompletedBy($this->denormalizer->denormalize($data['completedBy'], PayoutCompletedCompletedBy::class, 'json', $context));
             unset($data['completedBy']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value_1;
             }
         }
@@ -98,9 +106,11 @@ class PayoutCompletedNormalizer implements DenormalizerInterface, NormalizerInte
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('id') && null !== $object->getId()) {
@@ -134,5 +144,10 @@ class PayoutCompletedNormalizer implements DenormalizerInterface, NormalizerInte
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [PayoutCompleted::class => false];
     }
 }

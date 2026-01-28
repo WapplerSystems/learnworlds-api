@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\UnitAnalytics;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class UnitAnalyticsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class UnitAnalyticsNormalizer implements DenormalizerInterface, NormalizerInterf
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UnitAnalytics';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UnitAnalytics';
+        return $data instanceof UnitAnalytics;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,49 +50,49 @@ class UnitAnalyticsNormalizer implements DenormalizerInterface, NormalizerInterf
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\UnitAnalytics();
-        if (\array_key_exists('avg_study_time', $data) && \is_int($data['avg_study_time'])) {
+        $object = new UnitAnalytics();
+        if (array_key_exists('avg_study_time', $data) && is_int($data['avg_study_time'])) {
             $data['avg_study_time'] = (double)$data['avg_study_time'];
         }
-        if (\array_key_exists('total_study_time', $data) && \is_int($data['total_study_time'])) {
+        if (array_key_exists('total_study_time', $data) && is_int($data['total_study_time'])) {
             $data['total_study_time'] = (double)$data['total_study_time'];
         }
-        if (\array_key_exists('avg_score_rate', $data) && \is_int($data['avg_score_rate'])) {
+        if (array_key_exists('avg_score_rate', $data) && is_int($data['avg_score_rate'])) {
             $data['avg_score_rate'] = (double)$data['avg_score_rate'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('type', $data)) {
+        if (array_key_exists('type', $data)) {
             $object->setType($data['type']);
             unset($data['type']);
         }
-        if (\array_key_exists('name', $data)) {
+        if (array_key_exists('name', $data)) {
             $object->setName($data['name']);
             unset($data['name']);
         }
-        if (\array_key_exists('users_completed', $data)) {
+        if (array_key_exists('users_completed', $data)) {
             $object->setUsersCompleted($data['users_completed']);
             unset($data['users_completed']);
         }
-        if (\array_key_exists('viewers', $data)) {
+        if (array_key_exists('viewers', $data)) {
             $object->setViewers($data['viewers']);
             unset($data['viewers']);
         }
-        if (\array_key_exists('avg_study_time', $data)) {
+        if (array_key_exists('avg_study_time', $data)) {
             $object->setAvgStudyTime($data['avg_study_time']);
             unset($data['avg_study_time']);
         }
-        if (\array_key_exists('total_study_time', $data)) {
+        if (array_key_exists('total_study_time', $data)) {
             $object->setTotalStudyTime($data['total_study_time']);
             unset($data['total_study_time']);
         }
-        if (\array_key_exists('avg_score_rate', $data)) {
+        if (array_key_exists('avg_score_rate', $data)) {
             $object->setAvgScoreRate($data['avg_score_rate']);
             unset($data['avg_score_rate']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -97,9 +100,9 @@ class UnitAnalyticsNormalizer implements DenormalizerInterface, NormalizerInterf
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('type') && null !== $object->getType()) {
@@ -129,5 +132,10 @@ class UnitAnalyticsNormalizer implements DenormalizerInterface, NormalizerInterf
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [UnitAnalytics::class => false];
     }
 }

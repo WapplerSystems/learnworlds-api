@@ -9,15 +9,20 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\V2PromotionsPostResponse201;
+use WapplerSystems\LearnWorldsApi\V2\Model\V2PromotionsPostResponse201ProductsItem;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +31,21 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PromotionsPostResponse201';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PromotionsPostResponse201';
+        return $data instanceof V2PromotionsPostResponse201;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,31 +53,31 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\V2PromotionsPostResponse201();
-        if (\array_key_exists('value', $data) && \is_int($data['value'])) {
+        $object = new V2PromotionsPostResponse201();
+        if (array_key_exists('value', $data) && is_int($data['value'])) {
             $data['value'] = (double)$data['value'];
         }
-        if (\array_key_exists('created', $data) && \is_int($data['created'])) {
+        if (array_key_exists('created', $data) && is_int($data['created'])) {
             $data['created'] = (double)$data['created'];
         }
-        if (\array_key_exists('modified', $data) && \is_int($data['modified'])) {
+        if (array_key_exists('modified', $data) && is_int($data['modified'])) {
             $data['modified'] = (double)$data['modified'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('id', $data)) {
+        if (array_key_exists('id', $data)) {
             $object->setId($data['id']);
             unset($data['id']);
         }
-        if (\array_key_exists('name', $data)) {
+        if (array_key_exists('name', $data)) {
             $object->setName($data['name']);
             unset($data['name']);
         }
-        if (\array_key_exists('coupons', $data)) {
+        if (array_key_exists('coupons', $data)) {
             $values = [];
             foreach ($data['coupons'] as $value) {
-                $values_1 = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
+                $values_1 = new ArrayObject([], ArrayObject::ARRAY_AS_PROPS);
                 foreach ($value as $key => $value_1) {
                     $values_1[$key] = $value_1;
                 }
@@ -80,7 +86,7 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
             $object->setCoupons($values);
             unset($data['coupons']);
         }
-        if (\array_key_exists('applies_to_all', $data)) {
+        if (array_key_exists('applies_to_all', $data)) {
             $values_2 = [];
             foreach ($data['applies_to_all'] as $value_2) {
                 $values_2[] = $value_2;
@@ -88,32 +94,32 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
             $object->setAppliesToAll($values_2);
             unset($data['applies_to_all']);
         }
-        if (\array_key_exists('products', $data)) {
+        if (array_key_exists('products', $data)) {
             $values_3 = [];
             foreach ($data['products'] as $value_3) {
-                $values_3[] = $this->denormalizer->denormalize($value_3, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PromotionsPostResponse201ProductsItem', 'json', $context);
+                $values_3[] = $this->denormalizer->denormalize($value_3, V2PromotionsPostResponse201ProductsItem::class, 'json', $context);
             }
             $object->setProducts($values_3);
             unset($data['products']);
         }
-        if (\array_key_exists('type', $data)) {
+        if (array_key_exists('type', $data)) {
             $object->setType($data['type']);
             unset($data['type']);
         }
-        if (\array_key_exists('value', $data)) {
+        if (array_key_exists('value', $data)) {
             $object->setValue($data['value']);
             unset($data['value']);
         }
-        if (\array_key_exists('created', $data)) {
+        if (array_key_exists('created', $data)) {
             $object->setCreated($data['created']);
             unset($data['created']);
         }
-        if (\array_key_exists('modified', $data)) {
+        if (array_key_exists('modified', $data)) {
             $object->setModified($data['modified']);
             unset($data['modified']);
         }
         foreach ($data as $key_1 => $value_4) {
-            if (preg_match('/.*/', (string)$key_1)) {
+            if (preg_match('/.*/', $key_1)) {
                 $object[$key_1] = $value_4;
             }
         }
@@ -121,9 +127,10 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('id') && null !== $object->getId()) {
@@ -175,5 +182,9 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
             }
         }
         return $data;
+    }
+    public function getSupportedTypes(?string $format): array
+    {
+        return [V2PromotionsPostResponse201::class => false];
     }
 }

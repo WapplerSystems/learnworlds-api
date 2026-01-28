@@ -9,15 +9,20 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\UserResponse;
+use WapplerSystems\LearnWorldsApi\V2\Model\UserResponseAnswersItem;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class UserResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +31,21 @@ class UserResponseNormalizer implements DenormalizerInterface, NormalizerInterfa
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserResponse';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserResponse';
+        return $data instanceof UserResponse;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,61 +53,61 @@ class UserResponseNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\UserResponse();
-        if (\array_key_exists('created', $data) && \is_int($data['created'])) {
+        $object = new UserResponse();
+        if (array_key_exists('created', $data) && is_int($data['created'])) {
             $data['created'] = (double)$data['created'];
         }
-        if (\array_key_exists('modified', $data) && \is_int($data['modified'])) {
+        if (array_key_exists('modified', $data) && is_int($data['modified'])) {
             $data['modified'] = (double)$data['modified'];
         }
-        if (\array_key_exists('submittedTimestamp', $data) && \is_int($data['submittedTimestamp'])) {
+        if (array_key_exists('submittedTimestamp', $data) && is_int($data['submittedTimestamp'])) {
             $data['submittedTimestamp'] = (double)$data['submittedTimestamp'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('id', $data)) {
+        if (array_key_exists('id', $data)) {
             $object->setId($data['id']);
             unset($data['id']);
         }
-        if (\array_key_exists('user_id', $data)) {
+        if (array_key_exists('user_id', $data)) {
             $object->setUserId($data['user_id']);
             unset($data['user_id']);
         }
-        if (\array_key_exists('email', $data)) {
+        if (array_key_exists('email', $data)) {
             $object->setEmail($data['email']);
             unset($data['email']);
         }
-        if (\array_key_exists('grade', $data)) {
+        if (array_key_exists('grade', $data)) {
             $object->setGrade($data['grade']);
             unset($data['grade']);
         }
-        if (\array_key_exists('passed', $data)) {
+        if (array_key_exists('passed', $data)) {
             $object->setPassed($data['passed']);
             unset($data['passed']);
         }
-        if (\array_key_exists('created', $data)) {
+        if (array_key_exists('created', $data)) {
             $object->setCreated($data['created']);
             unset($data['created']);
         }
-        if (\array_key_exists('modified', $data)) {
+        if (array_key_exists('modified', $data)) {
             $object->setModified($data['modified']);
             unset($data['modified']);
         }
-        if (\array_key_exists('submittedTimestamp', $data)) {
+        if (array_key_exists('submittedTimestamp', $data)) {
             $object->setSubmittedTimestamp($data['submittedTimestamp']);
             unset($data['submittedTimestamp']);
         }
-        if (\array_key_exists('answers', $data)) {
+        if (array_key_exists('answers', $data)) {
             $values = [];
             foreach ($data['answers'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserResponseAnswersItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, UserResponseAnswersItem::class, 'json', $context);
             }
             $object->setAnswers($values);
             unset($data['answers']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value_1;
             }
         }
@@ -109,9 +115,10 @@ class UserResponseNormalizer implements DenormalizerInterface, NormalizerInterfa
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('id') && null !== $object->getId()) {
@@ -151,5 +158,10 @@ class UserResponseNormalizer implements DenormalizerInterface, NormalizerInterfa
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [UserResponse::class => false];
     }
 }

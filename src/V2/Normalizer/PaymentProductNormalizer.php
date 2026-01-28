@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\PaymentProduct;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class PaymentProductNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class PaymentProductNormalizer implements DenormalizerInterface, NormalizerInter
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PaymentProduct';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PaymentProduct';
+        return $data instanceof PaymentProduct;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,57 +50,57 @@ class PaymentProductNormalizer implements DenormalizerInterface, NormalizerInter
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\PaymentProduct();
-        if (\array_key_exists('original_price', $data) && \is_int($data['original_price'])) {
+        $object = new PaymentProduct();
+        if (array_key_exists('original_price', $data) && is_int($data['original_price'])) {
             $data['original_price'] = (double)$data['original_price'];
         }
-        if (\array_key_exists('discount_price', $data) && \is_int($data['discount_price'])) {
+        if (array_key_exists('discount_price', $data) && is_int($data['discount_price'])) {
             $data['discount_price'] = (double)$data['discount_price'];
         }
-        if (\array_key_exists('final_price', $data) && \is_int($data['final_price'])) {
+        if (array_key_exists('final_price', $data) && is_int($data['final_price'])) {
             $data['final_price'] = (double)$data['final_price'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('id', $data)) {
+        if (array_key_exists('id', $data)) {
             $object->setId($data['id']);
             unset($data['id']);
         }
-        if (\array_key_exists('type', $data)) {
+        if (array_key_exists('type', $data)) {
             $object->setType($data['type']);
             unset($data['type']);
         }
-        if (\array_key_exists('name', $data)) {
+        if (array_key_exists('name', $data)) {
             $object->setName($data['name']);
             unset($data['name']);
         }
-        if (\array_key_exists('description', $data)) {
+        if (array_key_exists('description', $data)) {
             $object->setDescription($data['description']);
             unset($data['description']);
         }
-        if (\array_key_exists('image', $data)) {
+        if (array_key_exists('image', $data)) {
             $object->setImage($data['image']);
             unset($data['image']);
         }
-        if (\array_key_exists('trial_days', $data)) {
+        if (array_key_exists('trial_days', $data)) {
             $object->setTrialDays($data['trial_days']);
             unset($data['trial_days']);
         }
-        if (\array_key_exists('original_price', $data)) {
+        if (array_key_exists('original_price', $data)) {
             $object->setOriginalPrice($data['original_price']);
             unset($data['original_price']);
         }
-        if (\array_key_exists('discount_price', $data)) {
+        if (array_key_exists('discount_price', $data)) {
             $object->setDiscountPrice($data['discount_price']);
             unset($data['discount_price']);
         }
-        if (\array_key_exists('final_price', $data)) {
+        if (array_key_exists('final_price', $data)) {
             $object->setFinalPrice($data['final_price']);
             unset($data['final_price']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -105,9 +108,9 @@ class PaymentProductNormalizer implements DenormalizerInterface, NormalizerInter
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('id') && null !== $object->getId()) {
@@ -143,5 +146,10 @@ class PaymentProductNormalizer implements DenormalizerInterface, NormalizerInter
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [PaymentProduct::class => false];
     }
 }

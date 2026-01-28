@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\Installment;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class InstallmentNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class InstallmentNormalizer implements DenormalizerInterface, NormalizerInterfac
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Installment';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Installment';
+        return $data instanceof Installment;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,114 +50,114 @@ class InstallmentNormalizer implements DenormalizerInterface, NormalizerInterfac
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Installment();
-        if (\array_key_exists('current_period_start', $data) && \is_int($data['current_period_start'])) {
+        $object = new Installment();
+        if (array_key_exists('current_period_start', $data) && is_int($data['current_period_start'])) {
             $data['current_period_start'] = (double)$data['current_period_start'];
         }
-        if (\array_key_exists('current_period_end', $data) && \is_int($data['current_period_end'])) {
+        if (array_key_exists('current_period_end', $data) && is_int($data['current_period_end'])) {
             $data['current_period_end'] = (double)$data['current_period_end'];
         }
-        if (\array_key_exists('firstAmount', $data) && \is_int($data['firstAmount'])) {
+        if (array_key_exists('firstAmount', $data) && is_int($data['firstAmount'])) {
             $data['firstAmount'] = (double)$data['firstAmount'];
         }
-        if (\array_key_exists('amount', $data) && \is_int($data['amount'])) {
+        if (array_key_exists('amount', $data) && is_int($data['amount'])) {
             $data['amount'] = (double)$data['amount'];
         }
-        if (\array_key_exists('paymentsCount', $data) && \is_int($data['paymentsCount'])) {
+        if (array_key_exists('paymentsCount', $data) && is_int($data['paymentsCount'])) {
             $data['paymentsCount'] = (double)$data['paymentsCount'];
         }
-        if (\array_key_exists('paymentsPayed', $data) && \is_int($data['paymentsPayed'])) {
+        if (array_key_exists('paymentsPayed', $data) && is_int($data['paymentsPayed'])) {
             $data['paymentsPayed'] = (double)$data['paymentsPayed'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('user_id', $data)) {
+        if (array_key_exists('user_id', $data)) {
             $object->setUserId($data['user_id']);
             unset($data['user_id']);
         }
-        if (\array_key_exists('email', $data)) {
+        if (array_key_exists('email', $data)) {
             $object->setEmail($data['email']);
             unset($data['email']);
         }
-        if (\array_key_exists('id', $data)) {
+        if (array_key_exists('id', $data)) {
             $object->setId($data['id']);
             unset($data['id']);
         }
-        if (\array_key_exists('plan_id', $data)) {
+        if (array_key_exists('plan_id', $data)) {
             $object->setPlanId($data['plan_id']);
             unset($data['plan_id']);
         }
-        if (\array_key_exists('productId', $data)) {
+        if (array_key_exists('productId', $data)) {
             $object->setProductId($data['productId']);
             unset($data['productId']);
         }
-        if (\array_key_exists('productType', $data)) {
+        if (array_key_exists('productType', $data)) {
             $object->setProductType($data['productType']);
             unset($data['productType']);
         }
-        if (\array_key_exists('ends_at', $data)) {
+        if (array_key_exists('ends_at', $data)) {
             $object->setEndsAt($data['ends_at']);
             unset($data['ends_at']);
         }
-        if (\array_key_exists('current_period_start', $data)) {
+        if (array_key_exists('current_period_start', $data)) {
             $object->setCurrentPeriodStart($data['current_period_start']);
             unset($data['current_period_start']);
         }
-        if (\array_key_exists('current_period_end', $data)) {
+        if (array_key_exists('current_period_end', $data)) {
             $object->setCurrentPeriodEnd($data['current_period_end']);
             unset($data['current_period_end']);
         }
-        if (\array_key_exists('name', $data)) {
+        if (array_key_exists('name', $data)) {
             $object->setName($data['name']);
             unset($data['name']);
         }
-        if (\array_key_exists('type', $data)) {
+        if (array_key_exists('type', $data)) {
             $object->setType($data['type']);
             unset($data['type']);
         }
-        if (\array_key_exists('status', $data)) {
+        if (array_key_exists('status', $data)) {
             $object->setStatus($data['status']);
             unset($data['status']);
         }
-        if (\array_key_exists('firstAmount', $data)) {
+        if (array_key_exists('firstAmount', $data)) {
             $object->setFirstAmount($data['firstAmount']);
             unset($data['firstAmount']);
         }
-        if (\array_key_exists('amount', $data)) {
+        if (array_key_exists('amount', $data)) {
             $object->setAmount($data['amount']);
             unset($data['amount']);
         }
-        if (\array_key_exists('paymentsCount', $data)) {
+        if (array_key_exists('paymentsCount', $data)) {
             $object->setPaymentsCount($data['paymentsCount']);
             unset($data['paymentsCount']);
         }
-        if (\array_key_exists('paymentsPayed', $data)) {
+        if (array_key_exists('paymentsPayed', $data)) {
             $object->setPaymentsPayed($data['paymentsPayed']);
             unset($data['paymentsPayed']);
         }
-        if (\array_key_exists('isCancelable', $data)) {
+        if (array_key_exists('isCancelable', $data)) {
             $object->setIsCancelable($data['isCancelable']);
             unset($data['isCancelable']);
         }
-        if (\array_key_exists('installmentIntervalType', $data)) {
+        if (array_key_exists('installmentIntervalType', $data)) {
             $object->setInstallmentIntervalType($data['installmentIntervalType']);
             unset($data['installmentIntervalType']);
         }
-        if (\array_key_exists('firstInstallmentType', $data)) {
+        if (array_key_exists('firstInstallmentType', $data)) {
             $object->setFirstInstallmentType($data['firstInstallmentType']);
             unset($data['firstInstallmentType']);
         }
-        if (\array_key_exists('firstInstallmentlDays', $data)) {
+        if (array_key_exists('firstInstallmentlDays', $data)) {
             $object->setFirstInstallmentlDays($data['firstInstallmentlDays']);
             unset($data['firstInstallmentlDays']);
         }
-        if (\array_key_exists('firstInstallmentDate', $data)) {
+        if (array_key_exists('firstInstallmentDate', $data)) {
             $object->setFirstInstallmentDate($data['firstInstallmentDate']);
             unset($data['firstInstallmentDate']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -162,9 +165,9 @@ class InstallmentNormalizer implements DenormalizerInterface, NormalizerInterfac
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('userId') && null !== $object->getUserId()) {
@@ -236,5 +239,10 @@ class InstallmentNormalizer implements DenormalizerInterface, NormalizerInterfac
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [Installment::class => false];
     }
 }

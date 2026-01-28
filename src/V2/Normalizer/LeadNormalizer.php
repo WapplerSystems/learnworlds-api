@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\Lead;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class LeadNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class LeadNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Lead';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Lead';
+        return $data instanceof Lead;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,26 +50,26 @@ class LeadNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Lead();
-        if (\array_key_exists('created', $data) && \is_int($data['created'])) {
+        $object = new Lead();
+        if (array_key_exists('created', $data) && is_int($data['created'])) {
             $data['created'] = (double)$data['created'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('email', $data)) {
+        if (array_key_exists('email', $data)) {
             $object->setEmail($data['email']);
             unset($data['email']);
         }
-        if (\array_key_exists('first_name', $data)) {
+        if (array_key_exists('first_name', $data)) {
             $object->setFirstName($data['first_name']);
             unset($data['first_name']);
         }
-        if (\array_key_exists('last_name', $data)) {
+        if (array_key_exists('last_name', $data)) {
             $object->setLastName($data['last_name']);
             unset($data['last_name']);
         }
-        if (\array_key_exists('tags', $data)) {
+        if (array_key_exists('tags', $data)) {
             $values = [];
             foreach ($data['tags'] as $value) {
                 $values[] = $value;
@@ -74,28 +77,28 @@ class LeadNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setTags($values);
             unset($data['tags']);
         }
-        if (\array_key_exists('subscribed_for_marketing_emails', $data)) {
+        if (array_key_exists('subscribed_for_marketing_emails', $data)) {
             $object->setSubscribedForMarketingEmails($data['subscribed_for_marketing_emails']);
             unset($data['subscribed_for_marketing_emails']);
         }
-        if (\array_key_exists('eu_customer', $data)) {
+        if (array_key_exists('eu_customer', $data)) {
             $object->setEuCustomer($data['eu_customer']);
             unset($data['eu_customer']);
         }
-        if (\array_key_exists('created', $data)) {
+        if (array_key_exists('created', $data)) {
             $object->setCreated($data['created']);
             unset($data['created']);
         }
-        if (\array_key_exists('utms', $data)) {
+        if (array_key_exists('utms', $data)) {
             $object->setUtms($data['utms']);
             unset($data['utms']);
         }
-        if (\array_key_exists('page_submitted ', $data)) {
+        if (array_key_exists('page_submitted ', $data)) {
             $object->setPageSubmitted($data['page_submitted ']);
             unset($data['page_submitted ']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value_1;
             }
         }
@@ -103,9 +106,9 @@ class LeadNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('email') && null !== $object->getEmail()) {
@@ -145,5 +148,10 @@ class LeadNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [Lead::class => false];
     }
 }

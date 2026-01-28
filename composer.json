@@ -3,6 +3,7 @@
     "description": "",
     "type": "library",
     "require": {
+        "symfony/serializer": "^8",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.2",
         "jane-php/open-api-runtime": "^7.4"

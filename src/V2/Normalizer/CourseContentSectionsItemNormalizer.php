@@ -9,15 +9,20 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\CourseContentSectionsItem;
+use WapplerSystems\LearnWorldsApi\V2\Model\CourseContentSectionsItemLearningUnitsItem;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class CourseContentSectionsItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +31,21 @@ class CourseContentSectionsItemNormalizer implements DenormalizerInterface, Norm
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseContentSectionsItem';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseContentSectionsItem';
+        return $data instanceof CourseContentSectionsItem;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,34 +53,34 @@ class CourseContentSectionsItemNormalizer implements DenormalizerInterface, Norm
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\CourseContentSectionsItem();
-        if (null === $data || false === \is_array($data)) {
+        $object = new CourseContentSectionsItem();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('id', $data)) {
+        if (array_key_exists('id', $data)) {
             $object->setId($data['id']);
             unset($data['id']);
         }
-        if (\array_key_exists('title', $data)) {
+        if (array_key_exists('title', $data)) {
             $object->setTitle($data['title']);
             unset($data['title']);
         }
-        if (\array_key_exists('description', $data)) {
+        if (array_key_exists('description', $data)) {
             $object->setDescription($data['description']);
             unset($data['description']);
         }
-        if (\array_key_exists('access', $data)) {
+        if (array_key_exists('access', $data)) {
             $object->setAccess($data['access']);
             unset($data['access']);
         }
-        if (\array_key_exists('drip', $data)) {
+        if (array_key_exists('drip', $data)) {
             $object->setDrip($data['drip']);
             unset($data['drip']);
         }
-        if (\array_key_exists('learningUnits', $data)) {
+        if (array_key_exists('learningUnits', $data)) {
             $values = [];
             foreach ($data['learningUnits'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseContentSectionsItemLearningUnitsItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, CourseContentSectionsItemLearningUnitsItem::class, 'json', $context);
             }
             $object->setLearningUnits($values);
             unset($data['learningUnits']);
@@ -88,9 +94,10 @@ class CourseContentSectionsItemNormalizer implements DenormalizerInterface, Norm
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('id') && null !== $object->getId()) {
@@ -121,5 +128,10 @@ class CourseContentSectionsItemNormalizer implements DenormalizerInterface, Norm
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [CourseContentSectionsItem::class => false];
     }
 }

@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\V2PaymentsIdInvoiceLinkGetResponse200;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class V2PaymentsIdInvoiceLinkGetResponse200Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class V2PaymentsIdInvoiceLinkGetResponse200Normalizer implements DenormalizerInt
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PaymentsIdInvoiceLinkGetResponse200';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PaymentsIdInvoiceLinkGetResponse200';
+        return $data instanceof V2PaymentsIdInvoiceLinkGetResponse200;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,27 +50,27 @@ class V2PaymentsIdInvoiceLinkGetResponse200Normalizer implements DenormalizerInt
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\V2PaymentsIdInvoiceLinkGetResponse200();
-        if (\array_key_exists('expires_at', $data) && \is_int($data['expires_at'])) {
+        $object = new V2PaymentsIdInvoiceLinkGetResponse200();
+        if (array_key_exists('expires_at', $data) && is_int($data['expires_at'])) {
             $data['expires_at'] = (double)$data['expires_at'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('invoice', $data)) {
+        if (array_key_exists('invoice', $data)) {
             $object->setInvoice($data['invoice']);
             unset($data['invoice']);
         }
-        if (\array_key_exists('url', $data)) {
+        if (array_key_exists('url', $data)) {
             $object->setUrl($data['url']);
             unset($data['url']);
         }
-        if (\array_key_exists('expires_at', $data)) {
+        if (array_key_exists('expires_at', $data)) {
             $object->setExpiresAt($data['expires_at']);
             unset($data['expires_at']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -75,9 +78,9 @@ class V2PaymentsIdInvoiceLinkGetResponse200Normalizer implements DenormalizerInt
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('invoice') && null !== $object->getInvoice()) {
@@ -95,5 +98,9 @@ class V2PaymentsIdInvoiceLinkGetResponse200Normalizer implements DenormalizerInt
             }
         }
         return $data;
+    }
+    public function getSupportedTypes(?string $format): array
+    {
+        return [V2PaymentsIdInvoiceLinkGetResponse200::class => false];
     }
 }

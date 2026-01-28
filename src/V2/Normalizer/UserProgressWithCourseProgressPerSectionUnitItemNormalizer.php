@@ -9,15 +9,20 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\UserProgressWithCourseProgressPerSectionUnitItem;
+use WapplerSystems\LearnWorldsApi\V2\Model\UserProgressWithCourseProgressPerSectionUnitItemUnitsItem;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class UserProgressWithCourseProgressPerSectionUnitItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +31,21 @@ class UserProgressWithCourseProgressPerSectionUnitItemNormalizer implements Deno
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserProgressWithCourseProgressPerSectionUnitItem';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserProgressWithCourseProgressPerSectionUnitItem';
+        return $data instanceof UserProgressWithCourseProgressPerSectionUnitItem;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,18 +53,18 @@ class UserProgressWithCourseProgressPerSectionUnitItemNormalizer implements Deno
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\UserProgressWithCourseProgressPerSectionUnitItem();
-        if (null === $data || false === \is_array($data)) {
+        $object = new UserProgressWithCourseProgressPerSectionUnitItem();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('section_id', $data)) {
+        if (array_key_exists('section_id', $data)) {
             $object->setSectionId($data['section_id']);
             unset($data['section_id']);
         }
-        if (\array_key_exists('units', $data)) {
+        if (array_key_exists('units', $data)) {
             $values = [];
             foreach ($data['units'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserProgressWithCourseProgressPerSectionUnitItemUnitsItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, UserProgressWithCourseProgressPerSectionUnitItemUnitsItem::class, 'json', $context);
             }
             $object->setUnits($values);
             unset($data['units']);
@@ -72,9 +78,10 @@ class UserProgressWithCourseProgressPerSectionUnitItemNormalizer implements Deno
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('sectionId') && null !== $object->getSectionId()) {
@@ -93,5 +100,10 @@ class UserProgressWithCourseProgressPerSectionUnitItemNormalizer implements Deno
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [UserProgressWithCourseProgressPerSectionUnitItem::class => false];
     }
 }

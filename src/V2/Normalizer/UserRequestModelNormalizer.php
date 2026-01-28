@@ -9,15 +9,21 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\UserRequestModel;
+use WapplerSystems\LearnWorldsApi\V2\Model\UserRequestModelFields;
+use WapplerSystems\LearnWorldsApi\V2\Model\UserRequestModelUtms;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class UserRequestModelNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +32,22 @@ class UserRequestModelNormalizer implements DenormalizerInterface, NormalizerInt
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserRequestModel';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserRequestModel';
+        return $data instanceof UserRequestModel;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,39 +55,39 @@ class UserRequestModelNormalizer implements DenormalizerInterface, NormalizerInt
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\UserRequestModel();
-        if (null === $data || false === \is_array($data)) {
+        $object = new UserRequestModel();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('email', $data)) {
+        if (array_key_exists('email', $data)) {
             $object->setEmail($data['email']);
             unset($data['email']);
         }
-        if (\array_key_exists('username', $data)) {
+        if (array_key_exists('username', $data)) {
             $object->setUsername($data['username']);
             unset($data['username']);
         }
-        if (\array_key_exists('password', $data)) {
+        if (array_key_exists('password', $data)) {
             $object->setPassword($data['password']);
             unset($data['password']);
         }
-        if (\array_key_exists('subscribed_for_marketing_emails', $data)) {
+        if (array_key_exists('subscribed_for_marketing_emails', $data)) {
             $object->setSubscribedForMarketingEmails($data['subscribed_for_marketing_emails']);
             unset($data['subscribed_for_marketing_emails']);
         }
-        if (\array_key_exists('is_admin', $data)) {
+        if (array_key_exists('is_admin', $data)) {
             $object->setIsAdmin($data['is_admin']);
             unset($data['is_admin']);
         }
-        if (\array_key_exists('signup_validation_rules', $data)) {
+        if (array_key_exists('signup_validation_rules', $data)) {
             $object->setSignupValidationRules($data['signup_validation_rules']);
             unset($data['signup_validation_rules']);
         }
-        if (\array_key_exists('fields', $data)) {
-            $object->setFields($this->denormalizer->denormalize($data['fields'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserRequestModelFields', 'json', $context));
+        if (array_key_exists('fields', $data)) {
+            $object->setFields($this->denormalizer->denormalize($data['fields'], UserRequestModelFields::class, 'json', $context));
             unset($data['fields']);
         }
-        if (\array_key_exists('tags', $data)) {
+        if (array_key_exists('tags', $data)) {
             $values = [];
             foreach ($data['tags'] as $value) {
                 $values[] = $value;
@@ -87,8 +95,8 @@ class UserRequestModelNormalizer implements DenormalizerInterface, NormalizerInt
             $object->setTags($values);
             unset($data['tags']);
         }
-        if (\array_key_exists('utms', $data)) {
-            $object->setUtms($this->denormalizer->denormalize($data['utms'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserRequestModelUtms', 'json', $context));
+        if (array_key_exists('utms', $data)) {
+            $object->setUtms($this->denormalizer->denormalize($data['utms'], UserRequestModelUtms::class, 'json', $context));
             unset($data['utms']);
         }
         foreach ($data as $key => $value_1) {
@@ -100,9 +108,11 @@ class UserRequestModelNormalizer implements DenormalizerInterface, NormalizerInt
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         $data['email'] = $object->getEmail();
@@ -138,5 +148,10 @@ class UserRequestModelNormalizer implements DenormalizerInterface, NormalizerInt
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [UserRequestModel::class => false];
     }
 }

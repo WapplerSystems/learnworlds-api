@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\V2UsersIdTagsPutBody;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class V2UsersIdTagsPutBodyNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class V2UsersIdTagsPutBodyNormalizer implements DenormalizerInterface, Normalize
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2UsersIdTagsPutBody';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2UsersIdTagsPutBody';
+        return $data instanceof V2UsersIdTagsPutBody;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,11 +50,11 @@ class V2UsersIdTagsPutBodyNormalizer implements DenormalizerInterface, Normalize
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\V2UsersIdTagsPutBody();
-        if (null === $data || false === \is_array($data)) {
+        $object = new V2UsersIdTagsPutBody();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('tags', $data)) {
+        if (array_key_exists('tags', $data)) {
             $values = [];
             foreach ($data['tags'] as $value) {
                 $values[] = $value;
@@ -59,7 +62,7 @@ class V2UsersIdTagsPutBodyNormalizer implements DenormalizerInterface, Normalize
             $object->setTags($values);
             unset($data['tags']);
         }
-        if (\array_key_exists('action', $data)) {
+        if (array_key_exists('action', $data)) {
             $object->setAction($data['action']);
             unset($data['action']);
         }
@@ -72,9 +75,9 @@ class V2UsersIdTagsPutBodyNormalizer implements DenormalizerInterface, Normalize
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         $values = [];
@@ -89,5 +92,10 @@ class V2UsersIdTagsPutBodyNormalizer implements DenormalizerInterface, Normalize
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [V2UsersIdTagsPutBody::class => false];
     }
 }

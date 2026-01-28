@@ -9,15 +9,21 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\SubscriptionPlan;
+use WapplerSystems\LearnWorldsApi\V2\Model\SubscriptionPlanAfterPurchase;
+use WapplerSystems\LearnWorldsApi\V2\Model\SubscriptionPlanProducts;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class SubscriptionPlanNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +32,22 @@ class SubscriptionPlanNormalizer implements DenormalizerInterface, NormalizerInt
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\SubscriptionPlan';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\SubscriptionPlan';
+        return $data instanceof SubscriptionPlan;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,77 +55,77 @@ class SubscriptionPlanNormalizer implements DenormalizerInterface, NormalizerInt
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\SubscriptionPlan();
-        if (\array_key_exists('created', $data) && \is_int($data['created'])) {
+        $object = new SubscriptionPlan();
+        if (array_key_exists('created', $data) && is_int($data['created'])) {
             $data['created'] = (double)$data['created'];
         }
-        if (\array_key_exists('modified', $data) && \is_int($data['modified'])) {
+        if (array_key_exists('modified', $data) && is_int($data['modified'])) {
             $data['modified'] = (double)$data['modified'];
         }
-        if (\array_key_exists('price', $data) && \is_int($data['price'])) {
+        if (array_key_exists('price', $data) && is_int($data['price'])) {
             $data['price'] = (double)$data['price'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('id', $data)) {
+        if (array_key_exists('id', $data)) {
             $object->setId($data['id']);
             unset($data['id']);
         }
-        if (\array_key_exists('title', $data)) {
+        if (array_key_exists('title', $data)) {
             $object->setTitle($data['title']);
             unset($data['title']);
         }
-        if (\array_key_exists('stripePlanId', $data)) {
+        if (array_key_exists('stripePlanId', $data)) {
             $object->setStripePlanId($data['stripePlanId']);
             unset($data['stripePlanId']);
         }
-        if (\array_key_exists('description', $data)) {
+        if (array_key_exists('description', $data)) {
             $object->setDescription($data['description']);
             unset($data['description']);
         }
-        if (\array_key_exists('products', $data)) {
-            $object->setProducts($this->denormalizer->denormalize($data['products'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\SubscriptionPlanProducts', 'json', $context));
+        if (array_key_exists('products', $data)) {
+            $object->setProducts($this->denormalizer->denormalize($data['products'], SubscriptionPlanProducts::class, 'json', $context));
             unset($data['products']);
         }
-        if (\array_key_exists('image', $data)) {
+        if (array_key_exists('image', $data)) {
             $object->setImage($data['image']);
             unset($data['image']);
         }
-        if (\array_key_exists('interval', $data)) {
+        if (array_key_exists('interval', $data)) {
             $object->setInterval($data['interval']);
             unset($data['interval']);
         }
-        if (\array_key_exists('interval_type', $data)) {
+        if (array_key_exists('interval_type', $data)) {
             $object->setIntervalType($data['interval_type']);
             unset($data['interval_type']);
         }
-        if (\array_key_exists('trial_period_days', $data)) {
+        if (array_key_exists('trial_period_days', $data)) {
             $object->setTrialPeriodDays($data['trial_period_days']);
             unset($data['trial_period_days']);
         }
-        if (\array_key_exists('afterPurchase', $data)) {
-            $object->setAfterPurchase($this->denormalizer->denormalize($data['afterPurchase'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\SubscriptionPlanAfterPurchase', 'json', $context));
+        if (array_key_exists('afterPurchase', $data)) {
+            $object->setAfterPurchase($this->denormalizer->denormalize($data['afterPurchase'], SubscriptionPlanAfterPurchase::class, 'json', $context));
             unset($data['afterPurchase']);
         }
-        if (\array_key_exists('access', $data)) {
+        if (array_key_exists('access', $data)) {
             $object->setAccess($data['access']);
             unset($data['access']);
         }
-        if (\array_key_exists('created', $data)) {
+        if (array_key_exists('created', $data)) {
             $object->setCreated($data['created']);
             unset($data['created']);
         }
-        if (\array_key_exists('modified', $data)) {
+        if (array_key_exists('modified', $data)) {
             $object->setModified($data['modified']);
             unset($data['modified']);
         }
-        if (\array_key_exists('price', $data)) {
+        if (array_key_exists('price', $data)) {
             $object->setPrice($data['price']);
             unset($data['price']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -125,9 +133,11 @@ class SubscriptionPlanNormalizer implements DenormalizerInterface, NormalizerInt
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('id') && null !== $object->getId()) {
@@ -178,5 +188,10 @@ class SubscriptionPlanNormalizer implements DenormalizerInterface, NormalizerInt
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [SubscriptionPlan::class => false];
     }
 }

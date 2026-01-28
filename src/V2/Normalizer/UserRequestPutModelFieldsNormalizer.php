@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\UserRequestPutModelFields;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class UserRequestPutModelFieldsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class UserRequestPutModelFieldsNormalizer implements DenormalizerInterface, Norm
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserRequestPutModelFields';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserRequestPutModelFields';
+        return $data instanceof UserRequestPutModelFields;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,83 +50,83 @@ class UserRequestPutModelFieldsNormalizer implements DenormalizerInterface, Norm
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\UserRequestPutModelFields();
-        if (null === $data || false === \is_array($data)) {
+        $object = new UserRequestPutModelFields();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('bio', $data)) {
+        if (array_key_exists('bio', $data)) {
             $object->setBio($data['bio']);
             unset($data['bio']);
         }
-        if (\array_key_exists('location', $data)) {
+        if (array_key_exists('location', $data)) {
             $object->setLocation($data['location']);
             unset($data['location']);
         }
-        if (\array_key_exists('url', $data)) {
+        if (array_key_exists('url', $data)) {
             $object->setUrl($data['url']);
             unset($data['url']);
         }
-        if (\array_key_exists('fb', $data)) {
+        if (array_key_exists('fb', $data)) {
             $object->setFb($data['fb']);
             unset($data['fb']);
         }
-        if (\array_key_exists('twitter', $data)) {
+        if (array_key_exists('twitter', $data)) {
             $object->setTwitter($data['twitter']);
             unset($data['twitter']);
         }
-        if (\array_key_exists('instagram', $data)) {
+        if (array_key_exists('instagram', $data)) {
             $object->setInstagram($data['instagram']);
             unset($data['instagram']);
         }
-        if (\array_key_exists('linkedin', $data)) {
+        if (array_key_exists('linkedin', $data)) {
             $object->setLinkedin($data['linkedin']);
             unset($data['linkedin']);
         }
-        if (\array_key_exists('skype', $data)) {
+        if (array_key_exists('skype', $data)) {
             $object->setSkype($data['skype']);
             unset($data['skype']);
         }
-        if (\array_key_exists('behance', $data)) {
+        if (array_key_exists('behance', $data)) {
             $object->setBehance($data['behance']);
             unset($data['behance']);
         }
-        if (\array_key_exists('dribbble', $data)) {
+        if (array_key_exists('dribbble', $data)) {
             $object->setDribbble($data['dribbble']);
             unset($data['dribbble']);
         }
-        if (\array_key_exists('github', $data)) {
+        if (array_key_exists('github', $data)) {
             $object->setGithub($data['github']);
             unset($data['github']);
         }
-        if (\array_key_exists('phone', $data)) {
+        if (array_key_exists('phone', $data)) {
             $object->setPhone($data['phone']);
             unset($data['phone']);
         }
-        if (\array_key_exists('address', $data)) {
+        if (array_key_exists('address', $data)) {
             $object->setAddress($data['address']);
             unset($data['address']);
         }
-        if (\array_key_exists('country', $data)) {
+        if (array_key_exists('country', $data)) {
             $object->setCountry($data['country']);
             unset($data['country']);
         }
-        if (\array_key_exists('birthday', $data)) {
+        if (array_key_exists('birthday', $data)) {
             $object->setBirthday($data['birthday']);
             unset($data['birthday']);
         }
-        if (\array_key_exists('company', $data)) {
+        if (array_key_exists('company', $data)) {
             $object->setCompany($data['company']);
             unset($data['company']);
         }
-        if (\array_key_exists('company_size', $data)) {
+        if (array_key_exists('company_size', $data)) {
             $object->setCompanySize($data['company_size']);
             unset($data['company_size']);
         }
-        if (\array_key_exists('university', $data)) {
+        if (array_key_exists('university', $data)) {
             $object->setUniversity($data['university']);
             unset($data['university']);
         }
-        if (\array_key_exists('graduation_year', $data)) {
+        if (array_key_exists('graduation_year', $data)) {
             $object->setGraduationYear($data['graduation_year']);
             unset($data['graduation_year']);
         }
@@ -136,9 +139,9 @@ class UserRequestPutModelFieldsNormalizer implements DenormalizerInterface, Norm
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('bio') && null !== $object->getBio()) {
@@ -204,5 +207,10 @@ class UserRequestPutModelFieldsNormalizer implements DenormalizerInterface, Norm
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [UserRequestPutModelFields::class => false];
     }
 }

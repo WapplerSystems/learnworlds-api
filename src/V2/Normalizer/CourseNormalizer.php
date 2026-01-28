@@ -9,15 +9,21 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\Course;
+use WapplerSystems\LearnWorldsApi\V2\Model\CourseAfterPurchase;
+use WapplerSystems\LearnWorldsApi\V2\Model\CourseIdentifiers;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class CourseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +32,22 @@ class CourseNormalizer implements DenormalizerInterface, NormalizerInterface, De
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Course';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Course';
+        return $data instanceof Course;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,46 +55,46 @@ class CourseNormalizer implements DenormalizerInterface, NormalizerInterface, De
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Course();
-        if (\array_key_exists('original_price', $data) && \is_int($data['original_price'])) {
+        $object = new Course();
+        if (array_key_exists('original_price', $data) && is_int($data['original_price'])) {
             $data['original_price'] = (double)$data['original_price'];
         }
-        if (\array_key_exists('discount_price', $data) && \is_int($data['discount_price'])) {
+        if (array_key_exists('discount_price', $data) && is_int($data['discount_price'])) {
             $data['discount_price'] = (double)$data['discount_price'];
         }
-        if (\array_key_exists('final_price', $data) && \is_int($data['final_price'])) {
+        if (array_key_exists('final_price', $data) && is_int($data['final_price'])) {
             $data['final_price'] = (double)$data['final_price'];
         }
-        if (\array_key_exists('created', $data) && \is_int($data['created'])) {
+        if (array_key_exists('created', $data) && is_int($data['created'])) {
             $data['created'] = (double)$data['created'];
         }
-        if (\array_key_exists('modified', $data) && \is_int($data['modified'])) {
+        if (array_key_exists('modified', $data) && is_int($data['modified'])) {
             $data['modified'] = (double)$data['modified'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('id', $data)) {
+        if (array_key_exists('id', $data)) {
             $object->setId($data['id']);
             unset($data['id']);
         }
-        if (\array_key_exists('title', $data)) {
+        if (array_key_exists('title', $data)) {
             $object->setTitle($data['title']);
             unset($data['title']);
         }
-        if (\array_key_exists('expires', $data)) {
+        if (array_key_exists('expires', $data)) {
             $object->setExpires($data['expires']);
             unset($data['expires']);
         }
-        if (\array_key_exists('expiresType', $data)) {
+        if (array_key_exists('expiresType', $data)) {
             $object->setExpiresType($data['expiresType']);
             unset($data['expiresType']);
         }
-        if (\array_key_exists('afterPurchase', $data)) {
-            $object->setAfterPurchase($this->denormalizer->denormalize($data['afterPurchase'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseAfterPurchase', 'json', $context));
+        if (array_key_exists('afterPurchase', $data)) {
+            $object->setAfterPurchase($this->denormalizer->denormalize($data['afterPurchase'], CourseAfterPurchase::class, 'json', $context));
             unset($data['afterPurchase']);
         }
-        if (\array_key_exists('categories', $data)) {
+        if (array_key_exists('categories', $data)) {
             $values = [];
             foreach ($data['categories'] as $value) {
                 $values[] = $value;
@@ -94,56 +102,56 @@ class CourseNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setCategories($values);
             unset($data['categories']);
         }
-        if (\array_key_exists('description', $data)) {
+        if (array_key_exists('description', $data)) {
             $object->setDescription($data['description']);
             unset($data['description']);
         }
-        if (\array_key_exists('label', $data)) {
+        if (array_key_exists('label', $data)) {
             $object->setLabel($data['label']);
             unset($data['label']);
         }
-        if (\array_key_exists('author', $data)) {
+        if (array_key_exists('author', $data)) {
             $object->setAuthor($data['author']);
             unset($data['author']);
         }
-        if (\array_key_exists('courseImage', $data)) {
+        if (array_key_exists('courseImage', $data)) {
             $object->setCourseImage($data['courseImage']);
             unset($data['courseImage']);
         }
-        if (\array_key_exists('original_price', $data)) {
+        if (array_key_exists('original_price', $data)) {
             $object->setOriginalPrice($data['original_price']);
             unset($data['original_price']);
         }
-        if (\array_key_exists('discount_price', $data)) {
+        if (array_key_exists('discount_price', $data)) {
             $object->setDiscountPrice($data['discount_price']);
             unset($data['discount_price']);
         }
-        if (\array_key_exists('final_price', $data)) {
+        if (array_key_exists('final_price', $data)) {
             $object->setFinalPrice($data['final_price']);
             unset($data['final_price']);
         }
-        if (\array_key_exists('dripFeed', $data)) {
+        if (array_key_exists('dripFeed', $data)) {
             $object->setDripFeed($data['dripFeed']);
             unset($data['dripFeed']);
         }
-        if (\array_key_exists('identifiers', $data)) {
-            $object->setIdentifiers($this->denormalizer->denormalize($data['identifiers'], 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseIdentifiers', 'json', $context));
+        if (array_key_exists('identifiers', $data)) {
+            $object->setIdentifiers($this->denormalizer->denormalize($data['identifiers'], CourseIdentifiers::class, 'json', $context));
             unset($data['identifiers']);
         }
-        if (\array_key_exists('access', $data)) {
+        if (array_key_exists('access', $data)) {
             $object->setAccess($data['access']);
             unset($data['access']);
         }
-        if (\array_key_exists('created', $data)) {
+        if (array_key_exists('created', $data)) {
             $object->setCreated($data['created']);
             unset($data['created']);
         }
-        if (\array_key_exists('modified', $data)) {
+        if (array_key_exists('modified', $data)) {
             $object->setModified($data['modified']);
             unset($data['modified']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value_1;
             }
         }
@@ -151,9 +159,11 @@ class CourseNormalizer implements DenormalizerInterface, NormalizerInterface, De
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('id') && null !== $object->getId()) {
@@ -220,5 +230,10 @@ class CourseNormalizer implements DenormalizerInterface, NormalizerInterface, De
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [Course::class => false];
     }
 }

@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\UserRequestModelUtms;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class UserRequestModelUtmsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class UserRequestModelUtmsNormalizer implements DenormalizerInterface, Normalize
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserRequestModelUtms';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserRequestModelUtms';
+        return $data instanceof UserRequestModelUtms;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,71 +50,71 @@ class UserRequestModelUtmsNormalizer implements DenormalizerInterface, Normalize
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\UserRequestModelUtms();
-        if (null === $data || false === \is_array($data)) {
+        $object = new UserRequestModelUtms();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('fc_source', $data)) {
+        if (array_key_exists('fc_source', $data)) {
             $object->setFcSource($data['fc_source']);
             unset($data['fc_source']);
         }
-        if (\array_key_exists('fc_medium', $data)) {
+        if (array_key_exists('fc_medium', $data)) {
             $object->setFcMedium($data['fc_medium']);
             unset($data['fc_medium']);
         }
-        if (\array_key_exists('fc_campaign', $data)) {
+        if (array_key_exists('fc_campaign', $data)) {
             $object->setFcCampaign($data['fc_campaign']);
             unset($data['fc_campaign']);
         }
-        if (\array_key_exists('fc_term', $data)) {
+        if (array_key_exists('fc_term', $data)) {
             $object->setFcTerm($data['fc_term']);
             unset($data['fc_term']);
         }
-        if (\array_key_exists('fc_content', $data)) {
+        if (array_key_exists('fc_content', $data)) {
             $object->setFcContent($data['fc_content']);
             unset($data['fc_content']);
         }
-        if (\array_key_exists('fc_landing', $data)) {
+        if (array_key_exists('fc_landing', $data)) {
             $object->setFcLanding($data['fc_landing']);
             unset($data['fc_landing']);
         }
-        if (\array_key_exists('fc_referrer', $data)) {
+        if (array_key_exists('fc_referrer', $data)) {
             $object->setFcReferrer($data['fc_referrer']);
             unset($data['fc_referrer']);
         }
-        if (\array_key_exists('fc_country', $data)) {
+        if (array_key_exists('fc_country', $data)) {
             $object->setFcCountry($data['fc_country']);
             unset($data['fc_country']);
         }
-        if (\array_key_exists('lc_source', $data)) {
+        if (array_key_exists('lc_source', $data)) {
             $object->setLcSource($data['lc_source']);
             unset($data['lc_source']);
         }
-        if (\array_key_exists('lc_medium', $data)) {
+        if (array_key_exists('lc_medium', $data)) {
             $object->setLcMedium($data['lc_medium']);
             unset($data['lc_medium']);
         }
-        if (\array_key_exists('lc_campaign', $data)) {
+        if (array_key_exists('lc_campaign', $data)) {
             $object->setLcCampaign($data['lc_campaign']);
             unset($data['lc_campaign']);
         }
-        if (\array_key_exists('lc_term', $data)) {
+        if (array_key_exists('lc_term', $data)) {
             $object->setLcTerm($data['lc_term']);
             unset($data['lc_term']);
         }
-        if (\array_key_exists('lc_content', $data)) {
+        if (array_key_exists('lc_content', $data)) {
             $object->setLcContent($data['lc_content']);
             unset($data['lc_content']);
         }
-        if (\array_key_exists('lc_landing', $data)) {
+        if (array_key_exists('lc_landing', $data)) {
             $object->setLcLanding($data['lc_landing']);
             unset($data['lc_landing']);
         }
-        if (\array_key_exists('lc_referrer', $data)) {
+        if (array_key_exists('lc_referrer', $data)) {
             $object->setLcReferrer($data['lc_referrer']);
             unset($data['lc_referrer']);
         }
-        if (\array_key_exists('lc_country', $data)) {
+        if (array_key_exists('lc_country', $data)) {
             $object->setLcCountry($data['lc_country']);
             unset($data['lc_country']);
         }
@@ -124,9 +127,9 @@ class UserRequestModelUtmsNormalizer implements DenormalizerInterface, Normalize
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('fcSource') && null !== $object->getFcSource()) {
@@ -183,5 +186,10 @@ class UserRequestModelUtmsNormalizer implements DenormalizerInterface, Normalize
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [UserRequestModelUtms::class => false];
     }
 }

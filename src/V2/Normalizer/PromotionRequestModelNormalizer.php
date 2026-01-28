@@ -9,15 +9,20 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\PromotionRequestModel;
+use WapplerSystems\LearnWorldsApi\V2\Model\PromotionRequestModelCouponsItem;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class PromotionRequestModelNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +31,21 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PromotionRequestModel';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PromotionRequestModel';
+        return $data instanceof PromotionRequestModel;
     }
 
     /**
      * @return mixed
+     * @throws ExceptionInterface
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,26 +53,26 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\PromotionRequestModel();
-        if (null === $data || false === \is_array($data)) {
+        $object = new PromotionRequestModel();
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('name', $data)) {
+        if (array_key_exists('name', $data)) {
             $object->setName($data['name']);
             unset($data['name']);
         }
-        if (\array_key_exists('coupons', $data)) {
+        if (array_key_exists('coupons', $data)) {
             $values = [];
             foreach ($data['coupons'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PromotionRequestModelCouponsItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, PromotionRequestModelCouponsItem::class, 'json', $context);
             }
             $object->setCoupons($values);
             unset($data['coupons']);
         }
-        if (\array_key_exists('product_ids', $data)) {
+        if (array_key_exists('product_ids', $data)) {
             $values_1 = [];
             foreach ($data['product_ids'] as $value_1) {
-                $values_2 = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
+                $values_2 = new ArrayObject([], ArrayObject::ARRAY_AS_PROPS);
                 foreach ($value_1 as $key => $value_2) {
                     $values_2[$key] = $value_2;
                 }
@@ -75,15 +81,15 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
             $object->setProductIds($values_1);
             unset($data['product_ids']);
         }
-        if (\array_key_exists('type', $data)) {
+        if (array_key_exists('type', $data)) {
             $object->setType($data['type']);
             unset($data['type']);
         }
-        if (\array_key_exists('value', $data)) {
+        if (array_key_exists('value', $data)) {
             $object->setValue($data['value']);
             unset($data['value']);
         }
-        if (\array_key_exists('access', $data)) {
+        if (array_key_exists('access', $data)) {
             $object->setAccess($data['access']);
             unset($data['access']);
         }
@@ -96,9 +102,10 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
+     * @throws ExceptionInterface
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         $data['name'] = $object->getName();
@@ -129,5 +136,10 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [PromotionRequestModel::class => false];
     }
 }

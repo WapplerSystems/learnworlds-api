@@ -9,6 +9,7 @@
 
 namespace WapplerSystems\LearnWorldsApi\V2\Normalizer;
 
+use ArrayObject;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,8 +17,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use WapplerSystems\LearnWorldsApi\V2\Model\Meta;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\CheckArray;
 use WapplerSystems\LearnWorldsApi\V2\Runtime\Normalizer\ValidatorTrait;
+
 
 class MetaNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
@@ -26,20 +29,20 @@ class MetaNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
     use CheckArray;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Meta';
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Meta';
+        return $data instanceof Meta;
     }
 
     /**
      * @return mixed
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -47,40 +50,40 @@ class MetaNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Meta();
-        if (\array_key_exists('page', $data) && \is_int($data['page'])) {
+        $object = new Meta();
+        if (array_key_exists('page', $data) && is_int($data['page'])) {
             $data['page'] = (double)$data['page'];
         }
-        if (\array_key_exists('totalItems', $data) && \is_int($data['totalItems'])) {
+        if (array_key_exists('totalItems', $data) && is_int($data['totalItems'])) {
             $data['totalItems'] = (double)$data['totalItems'];
         }
-        if (\array_key_exists('totalPages', $data) && \is_int($data['totalPages'])) {
+        if (array_key_exists('totalPages', $data) && is_int($data['totalPages'])) {
             $data['totalPages'] = (double)$data['totalPages'];
         }
-        if (\array_key_exists('itemsPerPage', $data) && \is_int($data['itemsPerPage'])) {
+        if (array_key_exists('itemsPerPage', $data) && is_int($data['itemsPerPage'])) {
             $data['itemsPerPage'] = (double)$data['itemsPerPage'];
         }
-        if (null === $data || false === \is_array($data)) {
+        if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('page', $data)) {
+        if (array_key_exists('page', $data)) {
             $object->setPage($data['page']);
             unset($data['page']);
         }
-        if (\array_key_exists('totalItems', $data)) {
+        if (array_key_exists('totalItems', $data)) {
             $object->setTotalItems($data['totalItems']);
             unset($data['totalItems']);
         }
-        if (\array_key_exists('totalPages', $data)) {
+        if (array_key_exists('totalPages', $data)) {
             $object->setTotalPages($data['totalPages']);
             unset($data['totalPages']);
         }
-        if (\array_key_exists('itemsPerPage', $data)) {
+        if (array_key_exists('itemsPerPage', $data)) {
             $object->setItemsPerPage($data['itemsPerPage']);
             unset($data['itemsPerPage']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string)$key)) {
+            if (preg_match('/.*/', $key)) {
                 $object[$key] = $value;
             }
         }
@@ -88,9 +91,9 @@ class MetaNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
+     * @return array|string|int|float|bool|ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|int|bool|ArrayObject|array|string|null
     {
         $data = [];
         if ($object->isInitialized('page') && null !== $object->getPage()) {
@@ -111,5 +114,10 @@ class MetaNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             }
         }
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [Meta::class => false];
     }
 }
