@@ -15,10 +15,12 @@ class CertificateUser extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the user
      *
@@ -31,15 +33,17 @@ class CertificateUser extends \ArrayObject
      * @var string
      */
     protected $email;
+
     /**
      * Unique identifier of the user
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Unique identifier of the user
      *
@@ -47,21 +51,23 @@ class CertificateUser extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Email of the user
      *
      * @return string
      */
-    public function getEmail() : string
+    public function getEmail(): string
     {
         return $this->email;
     }
+
     /**
      * Email of the user
      *
@@ -69,7 +75,7 @@ class CertificateUser extends \ArrayObject
      *
      * @return self
      */
-    public function setEmail(string $email) : self
+    public function setEmail(string $email): self
     {
         $this->initialized['email'] = true;
         $this->email = $email;

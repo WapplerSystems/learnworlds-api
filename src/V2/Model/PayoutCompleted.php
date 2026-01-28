@@ -15,10 +15,12 @@ class PayoutCompleted extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the payout
      *
@@ -61,15 +63,17 @@ class PayoutCompleted extends \ArrayObject
      * @var PayoutCompletedCompletedBy
      */
     protected $completedBy;
+
     /**
      * Unique identifier of the payout
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Unique identifier of the payout
      *
@@ -77,21 +81,23 @@ class PayoutCompleted extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Amount of the payout
      *
      * @return float
      */
-    public function getAmount() : float
+    public function getAmount(): float
     {
         return $this->amount;
     }
+
     /**
      * Amount of the payout
      *
@@ -99,12 +105,13 @@ class PayoutCompleted extends \ArrayObject
      *
      * @return self
      */
-    public function setAmount(float $amount) : self
+    public function setAmount(float $amount): self
     {
         $this->initialized['amount'] = true;
         $this->amount = $amount;
         return $this;
     }
+
     /**
      * Payment method of the payout
      *
@@ -114,6 +121,7 @@ class PayoutCompleted extends \ArrayObject
     {
         return $this->paymentMethod;
     }
+
     /**
      * Payment method of the payout
      *
@@ -121,12 +129,13 @@ class PayoutCompleted extends \ArrayObject
      *
      * @return self
      */
-    public function setPaymentMethod($paymentMethod) : self
+    public function setPaymentMethod($paymentMethod): self
     {
         $this->initialized['paymentMethod'] = true;
         $this->paymentMethod = $paymentMethod;
         return $this;
     }
+
     /**
      * Payment note of the payout
      *
@@ -136,6 +145,7 @@ class PayoutCompleted extends \ArrayObject
     {
         return $this->paymentNotes;
     }
+
     /**
      * Payment note of the payout
      *
@@ -143,21 +153,23 @@ class PayoutCompleted extends \ArrayObject
      *
      * @return self
      */
-    public function setPaymentNotes($paymentNotes) : self
+    public function setPaymentNotes($paymentNotes): self
     {
         $this->initialized['paymentNotes'] = true;
         $this->paymentNotes = $paymentNotes;
         return $this;
     }
+
     /**
      * Datetime the payout was created, in UNIX timestamp format
      *
      * @return float
      */
-    public function getCreated() : float
+    public function getCreated(): float
     {
         return $this->created;
     }
+
     /**
      * Datetime the payout was created, in UNIX timestamp format
      *
@@ -165,21 +177,23 @@ class PayoutCompleted extends \ArrayObject
      *
      * @return self
      */
-    public function setCreated(float $created) : self
+    public function setCreated(float $created): self
     {
         $this->initialized['created'] = true;
         $this->created = $created;
         return $this;
     }
+
     /**
      *
      *
      * @return Payment[]
      */
-    public function getPayments() : array
+    public function getPayments(): array
     {
         return $this->payments;
     }
+
     /**
      *
      *
@@ -187,21 +201,23 @@ class PayoutCompleted extends \ArrayObject
      *
      * @return self
      */
-    public function setPayments(array $payments) : self
+    public function setPayments(array $payments): self
     {
         $this->initialized['payments'] = true;
         $this->payments = $payments;
         return $this;
     }
+
     /**
      *
      *
      * @return PayoutCompletedCompletedBy
      */
-    public function getCompletedBy() : PayoutCompletedCompletedBy
+    public function getCompletedBy(): PayoutCompletedCompletedBy
     {
         return $this->completedBy;
     }
+
     /**
      *
      *
@@ -209,7 +225,7 @@ class PayoutCompleted extends \ArrayObject
      *
      * @return self
      */
-    public function setCompletedBy(PayoutCompletedCompletedBy $completedBy) : self
+    public function setCompletedBy(PayoutCompletedCompletedBy $completedBy): self
     {
         $this->initialized['completedBy'] = true;
         $this->completedBy = $completedBy;

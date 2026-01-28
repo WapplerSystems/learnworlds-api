@@ -15,10 +15,12 @@ class V2PromotionsIdCouponsBulkPostBody extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Coupon prefix
      *
@@ -37,15 +39,17 @@ class V2PromotionsIdCouponsBulkPostBody extends \ArrayObject
      * @var mixed
      */
     protected $expires;
+
     /**
      * Coupon prefix
      *
      * @return string
      */
-    public function getPrefix() : string
+    public function getPrefix(): string
     {
         return $this->prefix;
     }
+
     /**
      * Coupon prefix
      *
@@ -53,21 +57,23 @@ class V2PromotionsIdCouponsBulkPostBody extends \ArrayObject
      *
      * @return self
      */
-    public function setPrefix(string $prefix) : self
+    public function setPrefix(string $prefix): self
     {
         $this->initialized['prefix'] = true;
         $this->prefix = $prefix;
         return $this;
     }
+
     /**
      * Coupon quantity greater than 0
      *
      * @return float
      */
-    public function getQuantity() : float
+    public function getQuantity(): float
     {
         return $this->quantity;
     }
+
     /**
      * Coupon quantity greater than 0
      *
@@ -75,12 +81,13 @@ class V2PromotionsIdCouponsBulkPostBody extends \ArrayObject
      *
      * @return self
      */
-    public function setQuantity(float $quantity) : self
+    public function setQuantity(float $quantity): self
     {
         $this->initialized['quantity'] = true;
         $this->quantity = $quantity;
         return $this;
     }
+
     /**
      * Coupon expiration date, in YYYY-MM-DD format
      *
@@ -90,6 +97,7 @@ class V2PromotionsIdCouponsBulkPostBody extends \ArrayObject
     {
         return $this->expires;
     }
+
     /**
      * Coupon expiration date, in YYYY-MM-DD format
      *
@@ -97,7 +105,7 @@ class V2PromotionsIdCouponsBulkPostBody extends \ArrayObject
      *
      * @return self
      */
-    public function setExpires($expires) : self
+    public function setExpires($expires): self
     {
         $this->initialized['expires'] = true;
         $this->expires = $expires;

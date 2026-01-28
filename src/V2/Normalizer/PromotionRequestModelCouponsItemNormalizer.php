@@ -25,14 +25,17 @@ class PromotionRequestModelCouponsItemNormalizer implements DenormalizerInterfac
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PromotionRequestModelCouponsItem';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PromotionRequestModelCouponsItem';
     }
+
     /**
      * @return mixed
      */
@@ -65,12 +68,13 @@ class PromotionRequestModelCouponsItemNormalizer implements DenormalizerInterfac
             unset($data['times_used']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -90,7 +94,7 @@ class PromotionRequestModelCouponsItemNormalizer implements DenormalizerInterfac
             $data['times_used'] = $object->getTimesUsed();
         }
         foreach ($object as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value;
             }
         }

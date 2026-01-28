@@ -25,14 +25,17 @@ class InstallmentNormalizer implements DenormalizerInterface, NormalizerInterfac
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Installment';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Installment';
     }
+
     /**
      * @return mixed
      */
@@ -46,22 +49,22 @@ class InstallmentNormalizer implements DenormalizerInterface, NormalizerInterfac
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Installment();
         if (\array_key_exists('current_period_start', $data) && \is_int($data['current_period_start'])) {
-            $data['current_period_start'] = (double) $data['current_period_start'];
+            $data['current_period_start'] = (double)$data['current_period_start'];
         }
         if (\array_key_exists('current_period_end', $data) && \is_int($data['current_period_end'])) {
-            $data['current_period_end'] = (double) $data['current_period_end'];
+            $data['current_period_end'] = (double)$data['current_period_end'];
         }
         if (\array_key_exists('firstAmount', $data) && \is_int($data['firstAmount'])) {
-            $data['firstAmount'] = (double) $data['firstAmount'];
+            $data['firstAmount'] = (double)$data['firstAmount'];
         }
         if (\array_key_exists('amount', $data) && \is_int($data['amount'])) {
-            $data['amount'] = (double) $data['amount'];
+            $data['amount'] = (double)$data['amount'];
         }
         if (\array_key_exists('paymentsCount', $data) && \is_int($data['paymentsCount'])) {
-            $data['paymentsCount'] = (double) $data['paymentsCount'];
+            $data['paymentsCount'] = (double)$data['paymentsCount'];
         }
         if (\array_key_exists('paymentsPayed', $data) && \is_int($data['paymentsPayed'])) {
-            $data['paymentsPayed'] = (double) $data['paymentsPayed'];
+            $data['paymentsPayed'] = (double)$data['paymentsPayed'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -151,12 +154,13 @@ class InstallmentNormalizer implements DenormalizerInterface, NormalizerInterfac
             unset($data['firstInstallmentDate']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -227,7 +231,7 @@ class InstallmentNormalizer implements DenormalizerInterface, NormalizerInterfac
             $data['firstInstallmentDate'] = $object->getFirstInstallmentDate();
         }
         foreach ($object as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value;
             }
         }

@@ -15,10 +15,12 @@ class Certificate extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the certificate
      *
@@ -85,15 +87,17 @@ class Certificate extends \ArrayObject
      * @var string
      */
     protected $courseId;
+
     /**
      * Unique identifier of the certificate
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Unique identifier of the certificate
      *
@@ -101,21 +105,23 @@ class Certificate extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Title of the certificate
      *
      * @return string
      */
-    public function getTitle() : string
+    public function getTitle(): string
     {
         return $this->title;
     }
+
     /**
      * Title of the certificate
      *
@@ -123,21 +129,23 @@ class Certificate extends \ArrayObject
      *
      * @return self
      */
-    public function setTitle(string $title) : self
+    public function setTitle(string $title): self
     {
         $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
+
     /**
      * Date the certification was issued, in Unix timestamp format
      *
      * @return float
      */
-    public function getIssued() : float
+    public function getIssued(): float
     {
         return $this->issued;
     }
+
     /**
      * Date the certification was issued, in Unix timestamp format
      *
@@ -145,21 +153,23 @@ class Certificate extends \ArrayObject
      *
      * @return self
      */
-    public function setIssued(float $issued) : self
+    public function setIssued(float $issued): self
     {
         $this->initialized['issued'] = true;
         $this->issued = $issued;
         return $this;
     }
+
     /**
      * Number of attempts
      *
      * @return int
      */
-    public function getAttempts() : int
+    public function getAttempts(): int
     {
         return $this->attempts;
     }
+
     /**
      * Number of attempts
      *
@@ -167,21 +177,23 @@ class Certificate extends \ArrayObject
      *
      * @return self
      */
-    public function setAttempts(int $attempts) : self
+    public function setAttempts(int $attempts): self
     {
         $this->initialized['attempts'] = true;
         $this->attempts = $attempts;
         return $this;
     }
+
     /**
      * Type of the certificate
      *
      * @return string
      */
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type;
     }
+
     /**
      * Type of the certificate
      *
@@ -189,21 +201,23 @@ class Certificate extends \ArrayObject
      *
      * @return self
      */
-    public function setType(string $type) : self
+    public function setType(string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
+
     /**
      * Status of the certificate
      *
      * @return string
      */
-    public function getStatus() : string
+    public function getStatus(): string
     {
         return $this->status;
     }
+
     /**
      * Status of the certificate
      *
@@ -211,21 +225,23 @@ class Certificate extends \ArrayObject
      *
      * @return self
      */
-    public function setStatus(string $status) : self
+    public function setStatus(string $status): self
     {
         $this->initialized['status'] = true;
         $this->status = $status;
         return $this;
     }
+
     /**
      * Score of the certificate
      *
      * @return string
      */
-    public function getScore() : string
+    public function getScore(): string
     {
         return $this->score;
     }
+
     /**
      * Score of the certificate
      *
@@ -233,21 +249,23 @@ class Certificate extends \ArrayObject
      *
      * @return self
      */
-    public function setScore(string $score) : self
+    public function setScore(string $score): self
     {
         $this->initialized['score'] = true;
         $this->score = $score;
         return $this;
     }
+
     /**
      * Short URL of the certificate
      *
      * @return string
      */
-    public function getShortUrl() : string
+    public function getShortUrl(): string
     {
         return $this->shortUrl;
     }
+
     /**
      * Short URL of the certificate
      *
@@ -255,12 +273,13 @@ class Certificate extends \ArrayObject
      *
      * @return self
      */
-    public function setShortUrl(string $shortUrl) : self
+    public function setShortUrl(string $shortUrl): self
     {
         $this->initialized['shortUrl'] = true;
         $this->shortUrl = $shortUrl;
         return $this;
     }
+
     /**
      * Form data of the certificate
      *
@@ -270,6 +289,7 @@ class Certificate extends \ArrayObject
     {
         return $this->form;
     }
+
     /**
      * Form data of the certificate
      *
@@ -277,21 +297,23 @@ class Certificate extends \ArrayObject
      *
      * @return self
      */
-    public function setForm($form) : self
+    public function setForm($form): self
     {
         $this->initialized['form'] = true;
         $this->form = $form;
         return $this;
     }
+
     /**
      * User related data
      *
      * @return CertificateUser
      */
-    public function getUser() : CertificateUser
+    public function getUser(): CertificateUser
     {
         return $this->user;
     }
+
     /**
      * User related data
      *
@@ -299,21 +321,23 @@ class Certificate extends \ArrayObject
      *
      * @return self
      */
-    public function setUser(CertificateUser $user) : self
+    public function setUser(CertificateUser $user): self
     {
         $this->initialized['user'] = true;
         $this->user = $user;
         return $this;
     }
+
     /**
      * Unique identifier of the course
      *
      * @return string
      */
-    public function getCourseId() : string
+    public function getCourseId(): string
     {
         return $this->courseId;
     }
+
     /**
      * Unique identifier of the course
      *
@@ -321,7 +345,7 @@ class Certificate extends \ArrayObject
      *
      * @return self
      */
-    public function setCourseId(string $courseId) : self
+    public function setCourseId(string $courseId): self
     {
         $this->initialized['courseId'] = true;
         $this->courseId = $courseId;

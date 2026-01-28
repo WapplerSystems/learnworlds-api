@@ -25,14 +25,17 @@ class CourseAnalyticsNormalizer implements DenormalizerInterface, NormalizerInte
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseAnalytics';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseAnalytics';
     }
+
     /**
      * @return mixed
      */
@@ -46,10 +49,10 @@ class CourseAnalyticsNormalizer implements DenormalizerInterface, NormalizerInte
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\CourseAnalytics();
         if (\array_key_exists('avg_score_rate', $data) && \is_int($data['avg_score_rate'])) {
-            $data['avg_score_rate'] = (double) $data['avg_score_rate'];
+            $data['avg_score_rate'] = (double)$data['avg_score_rate'];
         }
         if (\array_key_exists('success_rate', $data) && \is_int($data['success_rate'])) {
-            $data['success_rate'] = (double) $data['success_rate'];
+            $data['success_rate'] = (double)$data['success_rate'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -95,12 +98,13 @@ class CourseAnalyticsNormalizer implements DenormalizerInterface, NormalizerInte
             unset($data['certificates_issued']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -138,7 +142,7 @@ class CourseAnalyticsNormalizer implements DenormalizerInterface, NormalizerInte
             $data['certificates_issued'] = $object->getCertificatesIssued();
         }
         foreach ($object as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value;
             }
         }

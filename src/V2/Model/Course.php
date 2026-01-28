@@ -15,10 +15,12 @@ class Course extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the course
      *
@@ -127,15 +129,17 @@ class Course extends \ArrayObject
      * @var float
      */
     protected $modified;
+
     /**
      * Unique identifier of the course
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Unique identifier of the course
      *
@@ -143,21 +147,23 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Title of the course
      *
      * @return string
      */
-    public function getTitle() : string
+    public function getTitle(): string
     {
         return $this->title;
     }
+
     /**
      * Title of the course
      *
@@ -165,12 +171,13 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setTitle(string $title) : self
+    public function setTitle(string $title): self
     {
         $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
+
     /**
      * Expiration timeframe value, defines the expiration timeframe, together with the type / unit in the "expiresType" field.
      *
@@ -180,6 +187,7 @@ class Course extends \ArrayObject
     {
         return $this->expires;
     }
+
     /**
      * Expiration timeframe value, defines the expiration timeframe, together with the type / unit in the "expiresType" field.
      *
@@ -187,12 +195,13 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setExpires($expires) : self
+    public function setExpires($expires): self
     {
         $this->initialized['expires'] = true;
         $this->expires = $expires;
         return $this;
     }
+
     /**
      * Expiration timeframe type / unit, defines the expiration timeframe, together with the actual value in the "expires" field.
      *
@@ -202,6 +211,7 @@ class Course extends \ArrayObject
     {
         return $this->expiresType;
     }
+
     /**
      * Expiration timeframe type / unit, defines the expiration timeframe, together with the actual value in the "expires" field.
      *
@@ -209,21 +219,23 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setExpiresType($expiresType) : self
+    public function setExpiresType($expiresType): self
     {
         $this->initialized['expiresType'] = true;
         $this->expiresType = $expiresType;
         return $this;
     }
+
     /**
      * After purchase navigation settings for this course
      *
      * @return CourseAfterPurchase
      */
-    public function getAfterPurchase() : CourseAfterPurchase
+    public function getAfterPurchase(): CourseAfterPurchase
     {
         return $this->afterPurchase;
     }
+
     /**
      * After purchase navigation settings for this course
      *
@@ -231,21 +243,23 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setAfterPurchase(CourseAfterPurchase $afterPurchase) : self
+    public function setAfterPurchase(CourseAfterPurchase $afterPurchase): self
     {
         $this->initialized['afterPurchase'] = true;
         $this->afterPurchase = $afterPurchase;
         return $this;
     }
+
     /**
      * Categories this course belongs in
      *
      * @return string[]
      */
-    public function getCategories() : array
+    public function getCategories(): array
     {
         return $this->categories;
     }
+
     /**
      * Categories this course belongs in
      *
@@ -253,12 +267,13 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setCategories(array $categories) : self
+    public function setCategories(array $categories): self
     {
         $this->initialized['categories'] = true;
         $this->categories = $categories;
         return $this;
     }
+
     /**
      * Description of the course
      *
@@ -268,6 +283,7 @@ class Course extends \ArrayObject
     {
         return $this->description;
     }
+
     /**
      * Description of the course
      *
@@ -275,12 +291,13 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setDescription($description) : self
+    public function setDescription($description): self
     {
         $this->initialized['description'] = true;
         $this->description = $description;
         return $this;
     }
+
     /**
      * Label of the course
      *
@@ -290,6 +307,7 @@ class Course extends \ArrayObject
     {
         return $this->label;
     }
+
     /**
      * Label of the course
      *
@@ -297,12 +315,13 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setLabel($label) : self
+    public function setLabel($label): self
     {
         $this->initialized['label'] = true;
         $this->label = $label;
         return $this;
     }
+
     /**
      * Information about the course author
      *
@@ -312,6 +331,7 @@ class Course extends \ArrayObject
     {
         return $this->author;
     }
+
     /**
      * Information about the course author
      *
@@ -319,12 +339,13 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setAuthor($author) : self
+    public function setAuthor($author): self
     {
         $this->initialized['author'] = true;
         $this->author = $author;
         return $this;
     }
+
     /**
      * Course image (full URL)
      *
@@ -334,6 +355,7 @@ class Course extends \ArrayObject
     {
         return $this->courseImage;
     }
+
     /**
      * Course image (full URL)
      *
@@ -341,21 +363,23 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setCourseImage($courseImage) : self
+    public function setCourseImage($courseImage): self
     {
         $this->initialized['courseImage'] = true;
         $this->courseImage = $courseImage;
         return $this;
     }
+
     /**
      * Original price of the course
      *
      * @return float
      */
-    public function getOriginalPrice() : float
+    public function getOriginalPrice(): float
     {
         return $this->originalPrice;
     }
+
     /**
      * Original price of the course
      *
@@ -363,21 +387,23 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setOriginalPrice(float $originalPrice) : self
+    public function setOriginalPrice(float $originalPrice): self
     {
         $this->initialized['originalPrice'] = true;
         $this->originalPrice = $originalPrice;
         return $this;
     }
+
     /**
      * Discount price of the course
      *
      * @return float
      */
-    public function getDiscountPrice() : float
+    public function getDiscountPrice(): float
     {
         return $this->discountPrice;
     }
+
     /**
      * Discount price of the course
      *
@@ -385,21 +411,23 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setDiscountPrice(float $discountPrice) : self
+    public function setDiscountPrice(float $discountPrice): self
     {
         $this->initialized['discountPrice'] = true;
         $this->discountPrice = $discountPrice;
         return $this;
     }
+
     /**
      * Final price of the course
      *
      * @return float
      */
-    public function getFinalPrice() : float
+    public function getFinalPrice(): float
     {
         return $this->finalPrice;
     }
+
     /**
      * Final price of the course
      *
@@ -407,21 +435,23 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setFinalPrice(float $finalPrice) : self
+    public function setFinalPrice(float $finalPrice): self
     {
         $this->initialized['finalPrice'] = true;
         $this->finalPrice = $finalPrice;
         return $this;
     }
+
     /**
      * Course setting for scheduled course delivery (drip feed); none refers to drip feed not being enabled.
      *
      * @return string
      */
-    public function getDripFeed() : string
+    public function getDripFeed(): string
     {
         return $this->dripFeed;
     }
+
     /**
      * Course setting for scheduled course delivery (drip feed); none refers to drip feed not being enabled.
      *
@@ -429,21 +459,23 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setDripFeed(string $dripFeed) : self
+    public function setDripFeed(string $dripFeed): self
     {
         $this->initialized['dripFeed'] = true;
         $this->dripFeed = $dripFeed;
         return $this;
     }
+
     /**
      * Course identifiers for in app purchases.
      *
      * @return CourseIdentifiers
      */
-    public function getIdentifiers() : CourseIdentifiers
+    public function getIdentifiers(): CourseIdentifiers
     {
         return $this->identifiers;
     }
+
     /**
      * Course identifiers for in app purchases.
      *
@@ -451,21 +483,23 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setIdentifiers(CourseIdentifiers $identifiers) : self
+    public function setIdentifiers(CourseIdentifiers $identifiers): self
     {
         $this->initialized['identifiers'] = true;
         $this->identifiers = $identifiers;
         return $this;
     }
+
     /**
      * Access type of course
      *
      * @return string
      */
-    public function getAccess() : string
+    public function getAccess(): string
     {
         return $this->access;
     }
+
     /**
      * Access type of course
      *
@@ -473,21 +507,23 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setAccess(string $access) : self
+    public function setAccess(string $access): self
     {
         $this->initialized['access'] = true;
         $this->access = $access;
         return $this;
     }
+
     /**
      * Date the course was created, in UNIX timestamp format
      *
      * @return float
      */
-    public function getCreated() : float
+    public function getCreated(): float
     {
         return $this->created;
     }
+
     /**
      * Date the course was created, in UNIX timestamp format
      *
@@ -495,21 +531,23 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setCreated(float $created) : self
+    public function setCreated(float $created): self
     {
         $this->initialized['created'] = true;
         $this->created = $created;
         return $this;
     }
+
     /**
      * Date the course was modified for the last time, in UNIX timestamp format
      *
      * @return float
      */
-    public function getModified() : float
+    public function getModified(): float
     {
         return $this->modified;
     }
+
     /**
      * Date the course was modified for the last time, in UNIX timestamp format
      *
@@ -517,7 +555,7 @@ class Course extends \ArrayObject
      *
      * @return self
      */
-    public function setModified(float $modified) : self
+    public function setModified(float $modified): self
     {
         $this->initialized['modified'] = true;
         $this->modified = $modified;

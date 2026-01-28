@@ -15,10 +15,12 @@ class V2PromotionsPostResponse201ProductsItem extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Product type
      *
@@ -31,15 +33,17 @@ class V2PromotionsPostResponse201ProductsItem extends \ArrayObject
      * @var string
      */
     protected $id;
+
     /**
      * Product type
      *
      * @return string
      */
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type;
     }
+
     /**
      * Product type
      *
@@ -47,21 +51,23 @@ class V2PromotionsPostResponse201ProductsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setType(string $type) : self
+    public function setType(string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
+
     /**
      * Product Id
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Product Id
      *
@@ -69,7 +75,7 @@ class V2PromotionsPostResponse201ProductsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;

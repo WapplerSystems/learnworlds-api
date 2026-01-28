@@ -15,10 +15,12 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      *
      *
@@ -43,15 +45,17 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
      * @var int
      */
     protected $timesUsed;
+
     /**
      *
      *
      * @return string
      */
-    public function getCode() : string
+    public function getCode(): string
     {
         return $this->code;
     }
+
     /**
      *
      *
@@ -59,21 +63,23 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setCode(string $code) : self
+    public function setCode(string $code): self
     {
         $this->initialized['code'] = true;
         $this->code = $code;
         return $this;
     }
+
     /**
      *
      *
      * @return int
      */
-    public function getQuantity() : int
+    public function getQuantity(): int
     {
         return $this->quantity;
     }
+
     /**
      *
      *
@@ -81,21 +87,23 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setQuantity(int $quantity) : self
+    public function setQuantity(int $quantity): self
     {
         $this->initialized['quantity'] = true;
         $this->quantity = $quantity;
         return $this;
     }
+
     /**
      *
      *
      * @return string
      */
-    public function getExpires() : string
+    public function getExpires(): string
     {
         return $this->expires;
     }
+
     /**
      *
      *
@@ -103,21 +111,23 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setExpires(string $expires) : self
+    public function setExpires(string $expires): self
     {
         $this->initialized['expires'] = true;
         $this->expires = $expires;
         return $this;
     }
+
     /**
      *
      *
      * @return int
      */
-    public function getTimesUsed() : int
+    public function getTimesUsed(): int
     {
         return $this->timesUsed;
     }
+
     /**
      *
      *
@@ -125,7 +135,7 @@ class PromotionRequestModelCouponsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setTimesUsed(int $timesUsed) : self
+    public function setTimesUsed(int $timesUsed): self
     {
         $this->initialized['timesUsed'] = true;
         $this->timesUsed = $timesUsed;

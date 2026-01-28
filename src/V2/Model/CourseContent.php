@@ -15,10 +15,12 @@ class CourseContent extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the course
      *
@@ -37,15 +39,17 @@ class CourseContent extends \ArrayObject
      * @var CourseContentSectionsItem[]
      */
     protected $sections;
+
     /**
      * Unique identifier of the course
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Unique identifier of the course
      *
@@ -53,21 +57,23 @@ class CourseContent extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Title of the course
      *
      * @return string
      */
-    public function getTitle() : string
+    public function getTitle(): string
     {
         return $this->title;
     }
+
     /**
      * Title of the course
      *
@@ -75,21 +81,23 @@ class CourseContent extends \ArrayObject
      *
      * @return self
      */
-    public function setTitle(string $title) : self
+    public function setTitle(string $title): self
     {
         $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
+
     /**
      * Sections of the course
      *
      * @return CourseContentSectionsItem[]
      */
-    public function getSections() : array
+    public function getSections(): array
     {
         return $this->sections;
     }
+
     /**
      * Sections of the course
      *
@@ -97,7 +105,7 @@ class CourseContent extends \ArrayObject
      *
      * @return self
      */
-    public function setSections(array $sections) : self
+    public function setSections(array $sections): self
     {
         $this->initialized['sections'] = true;
         $this->sections = $sections;

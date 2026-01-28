@@ -25,14 +25,17 @@ class UserRequestPutModelNormalizer implements DenormalizerInterface, Normalizer
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserRequestPutModel';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserRequestPutModel';
     }
+
     /**
      * @return mixed
      */
@@ -85,12 +88,13 @@ class UserRequestPutModelNormalizer implements DenormalizerInterface, Normalizer
             unset($data['utms']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value_1;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -126,7 +130,7 @@ class UserRequestPutModelNormalizer implements DenormalizerInterface, Normalizer
             $data['utms'] = $this->normalizer->normalize($object->getUtms(), 'json', $context);
         }
         foreach ($object as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value_1;
             }
         }

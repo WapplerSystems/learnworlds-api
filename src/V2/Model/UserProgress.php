@@ -15,10 +15,12 @@ class UserProgress extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Status of user progress
      *
@@ -61,15 +63,17 @@ class UserProgress extends \ArrayObject
      * @var UserProgressProgressPerSectionUnitItem[]
      */
     protected $progressPerSectionUnit;
+
     /**
      * Status of user progress
      *
      * @return string
      */
-    public function getStatus() : string
+    public function getStatus(): string
     {
         return $this->status;
     }
+
     /**
      * Status of user progress
      *
@@ -77,21 +81,23 @@ class UserProgress extends \ArrayObject
      *
      * @return self
      */
-    public function setStatus(string $status) : self
+    public function setStatus(string $status): self
     {
         $this->initialized['status'] = true;
         $this->status = $status;
         return $this;
     }
+
     /**
      * Progress rate (%)
      *
      * @return float
      */
-    public function getProgressRate() : float
+    public function getProgressRate(): float
     {
         return $this->progressRate;
     }
+
     /**
      * Progress rate (%)
      *
@@ -99,21 +105,23 @@ class UserProgress extends \ArrayObject
      *
      * @return self
      */
-    public function setProgressRate(float $progressRate) : self
+    public function setProgressRate(float $progressRate): self
     {
         $this->initialized['progressRate'] = true;
         $this->progressRate = $progressRate;
         return $this;
     }
+
     /**
      * Average score percentage
      *
      * @return float
      */
-    public function getAverageScoreRate() : float
+    public function getAverageScoreRate(): float
     {
         return $this->averageScoreRate;
     }
+
     /**
      * Average score percentage
      *
@@ -121,21 +129,23 @@ class UserProgress extends \ArrayObject
      *
      * @return self
      */
-    public function setAverageScoreRate(float $averageScoreRate) : self
+    public function setAverageScoreRate(float $averageScoreRate): self
     {
         $this->initialized['averageScoreRate'] = true;
         $this->averageScoreRate = $averageScoreRate;
         return $this;
     }
+
     /**
      * Time spent on the course in seconds
      *
      * @return int
      */
-    public function getTimeOnCourse() : int
+    public function getTimeOnCourse(): int
     {
         return $this->timeOnCourse;
     }
+
     /**
      * Time spent on the course in seconds
      *
@@ -143,21 +153,23 @@ class UserProgress extends \ArrayObject
      *
      * @return self
      */
-    public function setTimeOnCourse(int $timeOnCourse) : self
+    public function setTimeOnCourse(int $timeOnCourse): self
     {
         $this->initialized['timeOnCourse'] = true;
         $this->timeOnCourse = $timeOnCourse;
         return $this;
     }
+
     /**
      * Total number of course learning activities
      *
      * @return int
      */
-    public function getTotalUnits() : int
+    public function getTotalUnits(): int
     {
         return $this->totalUnits;
     }
+
     /**
      * Total number of course learning activities
      *
@@ -165,21 +177,23 @@ class UserProgress extends \ArrayObject
      *
      * @return self
      */
-    public function setTotalUnits(int $totalUnits) : self
+    public function setTotalUnits(int $totalUnits): self
     {
         $this->initialized['totalUnits'] = true;
         $this->totalUnits = $totalUnits;
         return $this;
     }
+
     /**
      * Total number of completed course learning activities by the user
      *
      * @return int
      */
-    public function getCompletedUnits() : int
+    public function getCompletedUnits(): int
     {
         return $this->completedUnits;
     }
+
     /**
      * Total number of completed course learning activities by the user
      *
@@ -187,21 +201,23 @@ class UserProgress extends \ArrayObject
      *
      * @return self
      */
-    public function setCompletedUnits(int $completedUnits) : self
+    public function setCompletedUnits(int $completedUnits): self
     {
         $this->initialized['completedUnits'] = true;
         $this->completedUnits = $completedUnits;
         return $this;
     }
+
     /**
      * User progress data per section/learning activity
      *
      * @return UserProgressProgressPerSectionUnitItem[]
      */
-    public function getProgressPerSectionUnit() : array
+    public function getProgressPerSectionUnit(): array
     {
         return $this->progressPerSectionUnit;
     }
+
     /**
      * User progress data per section/learning activity
      *
@@ -209,7 +225,7 @@ class UserProgress extends \ArrayObject
      *
      * @return self
      */
-    public function setProgressPerSectionUnit(array $progressPerSectionUnit) : self
+    public function setProgressPerSectionUnit(array $progressPerSectionUnit): self
     {
         $this->initialized['progressPerSectionUnit'] = true;
         $this->progressPerSectionUnit = $progressPerSectionUnit;

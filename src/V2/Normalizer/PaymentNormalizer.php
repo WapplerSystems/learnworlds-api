@@ -25,14 +25,17 @@ class PaymentNormalizer implements DenormalizerInterface, NormalizerInterface, D
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Payment';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Payment';
     }
+
     /**
      * @return mixed
      */
@@ -46,19 +49,19 @@ class PaymentNormalizer implements DenormalizerInterface, NormalizerInterface, D
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Payment();
         if (\array_key_exists('price', $data) && \is_int($data['price'])) {
-            $data['price'] = (double) $data['price'];
+            $data['price'] = (double)$data['price'];
         }
         if (\array_key_exists('discount', $data) && \is_int($data['discount'])) {
-            $data['discount'] = (double) $data['discount'];
+            $data['discount'] = (double)$data['discount'];
         }
         if (\array_key_exists('tax_amount', $data) && \is_int($data['tax_amount'])) {
-            $data['tax_amount'] = (double) $data['tax_amount'];
+            $data['tax_amount'] = (double)$data['tax_amount'];
         }
         if (\array_key_exists('tax_percentage', $data) && \is_int($data['tax_percentage'])) {
-            $data['tax_percentage'] = (double) $data['tax_percentage'];
+            $data['tax_percentage'] = (double)$data['tax_percentage'];
         }
         if (\array_key_exists('created', $data) && \is_int($data['created'])) {
-            $data['created'] = (double) $data['created'];
+            $data['created'] = (double)$data['created'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -156,12 +159,13 @@ class PaymentNormalizer implements DenormalizerInterface, NormalizerInterface, D
             unset($data['created']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value_1;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -239,7 +243,7 @@ class PaymentNormalizer implements DenormalizerInterface, NormalizerInterface, D
             $data['created'] = $object->getCreated();
         }
         foreach ($object as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value_1;
             }
         }

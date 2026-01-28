@@ -25,14 +25,17 @@ class CourseNormalizer implements DenormalizerInterface, NormalizerInterface, De
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Course';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Course';
     }
+
     /**
      * @return mixed
      */
@@ -46,19 +49,19 @@ class CourseNormalizer implements DenormalizerInterface, NormalizerInterface, De
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Course();
         if (\array_key_exists('original_price', $data) && \is_int($data['original_price'])) {
-            $data['original_price'] = (double) $data['original_price'];
+            $data['original_price'] = (double)$data['original_price'];
         }
         if (\array_key_exists('discount_price', $data) && \is_int($data['discount_price'])) {
-            $data['discount_price'] = (double) $data['discount_price'];
+            $data['discount_price'] = (double)$data['discount_price'];
         }
         if (\array_key_exists('final_price', $data) && \is_int($data['final_price'])) {
-            $data['final_price'] = (double) $data['final_price'];
+            $data['final_price'] = (double)$data['final_price'];
         }
         if (\array_key_exists('created', $data) && \is_int($data['created'])) {
-            $data['created'] = (double) $data['created'];
+            $data['created'] = (double)$data['created'];
         }
         if (\array_key_exists('modified', $data) && \is_int($data['modified'])) {
-            $data['modified'] = (double) $data['modified'];
+            $data['modified'] = (double)$data['modified'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -140,12 +143,13 @@ class CourseNormalizer implements DenormalizerInterface, NormalizerInterface, De
             unset($data['modified']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value_1;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -211,7 +215,7 @@ class CourseNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $data['modified'] = $object->getModified();
         }
         foreach ($object as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value_1;
             }
         }

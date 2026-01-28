@@ -15,10 +15,12 @@ class UserSegment extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the segment
      *
@@ -37,15 +39,17 @@ class UserSegment extends \ArrayObject
      * @var mixed
      */
     protected $description;
+
     /**
      * Unique identifier of the segment
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Unique identifier of the segment
      *
@@ -53,21 +57,23 @@ class UserSegment extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Name of the segment
      *
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
+
     /**
      * Name of the segment
      *
@@ -75,12 +81,13 @@ class UserSegment extends \ArrayObject
      *
      * @return self
      */
-    public function setName(string $name) : self
+    public function setName(string $name): self
     {
         $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
+
     /**
      * Description of the segment
      *
@@ -90,6 +97,7 @@ class UserSegment extends \ArrayObject
     {
         return $this->description;
     }
+
     /**
      * Description of the segment
      *
@@ -97,7 +105,7 @@ class UserSegment extends \ArrayObject
      *
      * @return self
      */
-    public function setDescription($description) : self
+    public function setDescription($description): self
     {
         $this->initialized['description'] = true;
         $this->description = $description;

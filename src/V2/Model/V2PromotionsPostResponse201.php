@@ -15,10 +15,12 @@ class V2PromotionsPostResponse201 extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Promotion Id
      *
@@ -73,15 +75,17 @@ class V2PromotionsPostResponse201 extends \ArrayObject
      * @var float
      */
     protected $modified;
+
     /**
      * Promotion Id
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Promotion Id
      *
@@ -89,21 +93,23 @@ class V2PromotionsPostResponse201 extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Promotion name
      *
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
+
     /**
      * Promotion name
      *
@@ -111,21 +117,23 @@ class V2PromotionsPostResponse201 extends \ArrayObject
      *
      * @return self
      */
-    public function setName(string $name) : self
+    public function setName(string $name): self
     {
         $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
+
     /**
      * Promotion coupons. The array is empty for newly created promotion.
      *
      * @return mixed[][]
      */
-    public function getCoupons() : array
+    public function getCoupons(): array
     {
         return $this->coupons;
     }
+
     /**
      * Promotion coupons. The array is empty for newly created promotion.
      *
@@ -133,21 +141,23 @@ class V2PromotionsPostResponse201 extends \ArrayObject
      *
      * @return self
      */
-    public function setCoupons(array $coupons) : self
+    public function setCoupons(array $coupons): self
     {
         $this->initialized['coupons'] = true;
         $this->coupons = $coupons;
         return $this;
     }
+
     /**
      * All courses and/or all bundles that promotion coupon will be applied to. None indicates that the coupon will not be applied to any courses/bundles
      *
      * @return string[]
      */
-    public function getAppliesToAll() : array
+    public function getAppliesToAll(): array
     {
         return $this->appliesToAll;
     }
+
     /**
      * All courses and/or all bundles that promotion coupon will be applied to. None indicates that the coupon will not be applied to any courses/bundles
      *
@@ -155,21 +165,23 @@ class V2PromotionsPostResponse201 extends \ArrayObject
      *
      * @return self
      */
-    public function setAppliesToAll(array $appliesToAll) : self
+    public function setAppliesToAll(array $appliesToAll): self
     {
         $this->initialized['appliesToAll'] = true;
         $this->appliesToAll = $appliesToAll;
         return $this;
     }
+
     /**
      * Specific products that the promotion coupon will be applied to
      *
      * @return V2PromotionsPostResponse201ProductsItem[]
      */
-    public function getProducts() : array
+    public function getProducts(): array
     {
         return $this->products;
     }
+
     /**
      * Specific products that the promotion coupon will be applied to
      *
@@ -177,21 +189,23 @@ class V2PromotionsPostResponse201 extends \ArrayObject
      *
      * @return self
      */
-    public function setProducts(array $products) : self
+    public function setProducts(array $products): self
     {
         $this->initialized['products'] = true;
         $this->products = $products;
         return $this;
     }
+
     /**
      * Discount type
      *
      * @return string
      */
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type;
     }
+
     /**
      * Discount type
      *
@@ -199,21 +213,23 @@ class V2PromotionsPostResponse201 extends \ArrayObject
      *
      * @return self
      */
-    public function setType(string $type) : self
+    public function setType(string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
+
     /**
      * Percentage or fixed amount of discount.
      *
      * @return float
      */
-    public function getValue() : float
+    public function getValue(): float
     {
         return $this->value;
     }
+
     /**
      * Percentage or fixed amount of discount.
      *
@@ -221,21 +237,23 @@ class V2PromotionsPostResponse201 extends \ArrayObject
      *
      * @return self
      */
-    public function setValue(float $value) : self
+    public function setValue(float $value): self
     {
         $this->initialized['value'] = true;
         $this->value = $value;
         return $this;
     }
+
     /**
      * Date the promotion was created, in UNIX timestamp format
      *
      * @return float
      */
-    public function getCreated() : float
+    public function getCreated(): float
     {
         return $this->created;
     }
+
     /**
      * Date the promotion was created, in UNIX timestamp format
      *
@@ -243,21 +261,23 @@ class V2PromotionsPostResponse201 extends \ArrayObject
      *
      * @return self
      */
-    public function setCreated(float $created) : self
+    public function setCreated(float $created): self
     {
         $this->initialized['created'] = true;
         $this->created = $created;
         return $this;
     }
+
     /**
      * Date the promotion was modified for the last time, in UNIX timestamp format
      *
      * @return float
      */
-    public function getModified() : float
+    public function getModified(): float
     {
         return $this->modified;
     }
+
     /**
      * Date the promotion was modified for the last time, in UNIX timestamp format
      *
@@ -265,7 +285,7 @@ class V2PromotionsPostResponse201 extends \ArrayObject
      *
      * @return self
      */
-    public function setModified(float $modified) : self
+    public function setModified(float $modified): self
     {
         $this->initialized['modified'] = true;
         $this->modified = $modified;

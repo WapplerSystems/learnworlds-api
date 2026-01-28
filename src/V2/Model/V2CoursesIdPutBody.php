@@ -15,10 +15,12 @@ class V2CoursesIdPutBody extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Course title
      *
@@ -55,15 +57,17 @@ class V2CoursesIdPutBody extends \ArrayObject
      * @var string[]
      */
     protected $categories;
+
     /**
      * Course title
      *
      * @return string
      */
-    public function getTitle() : string
+    public function getTitle(): string
     {
         return $this->title;
     }
+
     /**
      * Course title
      *
@@ -71,21 +75,23 @@ class V2CoursesIdPutBody extends \ArrayObject
      *
      * @return self
      */
-    public function setTitle(string $title) : self
+    public function setTitle(string $title): self
     {
         $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
+
     /**
      * Course description
      *
      * @return string
      */
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return $this->description;
     }
+
     /**
      * Course description
      *
@@ -93,21 +99,23 @@ class V2CoursesIdPutBody extends \ArrayObject
      *
      * @return self
      */
-    public function setDescription(string $description) : self
+    public function setDescription(string $description): self
     {
         $this->initialized['description'] = true;
         $this->description = $description;
         return $this;
     }
+
     /**
      * Course price
      *
      * @return float
      */
-    public function getPrice() : float
+    public function getPrice(): float
     {
         return $this->price;
     }
+
     /**
      * Course price
      *
@@ -115,21 +123,23 @@ class V2CoursesIdPutBody extends \ArrayObject
      *
      * @return self
      */
-    public function setPrice(float $price) : self
+    public function setPrice(float $price): self
     {
         $this->initialized['price'] = true;
         $this->price = $price;
         return $this;
     }
+
     /**
      * Course setting for scheduled course delivery (drip feed); returns none if drip feed is not enabled.
      *
      * @return string
      */
-    public function getDripFeed() : string
+    public function getDripFeed(): string
     {
         return $this->dripFeed;
     }
+
     /**
      * Course setting for scheduled course delivery (drip feed); returns none if drip feed is not enabled.
      *
@@ -137,21 +147,23 @@ class V2CoursesIdPutBody extends \ArrayObject
      *
      * @return self
      */
-    public function setDripFeed(string $dripFeed) : self
+    public function setDripFeed(string $dripFeed): self
     {
         $this->initialized['dripFeed'] = true;
         $this->dripFeed = $dripFeed;
         return $this;
     }
+
     /**
      * Course access type
      *
      * @return string
      */
-    public function getAccess() : string
+    public function getAccess(): string
     {
         return $this->access;
     }
+
     /**
      * Course access type
      *
@@ -159,21 +171,23 @@ class V2CoursesIdPutBody extends \ArrayObject
      *
      * @return self
      */
-    public function setAccess(string $access) : self
+    public function setAccess(string $access): self
     {
         $this->initialized['access'] = true;
         $this->access = $access;
         return $this;
     }
+
     /**
      * Categories this course belongs in
      *
      * @return string[]
      */
-    public function getCategories() : array
+    public function getCategories(): array
     {
         return $this->categories;
     }
+
     /**
      * Categories this course belongs in
      *
@@ -181,7 +195,7 @@ class V2CoursesIdPutBody extends \ArrayObject
      *
      * @return self
      */
-    public function setCategories(array $categories) : self
+    public function setCategories(array $categories): self
     {
         $this->initialized['categories'] = true;
         $this->categories = $categories;

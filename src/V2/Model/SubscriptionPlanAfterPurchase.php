@@ -15,10 +15,12 @@ class SubscriptionPlanAfterPurchase extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Type of the after purchase navigation
      *
@@ -31,15 +33,17 @@ class SubscriptionPlanAfterPurchase extends \ArrayObject
      * @var SubscriptionPlanAfterPurchaseSettings
      */
     protected $settings;
+
     /**
      * Type of the after purchase navigation
      *
      * @return string
      */
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type;
     }
+
     /**
      * Type of the after purchase navigation
      *
@@ -47,21 +51,23 @@ class SubscriptionPlanAfterPurchase extends \ArrayObject
      *
      * @return self
      */
-    public function setType(string $type) : self
+    public function setType(string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
+
     /**
      * After purchase navigation URL for this subscription: leading to a school page or a given URL
      *
      * @return SubscriptionPlanAfterPurchaseSettings
      */
-    public function getSettings() : SubscriptionPlanAfterPurchaseSettings
+    public function getSettings(): SubscriptionPlanAfterPurchaseSettings
     {
         return $this->settings;
     }
+
     /**
      * After purchase navigation URL for this subscription: leading to a school page or a given URL
      *
@@ -69,7 +75,7 @@ class SubscriptionPlanAfterPurchase extends \ArrayObject
      *
      * @return self
      */
-    public function setSettings(SubscriptionPlanAfterPurchaseSettings $settings) : self
+    public function setSettings(SubscriptionPlanAfterPurchaseSettings $settings): self
     {
         $this->initialized['settings'] = true;
         $this->settings = $settings;

@@ -15,25 +15,29 @@ class BundleProducts extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of each course
      *
      * @var mixed[][]
      */
     protected $courses;
+
     /**
      * Unique identifier of each course
      *
      * @return mixed[][]
      */
-    public function getCourses() : array
+    public function getCourses(): array
     {
         return $this->courses;
     }
+
     /**
      * Unique identifier of each course
      *
@@ -41,7 +45,7 @@ class BundleProducts extends \ArrayObject
      *
      * @return self
      */
-    public function setCourses(array $courses) : self
+    public function setCourses(array $courses): self
     {
         $this->initialized['courses'] = true;
         $this->courses = $courses;

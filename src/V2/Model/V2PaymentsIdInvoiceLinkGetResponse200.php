@@ -15,10 +15,12 @@ class V2PaymentsIdInvoiceLinkGetResponse200 extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Invoice identifier
      *
@@ -37,15 +39,17 @@ class V2PaymentsIdInvoiceLinkGetResponse200 extends \ArrayObject
      * @var float
      */
     protected $expiresAt;
+
     /**
      * Invoice identifier
      *
      * @return string
      */
-    public function getInvoice() : string
+    public function getInvoice(): string
     {
         return $this->invoice;
     }
+
     /**
      * Invoice identifier
      *
@@ -53,21 +57,23 @@ class V2PaymentsIdInvoiceLinkGetResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setInvoice(string $invoice) : self
+    public function setInvoice(string $invoice): self
     {
         $this->initialized['invoice'] = true;
         $this->invoice = $invoice;
         return $this;
     }
+
     /**
      * Url of invoice
      *
      * @return string
      */
-    public function getUrl() : string
+    public function getUrl(): string
     {
         return $this->url;
     }
+
     /**
      * Url of invoice
      *
@@ -75,21 +81,23 @@ class V2PaymentsIdInvoiceLinkGetResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setUrl(string $url) : self
+    public function setUrl(string $url): self
     {
         $this->initialized['url'] = true;
         $this->url = $url;
         return $this;
     }
+
     /**
      * Date the invoice expires, in UNIX timestamp format
      *
      * @return float
      */
-    public function getExpiresAt() : float
+    public function getExpiresAt(): float
     {
         return $this->expiresAt;
     }
+
     /**
      * Date the invoice expires, in UNIX timestamp format
      *
@@ -97,7 +105,7 @@ class V2PaymentsIdInvoiceLinkGetResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setExpiresAt(float $expiresAt) : self
+    public function setExpiresAt(float $expiresAt): self
     {
         $this->initialized['expiresAt'] = true;
         $this->expiresAt = $expiresAt;

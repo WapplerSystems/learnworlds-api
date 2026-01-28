@@ -25,14 +25,17 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PromotionRequestModel';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PromotionRequestModel';
     }
+
     /**
      * @return mixed
      */
@@ -85,12 +88,13 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
             unset($data['access']);
         }
         foreach ($data as $key_1 => $value_3) {
-            if (preg_match('/.*/', (string) $key_1)) {
+            if (preg_match('/.*/', (string)$key_1)) {
                 $object[$key_1] = $value_3;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -120,7 +124,7 @@ class PromotionRequestModelNormalizer implements DenormalizerInterface, Normaliz
         $data['value'] = $object->getValue();
         $data['access'] = $object->getAccess();
         foreach ($object as $key_1 => $value_3) {
-            if (preg_match('/.*/', (string) $key_1)) {
+            if (preg_match('/.*/', (string)$key_1)) {
                 $data[$key_1] = $value_3;
             }
         }

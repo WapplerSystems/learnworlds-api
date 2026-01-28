@@ -25,14 +25,17 @@ class MetaNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Meta';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Meta';
     }
+
     /**
      * @return mixed
      */
@@ -46,16 +49,16 @@ class MetaNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Meta();
         if (\array_key_exists('page', $data) && \is_int($data['page'])) {
-            $data['page'] = (double) $data['page'];
+            $data['page'] = (double)$data['page'];
         }
         if (\array_key_exists('totalItems', $data) && \is_int($data['totalItems'])) {
-            $data['totalItems'] = (double) $data['totalItems'];
+            $data['totalItems'] = (double)$data['totalItems'];
         }
         if (\array_key_exists('totalPages', $data) && \is_int($data['totalPages'])) {
-            $data['totalPages'] = (double) $data['totalPages'];
+            $data['totalPages'] = (double)$data['totalPages'];
         }
         if (\array_key_exists('itemsPerPage', $data) && \is_int($data['itemsPerPage'])) {
-            $data['itemsPerPage'] = (double) $data['itemsPerPage'];
+            $data['itemsPerPage'] = (double)$data['itemsPerPage'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -77,12 +80,13 @@ class MetaNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             unset($data['itemsPerPage']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -102,7 +106,7 @@ class MetaNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $data['itemsPerPage'] = $object->getItemsPerPage();
         }
         foreach ($object as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value;
             }
         }

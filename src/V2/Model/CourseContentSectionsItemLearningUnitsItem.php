@@ -15,10 +15,12 @@ class CourseContentSectionsItemLearningUnitsItem extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Type of learning activity
      *
@@ -49,15 +51,17 @@ class CourseContentSectionsItemLearningUnitsItem extends \ArrayObject
      * @var string
      */
     protected $subtitle;
+
     /**
      * Type of learning activity
      *
      * @return string
      */
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type;
     }
+
     /**
      * Type of learning activity
      *
@@ -65,21 +69,23 @@ class CourseContentSectionsItemLearningUnitsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setType(string $type) : self
+    public function setType(string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
+
     /**
      * Unique identifier of learning activity
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Unique identifier of learning activity
      *
@@ -87,21 +93,23 @@ class CourseContentSectionsItemLearningUnitsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Type icon of learning activity
      *
      * @return string
      */
-    public function getIcon() : string
+    public function getIcon(): string
     {
         return $this->icon;
     }
+
     /**
      * Type icon of learning activity
      *
@@ -109,21 +117,23 @@ class CourseContentSectionsItemLearningUnitsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setIcon(string $icon) : self
+    public function setIcon(string $icon): self
     {
         $this->initialized['icon'] = true;
         $this->icon = $icon;
         return $this;
     }
+
     /**
      * Title of learning activity
      *
      * @return string
      */
-    public function getTitle() : string
+    public function getTitle(): string
     {
         return $this->title;
     }
+
     /**
      * Title of learning activity
      *
@@ -131,21 +141,23 @@ class CourseContentSectionsItemLearningUnitsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setTitle(string $title) : self
+    public function setTitle(string $title): self
     {
         $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
+
     /**
      * Subtitle of learning activity
      *
      * @return string
      */
-    public function getSubtitle() : string
+    public function getSubtitle(): string
     {
         return $this->subtitle;
     }
+
     /**
      * Subtitle of learning activity
      *
@@ -153,7 +165,7 @@ class CourseContentSectionsItemLearningUnitsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setSubtitle(string $subtitle) : self
+    public function setSubtitle(string $subtitle): self
     {
         $this->initialized['subtitle'] = true;
         $this->subtitle = $subtitle;

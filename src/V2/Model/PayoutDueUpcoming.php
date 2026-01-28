@@ -15,10 +15,12 @@ class PayoutDueUpcoming extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the affiliate
      *
@@ -43,15 +45,17 @@ class PayoutDueUpcoming extends \ArrayObject
      * @var mixed
      */
     protected $paymentNotes;
+
     /**
      * Unique identifier of the affiliate
      *
      * @return string
      */
-    public function getAffiliateId() : string
+    public function getAffiliateId(): string
     {
         return $this->affiliateId;
     }
+
     /**
      * Unique identifier of the affiliate
      *
@@ -59,21 +63,23 @@ class PayoutDueUpcoming extends \ArrayObject
      *
      * @return self
      */
-    public function setAffiliateId(string $affiliateId) : self
+    public function setAffiliateId(string $affiliateId): self
     {
         $this->initialized['affiliateId'] = true;
         $this->affiliateId = $affiliateId;
         return $this;
     }
+
     /**
      * Amount of payout
      *
      * @return float
      */
-    public function getAmount() : float
+    public function getAmount(): float
     {
         return $this->amount;
     }
+
     /**
      * Amount of payout
      *
@@ -81,12 +87,13 @@ class PayoutDueUpcoming extends \ArrayObject
      *
      * @return self
      */
-    public function setAmount(float $amount) : self
+    public function setAmount(float $amount): self
     {
         $this->initialized['amount'] = true;
         $this->amount = $amount;
         return $this;
     }
+
     /**
      * Payment method
      *
@@ -96,6 +103,7 @@ class PayoutDueUpcoming extends \ArrayObject
     {
         return $this->paymentMethod;
     }
+
     /**
      * Payment method
      *
@@ -103,12 +111,13 @@ class PayoutDueUpcoming extends \ArrayObject
      *
      * @return self
      */
-    public function setPaymentMethod($paymentMethod) : self
+    public function setPaymentMethod($paymentMethod): self
     {
         $this->initialized['paymentMethod'] = true;
         $this->paymentMethod = $paymentMethod;
         return $this;
     }
+
     /**
      * Payment note
      *
@@ -118,6 +127,7 @@ class PayoutDueUpcoming extends \ArrayObject
     {
         return $this->paymentNotes;
     }
+
     /**
      * Payment note
      *
@@ -125,7 +135,7 @@ class PayoutDueUpcoming extends \ArrayObject
      *
      * @return self
      */
-    public function setPaymentNotes($paymentNotes) : self
+    public function setPaymentNotes($paymentNotes): self
     {
         $this->initialized['paymentNotes'] = true;
         $this->paymentNotes = $paymentNotes;

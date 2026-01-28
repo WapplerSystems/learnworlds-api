@@ -15,10 +15,12 @@ class CouponUsage extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      *
      *
@@ -37,15 +39,17 @@ class CouponUsage extends \ArrayObject
      * @var Meta
      */
     protected $meta;
+
     /**
      *
      *
      * @return Coupon
      */
-    public function getUsage() : Coupon
+    public function getUsage(): Coupon
     {
         return $this->usage;
     }
+
     /**
      *
      *
@@ -53,21 +57,23 @@ class CouponUsage extends \ArrayObject
      *
      * @return self
      */
-    public function setUsage(Coupon $usage) : self
+    public function setUsage(Coupon $usage): self
     {
         $this->initialized['usage'] = true;
         $this->usage = $usage;
         return $this;
     }
+
     /**
      *
      *
      * @return Payment[]
      */
-    public function getPayments() : array
+    public function getPayments(): array
     {
         return $this->payments;
     }
+
     /**
      *
      *
@@ -75,21 +81,23 @@ class CouponUsage extends \ArrayObject
      *
      * @return self
      */
-    public function setPayments(array $payments) : self
+    public function setPayments(array $payments): self
     {
         $this->initialized['payments'] = true;
         $this->payments = $payments;
         return $this;
     }
+
     /**
      *
      *
      * @return Meta
      */
-    public function getMeta() : Meta
+    public function getMeta(): Meta
     {
         return $this->meta;
     }
+
     /**
      *
      *
@@ -97,7 +105,7 @@ class CouponUsage extends \ArrayObject
      *
      * @return self
      */
-    public function setMeta(Meta $meta) : self
+    public function setMeta(Meta $meta): self
     {
         $this->initialized['meta'] = true;
         $this->meta = $meta;

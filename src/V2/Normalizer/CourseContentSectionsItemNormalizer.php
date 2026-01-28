@@ -25,14 +25,17 @@ class CourseContentSectionsItemNormalizer implements DenormalizerInterface, Norm
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseContentSectionsItem';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CourseContentSectionsItem';
     }
+
     /**
      * @return mixed
      */
@@ -77,12 +80,13 @@ class CourseContentSectionsItemNormalizer implements DenormalizerInterface, Norm
             unset($data['learningUnits']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value_1;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -112,7 +116,7 @@ class CourseContentSectionsItemNormalizer implements DenormalizerInterface, Norm
             $data['learningUnits'] = $values;
         }
         foreach ($object as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value_1;
             }
         }

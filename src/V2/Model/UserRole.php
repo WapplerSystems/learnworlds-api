@@ -15,10 +15,12 @@ class UserRole extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Level of the role
      *
@@ -31,15 +33,17 @@ class UserRole extends \ArrayObject
      * @var string
      */
     protected $name;
+
     /**
      * Level of the role
      *
      * @return string
      */
-    public function getLevel() : string
+    public function getLevel(): string
     {
         return $this->level;
     }
+
     /**
      * Level of the role
      *
@@ -47,21 +51,23 @@ class UserRole extends \ArrayObject
      *
      * @return self
      */
-    public function setLevel(string $level) : self
+    public function setLevel(string $level): self
     {
         $this->initialized['level'] = true;
         $this->level = $level;
         return $this;
     }
+
     /**
      * Name of the role
      *
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
+
     /**
      * Name of the role
      *
@@ -69,7 +75,7 @@ class UserRole extends \ArrayObject
      *
      * @return self
      */
-    public function setName(string $name) : self
+    public function setName(string $name): self
     {
         $this->initialized['name'] = true;
         $this->name = $name;

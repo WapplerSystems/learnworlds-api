@@ -15,36 +15,42 @@ class GetTransactions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
      * Returns a list with all the payments. The payments are in sorted order, with the most recently created payment appearing first, and the list is paginated, with a default limit of 50 payments per page. To refine the list of payments, there are a number of query params outlined in the following section; In case more than one Query param is provided, then all of them will be applied (AND operator).
      *
      * @param array $queryParameters {
-     *     @var string $product_type Filter by product type
-     *     @var string $user_id Filter by user id or email (encoded string)
-     *     @var string $affiliate_id Filter by affiliate id or email (encoded string)
-     *     @var string $product_id Filter by product id
-     *     @var int $page Filter by the page number. In case page number is higher than the maximum one, the results of last page will be returned
-     *     @var int $items_per_page Filter by the items per page number
+     * @var string $product_type Filter by product type
+     * @var string $user_id Filter by user id or email (encoded string)
+     * @var string $affiliate_id Filter by affiliate id or email (encoded string)
+     * @var string $product_id Filter by product id
+     * @var int $page Filter by the page number. In case page number is higher than the maximum one, the results of last page will be returned
+     * @var int $items_per_page Filter by the items per page number
      * }
      */
     public function __construct(array $queryParameters = [])
     {
         $this->queryParameters = $queryParameters;
     }
+
     use \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\EndpointTrait;
-    public function getMethod() : string
+
+    public function getMethod(): string
     {
         return 'GET';
     }
-    public function getUri() : string
+
+    public function getUri(): string
     {
         return '/v2/payments';
     }
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
+
+    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
-    public function getExtraHeaders() : array
+
+    public function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
-    protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
+
+    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['product_type', 'user_id', 'affiliate_id', 'product_id', 'page', 'items_per_page']);
@@ -58,6 +64,7 @@ class GetTransactions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
         $optionsResolver->addAllowedTypes('items_per_page', ['int']);
         return $optionsResolver;
     }
+
     /**
      * {@inheritdoc}
      *
@@ -67,12 +74,13 @@ class GetTransactions extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
     protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
-        $body = (string) $response->getBody();
+        $body = (string)$response->getBody();
         if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PaymentsGetResponse200', 'json');
         }
     }
-    public function getAuthenticationScopes() : array
+
+    public function getAuthenticationScopes(): array
     {
         return ['BearerAuth', 'LwClient'];
     }

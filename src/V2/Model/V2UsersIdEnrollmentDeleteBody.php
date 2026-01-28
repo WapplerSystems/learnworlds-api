@@ -15,10 +15,12 @@ class V2UsersIdEnrollmentDeleteBody extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the product
      *
@@ -31,15 +33,17 @@ class V2UsersIdEnrollmentDeleteBody extends \ArrayObject
      * @var string
      */
     protected $productType;
+
     /**
      * Unique identifier of the product
      *
      * @return string
      */
-    public function getProductId() : string
+    public function getProductId(): string
     {
         return $this->productId;
     }
+
     /**
      * Unique identifier of the product
      *
@@ -47,21 +51,23 @@ class V2UsersIdEnrollmentDeleteBody extends \ArrayObject
      *
      * @return self
      */
-    public function setProductId(string $productId) : self
+    public function setProductId(string $productId): self
     {
         $this->initialized['productId'] = true;
         $this->productId = $productId;
         return $this;
     }
+
     /**
      * Type of the product
      *
      * @return string
      */
-    public function getProductType() : string
+    public function getProductType(): string
     {
         return $this->productType;
     }
+
     /**
      * Type of the product
      *
@@ -69,7 +75,7 @@ class V2UsersIdEnrollmentDeleteBody extends \ArrayObject
      *
      * @return self
      */
-    public function setProductType(string $productType) : self
+    public function setProductType(string $productType): self
     {
         $this->initialized['productType'] = true;
         $this->productType = $productType;

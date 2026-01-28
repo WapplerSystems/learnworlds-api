@@ -25,14 +25,17 @@ class CertificateUpdateNormalizer implements DenormalizerInterface, NormalizerIn
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CertificateUpdate';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\CertificateUpdate';
     }
+
     /**
      * @return mixed
      */
@@ -46,7 +49,7 @@ class CertificateUpdateNormalizer implements DenormalizerInterface, NormalizerIn
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\CertificateUpdate();
         if (\array_key_exists('issued', $data) && \is_int($data['issued'])) {
-            $data['issued'] = (double) $data['issued'];
+            $data['issued'] = (double)$data['issued'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -60,12 +63,13 @@ class CertificateUpdateNormalizer implements DenormalizerInterface, NormalizerIn
             unset($data['form']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -75,7 +79,7 @@ class CertificateUpdateNormalizer implements DenormalizerInterface, NormalizerIn
         $data['issued'] = $object->getIssued();
         $data['form'] = $this->normalizer->normalize($object->getForm(), 'json', $context);
         foreach ($object as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value;
             }
         }

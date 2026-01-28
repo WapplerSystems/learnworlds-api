@@ -15,32 +15,38 @@ class GetUsersBySegment extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client
      * Retrieves all the users in the segment specified by the provided segment id. The users are in sorted order, with the most recently created user appearing first, and the list is paginated, with a limit of 20 user per page.
      *
      * @param array $queryParameters {
-     *     @var string $segment_id Filter by segment id
-     *     @var int $page Filter by the page number. In case page number is higher than the maximum one, no results will be returned
+     * @var string $segment_id Filter by segment id
+     * @var int $page Filter by the page number. In case page number is higher than the maximum one, no results will be returned
      * }
      */
     public function __construct(array $queryParameters = [])
     {
         $this->queryParameters = $queryParameters;
     }
+
     use \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\EndpointTrait;
-    public function getMethod() : string
+
+    public function getMethod(): string
     {
         return 'GET';
     }
-    public function getUri() : string
+
+    public function getUri(): string
     {
         return '/v2/users/by-segment';
     }
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
+
+    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
-    public function getExtraHeaders() : array
+
+    public function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
-    protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
+
+    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['segment_id', 'page']);
@@ -50,6 +56,7 @@ class GetUsersBySegment extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client
         $optionsResolver->addAllowedTypes('page', ['int']);
         return $optionsResolver;
     }
+
     /**
      * {@inheritdoc}
      *
@@ -59,12 +66,13 @@ class GetUsersBySegment extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client
     protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
-        $body = (string) $response->getBody();
+        $body = (string)$response->getBody();
         if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2UsersBySegmentGetResponse200', 'json');
         }
     }
-    public function getAuthenticationScopes() : array
+
+    public function getAuthenticationScopes(): array
     {
         return ['BearerAuth', 'LwClient'];
     }

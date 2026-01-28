@@ -15,31 +15,37 @@ class GetSchoolEvents extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
      * Returns all the upcoming scheduled school events, regarding course drip feed, file assignment and live session.
      *
      * @param array $queryParameters {
-     *     @var string $event_type Filter by event type
+     * @var string $event_type Filter by event type
      * }
      */
     public function __construct(array $queryParameters = [])
     {
         $this->queryParameters = $queryParameters;
     }
+
     use \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\EndpointTrait;
-    public function getMethod() : string
+
+    public function getMethod(): string
     {
         return 'GET';
     }
-    public function getUri() : string
+
+    public function getUri(): string
     {
         return '/v2/school/events';
     }
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
+
+    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
-    public function getExtraHeaders() : array
+
+    public function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
-    protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
+
+    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['event_type']);
@@ -48,6 +54,7 @@ class GetSchoolEvents extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
         $optionsResolver->addAllowedTypes('event_type', ['string']);
         return $optionsResolver;
     }
+
     /**
      * {@inheritdoc}
      *
@@ -57,12 +64,13 @@ class GetSchoolEvents extends \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\B
     protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
-        $body = (string) $response->getBody();
+        $body = (string)$response->getBody();
         if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2SchoolEventsGetResponse200', 'json');
         }
     }
-    public function getAuthenticationScopes() : array
+
+    public function getAuthenticationScopes(): array
     {
         return ['BearerAuth', 'LwClient'];
     }

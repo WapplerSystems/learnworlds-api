@@ -25,14 +25,17 @@ class UserProgressNormalizer implements DenormalizerInterface, NormalizerInterfa
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserProgress';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserProgress';
     }
+
     /**
      * @return mixed
      */
@@ -46,10 +49,10 @@ class UserProgressNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\UserProgress();
         if (\array_key_exists('progress_rate', $data) && \is_int($data['progress_rate'])) {
-            $data['progress_rate'] = (double) $data['progress_rate'];
+            $data['progress_rate'] = (double)$data['progress_rate'];
         }
         if (\array_key_exists('average_score_rate', $data) && \is_int($data['average_score_rate'])) {
-            $data['average_score_rate'] = (double) $data['average_score_rate'];
+            $data['average_score_rate'] = (double)$data['average_score_rate'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -87,12 +90,13 @@ class UserProgressNormalizer implements DenormalizerInterface, NormalizerInterfa
             unset($data['progress_per_section_unit']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value_1;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -125,7 +129,7 @@ class UserProgressNormalizer implements DenormalizerInterface, NormalizerInterfa
             $data['progress_per_section_unit'] = $values;
         }
         foreach ($object as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value_1;
             }
         }

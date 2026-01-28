@@ -15,10 +15,12 @@ class Affiliate extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the user
      *
@@ -115,15 +117,17 @@ class Affiliate extends \ArrayObject
      * @var float
      */
     protected $commissionPercentage;
+
     /**
      * Unique identifier of the user
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Unique identifier of the user
      *
@@ -131,21 +135,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Email of the user
      *
      * @return string
      */
-    public function getEmail() : string
+    public function getEmail(): string
     {
         return $this->email;
     }
+
     /**
      * Email of the user
      *
@@ -153,21 +159,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setEmail(string $email) : self
+    public function setEmail(string $email): self
     {
         $this->initialized['email'] = true;
         $this->email = $email;
         return $this;
     }
+
     /**
      * Username of the user
      *
      * @return string
      */
-    public function getUsername() : string
+    public function getUsername(): string
     {
         return $this->username;
     }
+
     /**
      * Username of the user
      *
@@ -175,21 +183,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setUsername(string $username) : self
+    public function setUsername(string $username): self
     {
         $this->initialized['username'] = true;
         $this->username = $username;
         return $this;
     }
+
     /**
      * Unique affiliate code
      *
      * @return string
      */
-    public function getCode() : string
+    public function getCode(): string
     {
         return $this->code;
     }
+
     /**
      * Unique affiliate code
      *
@@ -197,12 +207,13 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setCode(string $code) : self
+    public function setCode(string $code): self
     {
         $this->initialized['code'] = true;
         $this->code = $code;
         return $this;
     }
+
     /**
      * Payment method
      *
@@ -212,6 +223,7 @@ class Affiliate extends \ArrayObject
     {
         return $this->paymentMethod;
     }
+
     /**
      * Payment method
      *
@@ -219,12 +231,13 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setPaymentMethod($paymentMethod) : self
+    public function setPaymentMethod($paymentMethod): self
     {
         $this->initialized['paymentMethod'] = true;
         $this->paymentMethod = $paymentMethod;
         return $this;
     }
+
     /**
      * Payment notes
      *
@@ -234,6 +247,7 @@ class Affiliate extends \ArrayObject
     {
         return $this->paymentNotes;
     }
+
     /**
      * Payment notes
      *
@@ -241,21 +255,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setPaymentNotes($paymentNotes) : self
+    public function setPaymentNotes($paymentNotes): self
     {
         $this->initialized['paymentNotes'] = true;
         $this->paymentNotes = $paymentNotes;
         return $this;
     }
+
     /**
      * Datetime the affiliation was created, in UNIX timestamp format
      *
      * @return float
      */
-    public function getDate() : float
+    public function getDate(): float
     {
         return $this->date;
     }
+
     /**
      * Datetime the affiliation was created, in UNIX timestamp format
      *
@@ -263,21 +279,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setDate(float $date) : self
+    public function setDate(float $date): self
     {
         $this->initialized['date'] = true;
         $this->date = $date;
         return $this;
     }
+
     /**
      * Number of referral link clicks
      *
      * @return int
      */
-    public function getClicks() : int
+    public function getClicks(): int
     {
         return $this->clicks;
     }
+
     /**
      * Number of referral link clicks
      *
@@ -285,21 +303,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setClicks(int $clicks) : self
+    public function setClicks(int $clicks): self
     {
         $this->initialized['clicks'] = true;
         $this->clicks = $clicks;
         return $this;
     }
+
     /**
      * Sales total amount
      *
      * @return float
      */
-    public function getSales() : float
+    public function getSales(): float
     {
         return $this->sales;
     }
+
     /**
      * Sales total amount
      *
@@ -307,21 +327,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setSales(float $sales) : self
+    public function setSales(float $sales): self
     {
         $this->initialized['sales'] = true;
         $this->sales = $sales;
         return $this;
     }
+
     /**
      * Total commission amount
      *
      * @return float
      */
-    public function getCommissions() : float
+    public function getCommissions(): float
     {
         return $this->commissions;
     }
+
     /**
      * Total commission amount
      *
@@ -329,21 +351,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setCommissions(float $commissions) : self
+    public function setCommissions(float $commissions): self
     {
         $this->initialized['commissions'] = true;
         $this->commissions = $commissions;
         return $this;
     }
+
     /**
      * Number of leads
      *
      * @return int
      */
-    public function getLeads() : int
+    public function getLeads(): int
     {
         return $this->leads;
     }
+
     /**
      * Number of leads
      *
@@ -351,21 +375,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setLeads(int $leads) : self
+    public function setLeads(int $leads): self
     {
         $this->initialized['leads'] = true;
         $this->leads = $leads;
         return $this;
     }
+
     /**
      * Number of referred customers
      *
      * @return float
      */
-    public function getCustomers() : float
+    public function getCustomers(): float
     {
         return $this->customers;
     }
+
     /**
      * Number of referred customers
      *
@@ -373,21 +399,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setCustomers(float $customers) : self
+    public function setCustomers(float $customers): self
     {
         $this->initialized['customers'] = true;
         $this->customers = $customers;
         return $this;
     }
+
     /**
      * Total amount of completed payouts
      *
      * @return float
      */
-    public function getPayouts() : float
+    public function getPayouts(): float
     {
         return $this->payouts;
     }
+
     /**
      * Total amount of completed payouts
      *
@@ -395,21 +423,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setPayouts(float $payouts) : self
+    public function setPayouts(float $payouts): self
     {
         $this->initialized['payouts'] = true;
         $this->payouts = $payouts;
         return $this;
     }
+
     /**
      * Total amount of upcoming payouts
      *
      * @return float
      */
-    public function getPending() : float
+    public function getPending(): float
     {
         return $this->pending;
     }
+
     /**
      * Total amount of upcoming payouts
      *
@@ -417,21 +447,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setPending(float $pending) : self
+    public function setPending(float $pending): self
     {
         $this->initialized['pending'] = true;
         $this->pending = $pending;
         return $this;
     }
+
     /**
      * Total amount of due payouts
      *
      * @return float
      */
-    public function getDue() : float
+    public function getDue(): float
     {
         return $this->due;
     }
+
     /**
      * Total amount of due payouts
      *
@@ -439,21 +471,23 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setDue(float $due) : self
+    public function setDue(float $due): self
     {
         $this->initialized['due'] = true;
         $this->due = $due;
         return $this;
     }
+
     /**
      * Percentage of the sale that goes to the affiliate
      *
      * @return float
      */
-    public function getCommissionPercentage() : float
+    public function getCommissionPercentage(): float
     {
         return $this->commissionPercentage;
     }
+
     /**
      * Percentage of the sale that goes to the affiliate
      *
@@ -461,7 +495,7 @@ class Affiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setCommissionPercentage(float $commissionPercentage) : self
+    public function setCommissionPercentage(float $commissionPercentage): self
     {
         $this->initialized['commissionPercentage'] = true;
         $this->commissionPercentage = $commissionPercentage;

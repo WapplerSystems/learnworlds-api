@@ -15,10 +15,12 @@ class Coupon extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Coupon code
      *
@@ -55,15 +57,17 @@ class Coupon extends \ArrayObject
      * @var int
      */
     protected $timesUsed;
+
     /**
      * Coupon code
      *
      * @return string
      */
-    public function getCode() : string
+    public function getCode(): string
     {
         return $this->code;
     }
+
     /**
      * Coupon code
      *
@@ -71,12 +75,13 @@ class Coupon extends \ArrayObject
      *
      * @return self
      */
-    public function setCode(string $code) : self
+    public function setCode(string $code): self
     {
         $this->initialized['code'] = true;
         $this->code = $code;
         return $this;
     }
+
     /**
      * Number of redemptions that are allowed for this coupon (null as a value means that there is no limit in how many times a coupon can be redeemed)
      *
@@ -86,6 +91,7 @@ class Coupon extends \ArrayObject
     {
         return $this->quantity;
     }
+
     /**
      * Number of redemptions that are allowed for this coupon (null as a value means that there is no limit in how many times a coupon can be redeemed)
      *
@@ -93,12 +99,13 @@ class Coupon extends \ArrayObject
      *
      * @return self
      */
-    public function setQuantity($quantity) : self
+    public function setQuantity($quantity): self
     {
         $this->initialized['quantity'] = true;
         $this->quantity = $quantity;
         return $this;
     }
+
     /**
      * Coupon expiration date, in YYYY-MM-DD format
      *
@@ -108,6 +115,7 @@ class Coupon extends \ArrayObject
     {
         return $this->expires;
     }
+
     /**
      * Coupon expiration date, in YYYY-MM-DD format
      *
@@ -115,21 +123,23 @@ class Coupon extends \ArrayObject
      *
      * @return self
      */
-    public function setExpires($expires) : self
+    public function setExpires($expires): self
     {
         $this->initialized['expires'] = true;
         $this->expires = $expires;
         return $this;
     }
+
     /**
      * Indication about whether there's a bulk set of codes created for this coupon.
      *
      * @return bool
      */
-    public function getBulk() : bool
+    public function getBulk(): bool
     {
         return $this->bulk;
     }
+
     /**
      * Indication about whether there's a bulk set of codes created for this coupon.
      *
@@ -137,12 +147,13 @@ class Coupon extends \ArrayObject
      *
      * @return self
      */
-    public function setBulk(bool $bulk) : self
+    public function setBulk(bool $bulk): self
     {
         $this->initialized['bulk'] = true;
         $this->bulk = $bulk;
         return $this;
     }
+
     /**
      * Coupon prefix
      *
@@ -152,6 +163,7 @@ class Coupon extends \ArrayObject
     {
         return $this->prefix;
     }
+
     /**
      * Coupon prefix
      *
@@ -159,21 +171,23 @@ class Coupon extends \ArrayObject
      *
      * @return self
      */
-    public function setPrefix($prefix) : self
+    public function setPrefix($prefix): self
     {
         $this->initialized['prefix'] = true;
         $this->prefix = $prefix;
         return $this;
     }
+
     /**
      * Coupon number of times used.
      *
      * @return int
      */
-    public function getTimesUsed() : int
+    public function getTimesUsed(): int
     {
         return $this->timesUsed;
     }
+
     /**
      * Coupon number of times used.
      *
@@ -181,7 +195,7 @@ class Coupon extends \ArrayObject
      *
      * @return self
      */
-    public function setTimesUsed(int $timesUsed) : self
+    public function setTimesUsed(int $timesUsed): self
     {
         $this->initialized['timesUsed'] = true;
         $this->timesUsed = $timesUsed;

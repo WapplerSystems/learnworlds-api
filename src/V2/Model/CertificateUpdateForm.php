@@ -15,10 +15,12 @@ class CertificateUpdateForm extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * First name that appears in certificate pdf
      *
@@ -37,15 +39,17 @@ class CertificateUpdateForm extends \ArrayObject
      * @var string
      */
     protected $ptin;
+
     /**
      * First name that appears in certificate pdf
      *
      * @return string
      */
-    public function getFirstname() : string
+    public function getFirstname(): string
     {
         return $this->firstname;
     }
+
     /**
      * First name that appears in certificate pdf
      *
@@ -53,21 +57,23 @@ class CertificateUpdateForm extends \ArrayObject
      *
      * @return self
      */
-    public function setFirstname(string $firstname) : self
+    public function setFirstname(string $firstname): self
     {
         $this->initialized['firstname'] = true;
         $this->firstname = $firstname;
         return $this;
     }
+
     /**
      * Last name that appears in certificate pdf
      *
      * @return string
      */
-    public function getLastname() : string
+    public function getLastname(): string
     {
         return $this->lastname;
     }
+
     /**
      * Last name that appears in certificate pdf
      *
@@ -75,21 +81,23 @@ class CertificateUpdateForm extends \ArrayObject
      *
      * @return self
      */
-    public function setLastname(string $lastname) : self
+    public function setLastname(string $lastname): self
     {
         $this->initialized['lastname'] = true;
         $this->lastname = $lastname;
         return $this;
     }
+
     /**
      * ptin that appears in certificate pdf. A special field that can be used for showing user input, like a professional registration number, etc (available in Learning Center plans or higher)
      *
      * @return string
      */
-    public function getPtin() : string
+    public function getPtin(): string
     {
         return $this->ptin;
     }
+
     /**
      * ptin that appears in certificate pdf. A special field that can be used for showing user input, like a professional registration number, etc (available in Learning Center plans or higher)
      *
@@ -97,7 +105,7 @@ class CertificateUpdateForm extends \ArrayObject
      *
      * @return self
      */
-    public function setPtin(string $ptin) : self
+    public function setPtin(string $ptin): self
     {
         $this->initialized['ptin'] = true;
         $this->ptin = $ptin;

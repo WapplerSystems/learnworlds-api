@@ -25,14 +25,17 @@ class PromotionNormalizer implements DenormalizerInterface, NormalizerInterface,
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Promotion';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Promotion';
     }
+
     /**
      * @return mixed
      */
@@ -46,13 +49,13 @@ class PromotionNormalizer implements DenormalizerInterface, NormalizerInterface,
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Promotion();
         if (\array_key_exists('value', $data) && \is_int($data['value'])) {
-            $data['value'] = (double) $data['value'];
+            $data['value'] = (double)$data['value'];
         }
         if (\array_key_exists('created', $data) && \is_int($data['created'])) {
-            $data['created'] = (double) $data['created'];
+            $data['created'] = (double)$data['created'];
         }
         if (\array_key_exists('modified', $data) && \is_int($data['modified'])) {
-            $data['modified'] = (double) $data['modified'];
+            $data['modified'] = (double)$data['modified'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -106,12 +109,13 @@ class PromotionNormalizer implements DenormalizerInterface, NormalizerInterface,
             unset($data['modified']);
         }
         foreach ($data as $key => $value_3) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value_3;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -158,7 +162,7 @@ class PromotionNormalizer implements DenormalizerInterface, NormalizerInterface,
             $data['modified'] = $object->getModified();
         }
         foreach ($object as $key => $value_3) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value_3;
             }
         }

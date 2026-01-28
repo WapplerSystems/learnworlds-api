@@ -15,10 +15,12 @@ class PaymentAffiliate extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the affiliate
      *
@@ -55,15 +57,17 @@ class PaymentAffiliate extends \ArrayObject
      * @var string
      */
     protected $paymentStatus;
+
     /**
      * Unique identifier of the affiliate
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Unique identifier of the affiliate
      *
@@ -71,21 +75,23 @@ class PaymentAffiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Affiliate username
      *
      * @return string
      */
-    public function getUsername() : string
+    public function getUsername(): string
     {
         return $this->username;
     }
+
     /**
      * Affiliate username
      *
@@ -93,21 +99,23 @@ class PaymentAffiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setUsername(string $username) : self
+    public function setUsername(string $username): self
     {
         $this->initialized['username'] = true;
         $this->username = $username;
         return $this;
     }
+
     /**
      * Affiliate code
      *
      * @return string
      */
-    public function getCode() : string
+    public function getCode(): string
     {
         return $this->code;
     }
+
     /**
      * Affiliate code
      *
@@ -115,21 +123,23 @@ class PaymentAffiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setCode(string $code) : self
+    public function setCode(string $code): self
     {
         $this->initialized['code'] = true;
         $this->code = $code;
         return $this;
     }
+
     /**
      * Affiliate commission (%)
      *
      * @return float
      */
-    public function getCommissionPercentage() : float
+    public function getCommissionPercentage(): float
     {
         return $this->commissionPercentage;
     }
+
     /**
      * Affiliate commission (%)
      *
@@ -137,21 +147,23 @@ class PaymentAffiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setCommissionPercentage(float $commissionPercentage) : self
+    public function setCommissionPercentage(float $commissionPercentage): self
     {
         $this->initialized['commissionPercentage'] = true;
         $this->commissionPercentage = $commissionPercentage;
         return $this;
     }
+
     /**
      * Αffiliate commission amount
      *
      * @return float
      */
-    public function getCommissionAmount() : float
+    public function getCommissionAmount(): float
     {
         return $this->commissionAmount;
     }
+
     /**
      * Αffiliate commission amount
      *
@@ -159,21 +171,23 @@ class PaymentAffiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setCommissionAmount(float $commissionAmount) : self
+    public function setCommissionAmount(float $commissionAmount): self
     {
         $this->initialized['commissionAmount'] = true;
         $this->commissionAmount = $commissionAmount;
         return $this;
     }
+
     /**
      * Status of the affiliation pay
      *
      * @return string
      */
-    public function getPaymentStatus() : string
+    public function getPaymentStatus(): string
     {
         return $this->paymentStatus;
     }
+
     /**
      * Status of the affiliation pay
      *
@@ -181,7 +195,7 @@ class PaymentAffiliate extends \ArrayObject
      *
      * @return self
      */
-    public function setPaymentStatus(string $paymentStatus) : self
+    public function setPaymentStatus(string $paymentStatus): self
     {
         $this->initialized['paymentStatus'] = true;
         $this->paymentStatus = $paymentStatus;

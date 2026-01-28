@@ -12,16 +12,19 @@ namespace WapplerSystems\LearnWorldsApi\V2\Authentication;
 class LwClientAuthentication implements \Jane\Component\OpenApiRuntime\Client\AuthenticationPlugin
 {
     private $apiKey;
+
     public function __construct(string $apiKey)
     {
         $this->{'apiKey'} = $apiKey;
     }
-    public function authentication(\Psr\Http\Message\RequestInterface $request) : \Psr\Http\Message\RequestInterface
+
+    public function authentication(\Psr\Http\Message\RequestInterface $request): \Psr\Http\Message\RequestInterface
     {
         $request = $request->withHeader('Lw-Client', $this->{'apiKey'});
         return $request;
     }
-    public function getScope() : string
+
+    public function getScope(): string
     {
         return 'LwClient';
     }

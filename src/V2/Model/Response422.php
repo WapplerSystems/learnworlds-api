@@ -15,10 +15,12 @@ class Response422 extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      *
      *
@@ -43,15 +45,17 @@ class Response422 extends \ArrayObject
      * @var Response422Errors
      */
     protected $errors;
+
     /**
      *
      *
      * @return float
      */
-    public function getStatusCode() : float
+    public function getStatusCode(): float
     {
         return $this->statusCode;
     }
+
     /**
      *
      *
@@ -59,21 +63,23 @@ class Response422 extends \ArrayObject
      *
      * @return self
      */
-    public function setStatusCode(float $statusCode) : self
+    public function setStatusCode(float $statusCode): self
     {
         $this->initialized['statusCode'] = true;
         $this->statusCode = $statusCode;
         return $this;
     }
+
     /**
      *
      *
      * @return string
      */
-    public function getError() : string
+    public function getError(): string
     {
         return $this->error;
     }
+
     /**
      *
      *
@@ -81,21 +87,23 @@ class Response422 extends \ArrayObject
      *
      * @return self
      */
-    public function setError(string $error) : self
+    public function setError(string $error): self
     {
         $this->initialized['error'] = true;
         $this->error = $error;
         return $this;
     }
+
     /**
      *
      *
      * @return string
      */
-    public function getMessage() : string
+    public function getMessage(): string
     {
         return $this->message;
     }
+
     /**
      *
      *
@@ -103,21 +111,23 @@ class Response422 extends \ArrayObject
      *
      * @return self
      */
-    public function setMessage(string $message) : self
+    public function setMessage(string $message): self
     {
         $this->initialized['message'] = true;
         $this->message = $message;
         return $this;
     }
+
     /**
      *
      *
      * @return Response422Errors
      */
-    public function getErrors() : Response422Errors
+    public function getErrors(): Response422Errors
     {
         return $this->errors;
     }
+
     /**
      *
      *
@@ -125,7 +135,7 @@ class Response422 extends \ArrayObject
      *
      * @return self
      */
-    public function setErrors(Response422Errors $errors) : self
+    public function setErrors(Response422Errors $errors): self
     {
         $this->initialized['errors'] = true;
         $this->errors = $errors;

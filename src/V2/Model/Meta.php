@@ -15,10 +15,12 @@ class Meta extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Current page number
      *
@@ -43,15 +45,17 @@ class Meta extends \ArrayObject
      * @var float
      */
     protected $itemsPerPage;
+
     /**
      * Current page number
      *
      * @return float
      */
-    public function getPage() : float
+    public function getPage(): float
     {
         return $this->page;
     }
+
     /**
      * Current page number
      *
@@ -59,21 +63,23 @@ class Meta extends \ArrayObject
      *
      * @return self
      */
-    public function setPage(float $page) : self
+    public function setPage(float $page): self
     {
         $this->initialized['page'] = true;
         $this->page = $page;
         return $this;
     }
+
     /**
      * Total number of items in this page
      *
      * @return float
      */
-    public function getTotalItems() : float
+    public function getTotalItems(): float
     {
         return $this->totalItems;
     }
+
     /**
      * Total number of items in this page
      *
@@ -81,21 +87,23 @@ class Meta extends \ArrayObject
      *
      * @return self
      */
-    public function setTotalItems(float $totalItems) : self
+    public function setTotalItems(float $totalItems): self
     {
         $this->initialized['totalItems'] = true;
         $this->totalItems = $totalItems;
         return $this;
     }
+
     /**
      * Total number of pages
      *
      * @return float
      */
-    public function getTotalPages() : float
+    public function getTotalPages(): float
     {
         return $this->totalPages;
     }
+
     /**
      * Total number of pages
      *
@@ -103,21 +111,23 @@ class Meta extends \ArrayObject
      *
      * @return self
      */
-    public function setTotalPages(float $totalPages) : self
+    public function setTotalPages(float $totalPages): self
     {
         $this->initialized['totalPages'] = true;
         $this->totalPages = $totalPages;
         return $this;
     }
+
     /**
      * Limit in the number of items per page
      *
      * @return float
      */
-    public function getItemsPerPage() : float
+    public function getItemsPerPage(): float
     {
         return $this->itemsPerPage;
     }
+
     /**
      * Limit in the number of items per page
      *
@@ -125,7 +135,7 @@ class Meta extends \ArrayObject
      *
      * @return self
      */
-    public function setItemsPerPage(float $itemsPerPage) : self
+    public function setItemsPerPage(float $itemsPerPage): self
     {
         $this->initialized['itemsPerPage'] = true;
         $this->itemsPerPage = $itemsPerPage;

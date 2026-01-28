@@ -15,10 +15,12 @@ class UserRequestPutModelFields extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * A short biography text
      *
@@ -133,15 +135,17 @@ class UserRequestPutModelFields extends \ArrayObject
      * @var string
      */
     protected $graduationYear;
+
     /**
      * A short biography text
      *
      * @return string
      */
-    public function getBio() : string
+    public function getBio(): string
     {
         return $this->bio;
     }
+
     /**
      * A short biography text
      *
@@ -149,21 +153,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setBio(string $bio) : self
+    public function setBio(string $bio): self
     {
         $this->initialized['bio'] = true;
         $this->bio = $bio;
         return $this;
     }
+
     /**
      * User location
      *
      * @return string
      */
-    public function getLocation() : string
+    public function getLocation(): string
     {
         return $this->location;
     }
+
     /**
      * User location
      *
@@ -171,21 +177,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setLocation(string $location) : self
+    public function setLocation(string $location): self
     {
         $this->initialized['location'] = true;
         $this->location = $location;
         return $this;
     }
+
     /**
      * User website URL
      *
      * @return string
      */
-    public function getUrl() : string
+    public function getUrl(): string
     {
         return $this->url;
     }
+
     /**
      * User website URL
      *
@@ -193,21 +201,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setUrl(string $url) : self
+    public function setUrl(string $url): self
     {
         $this->initialized['url'] = true;
         $this->url = $url;
         return $this;
     }
+
     /**
      * User Facebook URL
      *
      * @return string
      */
-    public function getFb() : string
+    public function getFb(): string
     {
         return $this->fb;
     }
+
     /**
      * User Facebook URL
      *
@@ -215,21 +225,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setFb(string $fb) : self
+    public function setFb(string $fb): self
     {
         $this->initialized['fb'] = true;
         $this->fb = $fb;
         return $this;
     }
+
     /**
      * User Twitter URL
      *
      * @return string
      */
-    public function getTwitter() : string
+    public function getTwitter(): string
     {
         return $this->twitter;
     }
+
     /**
      * User Twitter URL
      *
@@ -237,21 +249,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setTwitter(string $twitter) : self
+    public function setTwitter(string $twitter): self
     {
         $this->initialized['twitter'] = true;
         $this->twitter = $twitter;
         return $this;
     }
+
     /**
      * User Instagram URL
      *
      * @return string
      */
-    public function getInstagram() : string
+    public function getInstagram(): string
     {
         return $this->instagram;
     }
+
     /**
      * User Instagram URL
      *
@@ -259,21 +273,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setInstagram(string $instagram) : self
+    public function setInstagram(string $instagram): self
     {
         $this->initialized['instagram'] = true;
         $this->instagram = $instagram;
         return $this;
     }
+
     /**
      * User Linkedin URL
      *
      * @return string
      */
-    public function getLinkedin() : string
+    public function getLinkedin(): string
     {
         return $this->linkedin;
     }
+
     /**
      * User Linkedin URL
      *
@@ -281,21 +297,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setLinkedin(string $linkedin) : self
+    public function setLinkedin(string $linkedin): self
     {
         $this->initialized['linkedin'] = true;
         $this->linkedin = $linkedin;
         return $this;
     }
+
     /**
      * User Skype URL
      *
      * @return string
      */
-    public function getSkype() : string
+    public function getSkype(): string
     {
         return $this->skype;
     }
+
     /**
      * User Skype URL
      *
@@ -303,21 +321,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setSkype(string $skype) : self
+    public function setSkype(string $skype): self
     {
         $this->initialized['skype'] = true;
         $this->skype = $skype;
         return $this;
     }
+
     /**
      * The user Behance URL
      *
      * @return string
      */
-    public function getBehance() : string
+    public function getBehance(): string
     {
         return $this->behance;
     }
+
     /**
      * The user Behance URL
      *
@@ -325,21 +345,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setBehance(string $behance) : self
+    public function setBehance(string $behance): self
     {
         $this->initialized['behance'] = true;
         $this->behance = $behance;
         return $this;
     }
+
     /**
      * User Dribbble URL
      *
      * @return string
      */
-    public function getDribbble() : string
+    public function getDribbble(): string
     {
         return $this->dribbble;
     }
+
     /**
      * User Dribbble URL
      *
@@ -347,21 +369,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setDribbble(string $dribbble) : self
+    public function setDribbble(string $dribbble): self
     {
         $this->initialized['dribbble'] = true;
         $this->dribbble = $dribbble;
         return $this;
     }
+
     /**
      * User Github URL
      *
      * @return string
      */
-    public function getGithub() : string
+    public function getGithub(): string
     {
         return $this->github;
     }
+
     /**
      * User Github URL
      *
@@ -369,21 +393,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setGithub(string $github) : self
+    public function setGithub(string $github): self
     {
         $this->initialized['github'] = true;
         $this->github = $github;
         return $this;
     }
+
     /**
      * User Phone
      *
      * @return string
      */
-    public function getPhone() : string
+    public function getPhone(): string
     {
         return $this->phone;
     }
+
     /**
      * User Phone
      *
@@ -391,21 +417,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setPhone(string $phone) : self
+    public function setPhone(string $phone): self
     {
         $this->initialized['phone'] = true;
         $this->phone = $phone;
         return $this;
     }
+
     /**
      * User Address
      *
      * @return string
      */
-    public function getAddress() : string
+    public function getAddress(): string
     {
         return $this->address;
     }
+
     /**
      * User Address
      *
@@ -413,21 +441,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setAddress(string $address) : self
+    public function setAddress(string $address): self
     {
         $this->initialized['address'] = true;
         $this->address = $address;
         return $this;
     }
+
     /**
      * User Country
      *
      * @return string
      */
-    public function getCountry() : string
+    public function getCountry(): string
     {
         return $this->country;
     }
+
     /**
      * User Country
      *
@@ -435,21 +465,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setCountry(string $country) : self
+    public function setCountry(string $country): self
     {
         $this->initialized['country'] = true;
         $this->country = $country;
         return $this;
     }
+
     /**
      * User Birthday
      *
      * @return string
      */
-    public function getBirthday() : string
+    public function getBirthday(): string
     {
         return $this->birthday;
     }
+
     /**
      * User Birthday
      *
@@ -457,21 +489,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setBirthday(string $birthday) : self
+    public function setBirthday(string $birthday): self
     {
         $this->initialized['birthday'] = true;
         $this->birthday = $birthday;
         return $this;
     }
+
     /**
      * User Company
      *
      * @return string
      */
-    public function getCompany() : string
+    public function getCompany(): string
     {
         return $this->company;
     }
+
     /**
      * User Company
      *
@@ -479,21 +513,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setCompany(string $company) : self
+    public function setCompany(string $company): self
     {
         $this->initialized['company'] = true;
         $this->company = $company;
         return $this;
     }
+
     /**
      * User Company Size
      *
      * @return string
      */
-    public function getCompanySize() : string
+    public function getCompanySize(): string
     {
         return $this->companySize;
     }
+
     /**
      * User Company Size
      *
@@ -501,21 +537,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setCompanySize(string $companySize) : self
+    public function setCompanySize(string $companySize): self
     {
         $this->initialized['companySize'] = true;
         $this->companySize = $companySize;
         return $this;
     }
+
     /**
      * User University
      *
      * @return string
      */
-    public function getUniversity() : string
+    public function getUniversity(): string
     {
         return $this->university;
     }
+
     /**
      * User University
      *
@@ -523,21 +561,23 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setUniversity(string $university) : self
+    public function setUniversity(string $university): self
     {
         $this->initialized['university'] = true;
         $this->university = $university;
         return $this;
     }
+
     /**
      * User Graduation Year
      *
      * @return string
      */
-    public function getGraduationYear() : string
+    public function getGraduationYear(): string
     {
         return $this->graduationYear;
     }
+
     /**
      * User Graduation Year
      *
@@ -545,7 +585,7 @@ class UserRequestPutModelFields extends \ArrayObject
      *
      * @return self
      */
-    public function setGraduationYear(string $graduationYear) : self
+    public function setGraduationYear(string $graduationYear): self
     {
         $this->initialized['graduationYear'] = true;
         $this->graduationYear = $graduationYear;

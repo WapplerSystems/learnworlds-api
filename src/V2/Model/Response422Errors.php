@@ -15,25 +15,29 @@ class Response422Errors extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      *
      *
      * @var Response422ErrorsCompanyItem[]
      */
     protected $company;
+
     /**
      *
      *
      * @return Response422ErrorsCompanyItem[]
      */
-    public function getCompany() : array
+    public function getCompany(): array
     {
         return $this->company;
     }
+
     /**
      *
      *
@@ -41,7 +45,7 @@ class Response422Errors extends \ArrayObject
      *
      * @return self
      */
-    public function setCompany(array $company) : self
+    public function setCompany(array $company): self
     {
         $this->initialized['company'] = true;
         $this->company = $company;

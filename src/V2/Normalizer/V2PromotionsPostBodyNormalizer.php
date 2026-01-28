@@ -25,14 +25,17 @@ class V2PromotionsPostBodyNormalizer implements DenormalizerInterface, Normalize
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PromotionsPostBody';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PromotionsPostBody';
     }
+
     /**
      * @return mixed
      */
@@ -46,7 +49,7 @@ class V2PromotionsPostBodyNormalizer implements DenormalizerInterface, Normalize
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\V2PromotionsPostBody();
         if (\array_key_exists('value', $data) && \is_int($data['value'])) {
-            $data['value'] = (double) $data['value'];
+            $data['value'] = (double)$data['value'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -80,12 +83,13 @@ class V2PromotionsPostBodyNormalizer implements DenormalizerInterface, Normalize
             unset($data['products']);
         }
         foreach ($data as $key => $value_2) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value_2;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -114,7 +118,7 @@ class V2PromotionsPostBodyNormalizer implements DenormalizerInterface, Normalize
             $data['products'] = $values_1;
         }
         foreach ($object as $key => $value_2) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value_2;
             }
         }

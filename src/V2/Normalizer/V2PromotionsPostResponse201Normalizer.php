@@ -25,14 +25,17 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PromotionsPostResponse201';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\V2PromotionsPostResponse201';
     }
+
     /**
      * @return mixed
      */
@@ -46,13 +49,13 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\V2PromotionsPostResponse201();
         if (\array_key_exists('value', $data) && \is_int($data['value'])) {
-            $data['value'] = (double) $data['value'];
+            $data['value'] = (double)$data['value'];
         }
         if (\array_key_exists('created', $data) && \is_int($data['created'])) {
-            $data['created'] = (double) $data['created'];
+            $data['created'] = (double)$data['created'];
         }
         if (\array_key_exists('modified', $data) && \is_int($data['modified'])) {
-            $data['modified'] = (double) $data['modified'];
+            $data['modified'] = (double)$data['modified'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -110,12 +113,13 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
             unset($data['modified']);
         }
         foreach ($data as $key_1 => $value_4) {
-            if (preg_match('/.*/', (string) $key_1)) {
+            if (preg_match('/.*/', (string)$key_1)) {
                 $object[$key_1] = $value_4;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -166,7 +170,7 @@ class V2PromotionsPostResponse201Normalizer implements DenormalizerInterface, No
             $data['modified'] = $object->getModified();
         }
         foreach ($object as $key_1 => $value_4) {
-            if (preg_match('/.*/', (string) $key_1)) {
+            if (preg_match('/.*/', (string)$key_1)) {
                 $data[$key_1] = $value_4;
             }
         }

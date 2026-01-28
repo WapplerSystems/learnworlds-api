@@ -15,10 +15,12 @@ class EventLog extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * User details related to event log
      *
@@ -55,15 +57,17 @@ class EventLog extends \ArrayObject
      * @var mixed
      */
     protected $additionalInfo;
+
     /**
      * User details related to event log
      *
      * @return EventLogUser
      */
-    public function getUser() : EventLogUser
+    public function getUser(): EventLogUser
     {
         return $this->user;
     }
+
     /**
      * User details related to event log
      *
@@ -71,21 +75,23 @@ class EventLog extends \ArrayObject
      *
      * @return self
      */
-    public function setUser(EventLogUser $user) : self
+    public function setUser(EventLogUser $user): self
     {
         $this->initialized['user'] = true;
         $this->user = $user;
         return $this;
     }
+
     /**
      * Date the event log was created, in UNIX timestamp format
      *
      * @return float
      */
-    public function getCreated() : float
+    public function getCreated(): float
     {
         return $this->created;
     }
+
     /**
      * Date the event log was created, in UNIX timestamp format
      *
@@ -93,21 +99,23 @@ class EventLog extends \ArrayObject
      *
      * @return self
      */
-    public function setCreated(float $created) : self
+    public function setCreated(float $created): self
     {
         $this->initialized['created'] = true;
         $this->created = $created;
         return $this;
     }
+
     /**
      * Name of the activity
      *
      * @return string
      */
-    public function getActivity() : string
+    public function getActivity(): string
     {
         return $this->activity;
     }
+
     /**
      * Name of the activity
      *
@@ -115,21 +123,23 @@ class EventLog extends \ArrayObject
      *
      * @return self
      */
-    public function setActivity(string $activity) : self
+    public function setActivity(string $activity): self
     {
         $this->initialized['activity'] = true;
         $this->activity = $activity;
         return $this;
     }
+
     /**
      * Description of the activity
      *
      * @return string
      */
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return $this->description;
     }
+
     /**
      * Description of the activity
      *
@@ -137,12 +147,13 @@ class EventLog extends \ArrayObject
      *
      * @return self
      */
-    public function setDescription(string $description) : self
+    public function setDescription(string $description): self
     {
         $this->initialized['description'] = true;
         $this->description = $description;
         return $this;
     }
+
     /**
      * Type of the activity
      *
@@ -152,6 +163,7 @@ class EventLog extends \ArrayObject
     {
         return $this->type;
     }
+
     /**
      * Type of the activity
      *
@@ -159,12 +171,13 @@ class EventLog extends \ArrayObject
      *
      * @return self
      */
-    public function setType($type) : self
+    public function setType($type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
+
     /**
      * Additional info related to the activity
      *
@@ -174,6 +187,7 @@ class EventLog extends \ArrayObject
     {
         return $this->additionalInfo;
     }
+
     /**
      * Additional info related to the activity
      *
@@ -181,7 +195,7 @@ class EventLog extends \ArrayObject
      *
      * @return self
      */
-    public function setAdditionalInfo($additionalInfo) : self
+    public function setAdditionalInfo($additionalInfo): self
     {
         $this->initialized['additionalInfo'] = true;
         $this->additionalInfo = $additionalInfo;

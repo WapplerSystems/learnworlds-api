@@ -15,10 +15,12 @@ class AffiliatePostRequest extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * This is the percentage of the sale that goes to the affiliate. If set, the default affiliate program commission is overwritten.
      *
@@ -37,15 +39,17 @@ class AffiliatePostRequest extends \ArrayObject
      * @var mixed
      */
     protected $paymentNotes;
+
     /**
      * This is the percentage of the sale that goes to the affiliate. If set, the default affiliate program commission is overwritten.
      *
      * @return float
      */
-    public function getCommissionPercentage() : float
+    public function getCommissionPercentage(): float
     {
         return $this->commissionPercentage;
     }
+
     /**
      * This is the percentage of the sale that goes to the affiliate. If set, the default affiliate program commission is overwritten.
      *
@@ -53,21 +57,23 @@ class AffiliatePostRequest extends \ArrayObject
      *
      * @return self
      */
-    public function setCommissionPercentage(float $commissionPercentage) : self
+    public function setCommissionPercentage(float $commissionPercentage): self
     {
         $this->initialized['commissionPercentage'] = true;
         $this->commissionPercentage = $commissionPercentage;
         return $this;
     }
+
     /**
      * Payment method
      *
      * @return string
      */
-    public function getPaymentMethod() : string
+    public function getPaymentMethod(): string
     {
         return $this->paymentMethod;
     }
+
     /**
      * Payment method
      *
@@ -75,12 +81,13 @@ class AffiliatePostRequest extends \ArrayObject
      *
      * @return self
      */
-    public function setPaymentMethod(string $paymentMethod) : self
+    public function setPaymentMethod(string $paymentMethod): self
     {
         $this->initialized['paymentMethod'] = true;
         $this->paymentMethod = $paymentMethod;
         return $this;
     }
+
     /**
      * Payment notes
      *
@@ -90,6 +97,7 @@ class AffiliatePostRequest extends \ArrayObject
     {
         return $this->paymentNotes;
     }
+
     /**
      * Payment notes
      *
@@ -97,7 +105,7 @@ class AffiliatePostRequest extends \ArrayObject
      *
      * @return self
      */
-    public function setPaymentNotes($paymentNotes) : self
+    public function setPaymentNotes($paymentNotes): self
     {
         $this->initialized['paymentNotes'] = true;
         $this->paymentNotes = $paymentNotes;

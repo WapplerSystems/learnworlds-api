@@ -25,14 +25,17 @@ class AffiliateNormalizer implements DenormalizerInterface, NormalizerInterface,
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Affiliate';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Affiliate';
     }
+
     /**
      * @return mixed
      */
@@ -46,28 +49,28 @@ class AffiliateNormalizer implements DenormalizerInterface, NormalizerInterface,
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Affiliate();
         if (\array_key_exists('date', $data) && \is_int($data['date'])) {
-            $data['date'] = (double) $data['date'];
+            $data['date'] = (double)$data['date'];
         }
         if (\array_key_exists('sales', $data) && \is_int($data['sales'])) {
-            $data['sales'] = (double) $data['sales'];
+            $data['sales'] = (double)$data['sales'];
         }
         if (\array_key_exists('commissions', $data) && \is_int($data['commissions'])) {
-            $data['commissions'] = (double) $data['commissions'];
+            $data['commissions'] = (double)$data['commissions'];
         }
         if (\array_key_exists('customers', $data) && \is_int($data['customers'])) {
-            $data['customers'] = (double) $data['customers'];
+            $data['customers'] = (double)$data['customers'];
         }
         if (\array_key_exists('payouts', $data) && \is_int($data['payouts'])) {
-            $data['payouts'] = (double) $data['payouts'];
+            $data['payouts'] = (double)$data['payouts'];
         }
         if (\array_key_exists('pending', $data) && \is_int($data['pending'])) {
-            $data['pending'] = (double) $data['pending'];
+            $data['pending'] = (double)$data['pending'];
         }
         if (\array_key_exists('due', $data) && \is_int($data['due'])) {
-            $data['due'] = (double) $data['due'];
+            $data['due'] = (double)$data['due'];
         }
         if (\array_key_exists('commission_percentage', $data) && \is_int($data['commission_percentage'])) {
-            $data['commission_percentage'] = (double) $data['commission_percentage'];
+            $data['commission_percentage'] = (double)$data['commission_percentage'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -137,12 +140,13 @@ class AffiliateNormalizer implements DenormalizerInterface, NormalizerInterface,
             unset($data['commission_percentage']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -198,7 +202,7 @@ class AffiliateNormalizer implements DenormalizerInterface, NormalizerInterface,
             $data['commission_percentage'] = $object->getCommissionPercentage();
         }
         foreach ($object as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value;
             }
         }

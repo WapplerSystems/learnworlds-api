@@ -25,14 +25,17 @@ class GradeNormalizer implements DenormalizerInterface, NormalizerInterface, Den
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Grade';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Grade';
     }
+
     /**
      * @return mixed
      */
@@ -46,16 +49,16 @@ class GradeNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Grade();
         if (\array_key_exists('grade', $data) && \is_int($data['grade'])) {
-            $data['grade'] = (double) $data['grade'];
+            $data['grade'] = (double)$data['grade'];
         }
         if (\array_key_exists('created', $data) && \is_int($data['created'])) {
-            $data['created'] = (double) $data['created'];
+            $data['created'] = (double)$data['created'];
         }
         if (\array_key_exists('modified', $data) && \is_int($data['modified'])) {
-            $data['modified'] = (double) $data['modified'];
+            $data['modified'] = (double)$data['modified'];
         }
         if (\array_key_exists('submittedTimestamp', $data) && \is_int($data['submittedTimestamp'])) {
-            $data['submittedTimestamp'] = (double) $data['submittedTimestamp'];
+            $data['submittedTimestamp'] = (double)$data['submittedTimestamp'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -93,12 +96,13 @@ class GradeNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             unset($data['learningUnit']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -130,7 +134,7 @@ class GradeNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $data['learningUnit'] = $this->normalizer->normalize($object->getLearningUnit(), 'json', $context);
         }
         foreach ($object as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value;
             }
         }

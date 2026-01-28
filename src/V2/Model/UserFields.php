@@ -15,10 +15,12 @@ class UserFields extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * A short biography text
      *
@@ -133,6 +135,7 @@ class UserFields extends \ArrayObject
      * @var mixed
      */
     protected $graduationYear;
+
     /**
      * A short biography text
      *
@@ -142,6 +145,7 @@ class UserFields extends \ArrayObject
     {
         return $this->bio;
     }
+
     /**
      * A short biography text
      *
@@ -149,12 +153,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setBio($bio) : self
+    public function setBio($bio): self
     {
         $this->initialized['bio'] = true;
         $this->bio = $bio;
         return $this;
     }
+
     /**
      * User location
      *
@@ -164,6 +169,7 @@ class UserFields extends \ArrayObject
     {
         return $this->location;
     }
+
     /**
      * User location
      *
@@ -171,12 +177,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setLocation($location) : self
+    public function setLocation($location): self
     {
         $this->initialized['location'] = true;
         $this->location = $location;
         return $this;
     }
+
     /**
      * User website URL
      *
@@ -186,6 +193,7 @@ class UserFields extends \ArrayObject
     {
         return $this->url;
     }
+
     /**
      * User website URL
      *
@@ -193,12 +201,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setUrl($url) : self
+    public function setUrl($url): self
     {
         $this->initialized['url'] = true;
         $this->url = $url;
         return $this;
     }
+
     /**
      * User Facebook URL
      *
@@ -208,6 +217,7 @@ class UserFields extends \ArrayObject
     {
         return $this->fb;
     }
+
     /**
      * User Facebook URL
      *
@@ -215,12 +225,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setFb($fb) : self
+    public function setFb($fb): self
     {
         $this->initialized['fb'] = true;
         $this->fb = $fb;
         return $this;
     }
+
     /**
      * User Twitter URL
      *
@@ -230,6 +241,7 @@ class UserFields extends \ArrayObject
     {
         return $this->twitter;
     }
+
     /**
      * User Twitter URL
      *
@@ -237,12 +249,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setTwitter($twitter) : self
+    public function setTwitter($twitter): self
     {
         $this->initialized['twitter'] = true;
         $this->twitter = $twitter;
         return $this;
     }
+
     /**
      * User Instagram URL
      *
@@ -252,6 +265,7 @@ class UserFields extends \ArrayObject
     {
         return $this->instagram;
     }
+
     /**
      * User Instagram URL
      *
@@ -259,12 +273,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setInstagram($instagram) : self
+    public function setInstagram($instagram): self
     {
         $this->initialized['instagram'] = true;
         $this->instagram = $instagram;
         return $this;
     }
+
     /**
      * User Linkedin URL
      *
@@ -274,6 +289,7 @@ class UserFields extends \ArrayObject
     {
         return $this->linkedin;
     }
+
     /**
      * User Linkedin URL
      *
@@ -281,12 +297,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setLinkedin($linkedin) : self
+    public function setLinkedin($linkedin): self
     {
         $this->initialized['linkedin'] = true;
         $this->linkedin = $linkedin;
         return $this;
     }
+
     /**
      * User Skype URL
      *
@@ -296,6 +313,7 @@ class UserFields extends \ArrayObject
     {
         return $this->skype;
     }
+
     /**
      * User Skype URL
      *
@@ -303,12 +321,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setSkype($skype) : self
+    public function setSkype($skype): self
     {
         $this->initialized['skype'] = true;
         $this->skype = $skype;
         return $this;
     }
+
     /**
      * User Behance URL
      *
@@ -318,6 +337,7 @@ class UserFields extends \ArrayObject
     {
         return $this->behance;
     }
+
     /**
      * User Behance URL
      *
@@ -325,12 +345,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setBehance($behance) : self
+    public function setBehance($behance): self
     {
         $this->initialized['behance'] = true;
         $this->behance = $behance;
         return $this;
     }
+
     /**
      * User Dribbble URL
      *
@@ -340,6 +361,7 @@ class UserFields extends \ArrayObject
     {
         return $this->dribbble;
     }
+
     /**
      * User Dribbble URL
      *
@@ -347,12 +369,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setDribbble($dribbble) : self
+    public function setDribbble($dribbble): self
     {
         $this->initialized['dribbble'] = true;
         $this->dribbble = $dribbble;
         return $this;
     }
+
     /**
      * User Github URL
      *
@@ -362,6 +385,7 @@ class UserFields extends \ArrayObject
     {
         return $this->github;
     }
+
     /**
      * User Github URL
      *
@@ -369,12 +393,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setGithub($github) : self
+    public function setGithub($github): self
     {
         $this->initialized['github'] = true;
         $this->github = $github;
         return $this;
     }
+
     /**
      * User Phone
      *
@@ -384,6 +409,7 @@ class UserFields extends \ArrayObject
     {
         return $this->phone;
     }
+
     /**
      * User Phone
      *
@@ -391,12 +417,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setPhone($phone) : self
+    public function setPhone($phone): self
     {
         $this->initialized['phone'] = true;
         $this->phone = $phone;
         return $this;
     }
+
     /**
      * User Address
      *
@@ -406,6 +433,7 @@ class UserFields extends \ArrayObject
     {
         return $this->address;
     }
+
     /**
      * User Address
      *
@@ -413,12 +441,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setAddress($address) : self
+    public function setAddress($address): self
     {
         $this->initialized['address'] = true;
         $this->address = $address;
         return $this;
     }
+
     /**
      * User Country
      *
@@ -428,6 +457,7 @@ class UserFields extends \ArrayObject
     {
         return $this->country;
     }
+
     /**
      * User Country
      *
@@ -435,12 +465,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setCountry($country) : self
+    public function setCountry($country): self
     {
         $this->initialized['country'] = true;
         $this->country = $country;
         return $this;
     }
+
     /**
      * User Birthday
      *
@@ -450,6 +481,7 @@ class UserFields extends \ArrayObject
     {
         return $this->birthday;
     }
+
     /**
      * User Birthday
      *
@@ -457,12 +489,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setBirthday($birthday) : self
+    public function setBirthday($birthday): self
     {
         $this->initialized['birthday'] = true;
         $this->birthday = $birthday;
         return $this;
     }
+
     /**
      * User Company
      *
@@ -472,6 +505,7 @@ class UserFields extends \ArrayObject
     {
         return $this->company;
     }
+
     /**
      * User Company
      *
@@ -479,12 +513,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setCompany($company) : self
+    public function setCompany($company): self
     {
         $this->initialized['company'] = true;
         $this->company = $company;
         return $this;
     }
+
     /**
      * User Company Size
      *
@@ -494,6 +529,7 @@ class UserFields extends \ArrayObject
     {
         return $this->companySize;
     }
+
     /**
      * User Company Size
      *
@@ -501,12 +537,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setCompanySize($companySize) : self
+    public function setCompanySize($companySize): self
     {
         $this->initialized['companySize'] = true;
         $this->companySize = $companySize;
         return $this;
     }
+
     /**
      * User University
      *
@@ -516,6 +553,7 @@ class UserFields extends \ArrayObject
     {
         return $this->university;
     }
+
     /**
      * User University
      *
@@ -523,12 +561,13 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setUniversity($university) : self
+    public function setUniversity($university): self
     {
         $this->initialized['university'] = true;
         $this->university = $university;
         return $this;
     }
+
     /**
      * User Graduation Year
      *
@@ -538,6 +577,7 @@ class UserFields extends \ArrayObject
     {
         return $this->graduationYear;
     }
+
     /**
      * User Graduation Year
      *
@@ -545,7 +585,7 @@ class UserFields extends \ArrayObject
      *
      * @return self
      */
-    public function setGraduationYear($graduationYear) : self
+    public function setGraduationYear($graduationYear): self
     {
         $this->initialized['graduationYear'] = true;
         $this->graduationYear = $graduationYear;

@@ -15,10 +15,12 @@ class CertificateUpdate extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Date the certificate was created, in UNIX timestamp format
      *
@@ -31,15 +33,17 @@ class CertificateUpdate extends \ArrayObject
      * @var CertificateUpdateForm
      */
     protected $form;
+
     /**
      * Date the certificate was created, in UNIX timestamp format
      *
      * @return float
      */
-    public function getIssued() : float
+    public function getIssued(): float
     {
         return $this->issued;
     }
+
     /**
      * Date the certificate was created, in UNIX timestamp format
      *
@@ -47,21 +51,23 @@ class CertificateUpdate extends \ArrayObject
      *
      * @return self
      */
-    public function setIssued(float $issued) : self
+    public function setIssued(float $issued): self
     {
         $this->initialized['issued'] = true;
         $this->issued = $issued;
         return $this;
     }
+
     /**
      *
      *
      * @return CertificateUpdateForm
      */
-    public function getForm() : CertificateUpdateForm
+    public function getForm(): CertificateUpdateForm
     {
         return $this->form;
     }
+
     /**
      *
      *
@@ -69,7 +75,7 @@ class CertificateUpdate extends \ArrayObject
      *
      * @return self
      */
-    public function setForm(CertificateUpdateForm $form) : self
+    public function setForm(CertificateUpdateForm $form): self
     {
         $this->initialized['form'] = true;
         $this->form = $form;

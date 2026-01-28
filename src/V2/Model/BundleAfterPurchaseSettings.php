@@ -15,10 +15,12 @@ class BundleAfterPurchaseSettings extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Navigation to a specific URL
      *
@@ -31,6 +33,7 @@ class BundleAfterPurchaseSettings extends \ArrayObject
      * @var mixed
      */
     protected $page;
+
     /**
      * Navigation to a specific URL
      *
@@ -40,6 +43,7 @@ class BundleAfterPurchaseSettings extends \ArrayObject
     {
         return $this->url;
     }
+
     /**
      * Navigation to a specific URL
      *
@@ -47,12 +51,13 @@ class BundleAfterPurchaseSettings extends \ArrayObject
      *
      * @return self
      */
-    public function setUrl($url) : self
+    public function setUrl($url): self
     {
         $this->initialized['url'] = true;
         $this->url = $url;
         return $this;
     }
+
     /**
      * Navigation to a specific school page
      *
@@ -62,6 +67,7 @@ class BundleAfterPurchaseSettings extends \ArrayObject
     {
         return $this->page;
     }
+
     /**
      * Navigation to a specific school page
      *
@@ -69,7 +75,7 @@ class BundleAfterPurchaseSettings extends \ArrayObject
      *
      * @return self
      */
-    public function setPage($page) : self
+    public function setPage($page): self
     {
         $this->initialized['page'] = true;
         $this->page = $page;

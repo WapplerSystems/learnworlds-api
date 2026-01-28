@@ -25,14 +25,17 @@ class PaymentProductNormalizer implements DenormalizerInterface, NormalizerInter
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PaymentProduct';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\PaymentProduct';
     }
+
     /**
      * @return mixed
      */
@@ -46,13 +49,13 @@ class PaymentProductNormalizer implements DenormalizerInterface, NormalizerInter
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\PaymentProduct();
         if (\array_key_exists('original_price', $data) && \is_int($data['original_price'])) {
-            $data['original_price'] = (double) $data['original_price'];
+            $data['original_price'] = (double)$data['original_price'];
         }
         if (\array_key_exists('discount_price', $data) && \is_int($data['discount_price'])) {
-            $data['discount_price'] = (double) $data['discount_price'];
+            $data['discount_price'] = (double)$data['discount_price'];
         }
         if (\array_key_exists('final_price', $data) && \is_int($data['final_price'])) {
-            $data['final_price'] = (double) $data['final_price'];
+            $data['final_price'] = (double)$data['final_price'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -94,12 +97,13 @@ class PaymentProductNormalizer implements DenormalizerInterface, NormalizerInter
             unset($data['final_price']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -134,7 +138,7 @@ class PaymentProductNormalizer implements DenormalizerInterface, NormalizerInter
             $data['final_price'] = $object->getFinalPrice();
         }
         foreach ($object as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value;
             }
         }

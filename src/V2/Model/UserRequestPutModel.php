@@ -15,10 +15,12 @@ class UserRequestPutModel extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Email account of the user
      *
@@ -67,15 +69,17 @@ class UserRequestPutModel extends \ArrayObject
      * @var UserRequestPutModelUtms
      */
     protected $utms;
+
     /**
      * Email account of the user
      *
      * @return string
      */
-    public function getEmail() : string
+    public function getEmail(): string
     {
         return $this->email;
     }
+
     /**
      * Email account of the user
      *
@@ -83,21 +87,23 @@ class UserRequestPutModel extends \ArrayObject
      *
      * @return self
      */
-    public function setEmail(string $email) : self
+    public function setEmail(string $email): self
     {
         $this->initialized['email'] = true;
         $this->email = $email;
         return $this;
     }
+
     /**
      * Username of the user
      *
      * @return string
      */
-    public function getUsername() : string
+    public function getUsername(): string
     {
         return $this->username;
     }
+
     /**
      * Username of the user
      *
@@ -105,12 +111,13 @@ class UserRequestPutModel extends \ArrayObject
      *
      * @return self
      */
-    public function setUsername(string $username) : self
+    public function setUsername(string $username): self
     {
         $this->initialized['username'] = true;
         $this->username = $username;
         return $this;
     }
+
     /**
      * Indication about whether the user has agreed to receive marketing emails; true if she has agreed and thus should receive marketing emails, or false if she has not.
      *
@@ -120,6 +127,7 @@ class UserRequestPutModel extends \ArrayObject
     {
         return $this->subscribedForMarketingEmails;
     }
+
     /**
      * Indication about whether the user has agreed to receive marketing emails; true if she has agreed and thus should receive marketing emails, or false if she has not.
      *
@@ -127,21 +135,23 @@ class UserRequestPutModel extends \ArrayObject
      *
      * @return self
      */
-    public function setSubscribedForMarketingEmails($subscribedForMarketingEmails) : self
+    public function setSubscribedForMarketingEmails($subscribedForMarketingEmails): self
     {
         $this->initialized['subscribedForMarketingEmails'] = true;
         $this->subscribedForMarketingEmails = $subscribedForMarketingEmails;
         return $this;
     }
+
     /**
      * Indication about whether the user is an administrator of the school; true if she is, or false if she is not.
      *
      * @return bool
      */
-    public function getIsAdmin() : bool
+    public function getIsAdmin(): bool
     {
         return $this->isAdmin;
     }
+
     /**
      * Indication about whether the user is an administrator of the school; true if she is, or false if she is not.
      *
@@ -149,21 +159,23 @@ class UserRequestPutModel extends \ArrayObject
      *
      * @return self
      */
-    public function setIsAdmin(bool $isAdmin) : self
+    public function setIsAdmin(bool $isAdmin): self
     {
         $this->initialized['isAdmin'] = true;
         $this->isAdmin = $isAdmin;
         return $this;
     }
+
     /**
      * Indication about whether validation rules should be applied; default value equals to false, which means that validation rules should not be applied.
      *
      * @return bool
      */
-    public function getSignupValidationRules() : bool
+    public function getSignupValidationRules(): bool
     {
         return $this->signupValidationRules;
     }
+
     /**
      * Indication about whether validation rules should be applied; default value equals to false, which means that validation rules should not be applied.
      *
@@ -171,21 +183,23 @@ class UserRequestPutModel extends \ArrayObject
      *
      * @return self
      */
-    public function setSignupValidationRules(bool $signupValidationRules) : self
+    public function setSignupValidationRules(bool $signupValidationRules): self
     {
         $this->initialized['signupValidationRules'] = true;
         $this->signupValidationRules = $signupValidationRules;
         return $this;
     }
+
     /**
      * Default sign up fields for the School. If custom sign up fields are enabled within the school settings, they are going to be included here too.
      *
      * @return UserRequestPutModelFields
      */
-    public function getFields() : UserRequestPutModelFields
+    public function getFields(): UserRequestPutModelFields
     {
         return $this->fields;
     }
+
     /**
      * Default sign up fields for the School. If custom sign up fields are enabled within the school settings, they are going to be included here too.
      *
@@ -193,21 +207,23 @@ class UserRequestPutModel extends \ArrayObject
      *
      * @return self
      */
-    public function setFields(UserRequestPutModelFields $fields) : self
+    public function setFields(UserRequestPutModelFields $fields): self
     {
         $this->initialized['fields'] = true;
         $this->fields = $fields;
         return $this;
     }
+
     /**
      * Array of the tags of the user
      *
      * @return string[]
      */
-    public function getTags() : array
+    public function getTags(): array
     {
         return $this->tags;
     }
+
     /**
      * Array of the tags of the user
      *
@@ -215,21 +231,23 @@ class UserRequestPutModel extends \ArrayObject
      *
      * @return self
      */
-    public function setTags(array $tags) : self
+    public function setTags(array $tags): self
     {
         $this->initialized['tags'] = true;
         $this->tags = $tags;
         return $this;
     }
+
     /**
      * Values of the UTM fields for this user
      *
      * @return UserRequestPutModelUtms
      */
-    public function getUtms() : UserRequestPutModelUtms
+    public function getUtms(): UserRequestPutModelUtms
     {
         return $this->utms;
     }
+
     /**
      * Values of the UTM fields for this user
      *
@@ -237,7 +255,7 @@ class UserRequestPutModel extends \ArrayObject
      *
      * @return self
      */
-    public function setUtms(UserRequestPutModelUtms $utms) : self
+    public function setUtms(UserRequestPutModelUtms $utms): self
     {
         $this->initialized['utms'] = true;
         $this->utms = $utms;

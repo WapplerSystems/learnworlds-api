@@ -15,10 +15,12 @@ class UserSubscription extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the user
      *
@@ -67,15 +69,17 @@ class UserSubscription extends \ArrayObject
      * @var mixed
      */
     protected $providerMeta;
+
     /**
      * Unique identifier of the user
      *
      * @return string
      */
-    public function getUserId() : string
+    public function getUserId(): string
     {
         return $this->userId;
     }
+
     /**
      * Unique identifier of the user
      *
@@ -83,21 +87,23 @@ class UserSubscription extends \ArrayObject
      *
      * @return self
      */
-    public function setUserId(string $userId) : self
+    public function setUserId(string $userId): self
     {
         $this->initialized['userId'] = true;
         $this->userId = $userId;
         return $this;
     }
+
     /**
      * Email of the user
      *
      * @return string
      */
-    public function getEmail() : string
+    public function getEmail(): string
     {
         return $this->email;
     }
+
     /**
      * Email of the user
      *
@@ -105,21 +111,23 @@ class UserSubscription extends \ArrayObject
      *
      * @return self
      */
-    public function setEmail(string $email) : self
+    public function setEmail(string $email): self
     {
         $this->initialized['email'] = true;
         $this->email = $email;
         return $this;
     }
+
     /**
      * Unique identifier of the subscription plan
      *
      * @return string
      */
-    public function getPlanId() : string
+    public function getPlanId(): string
     {
         return $this->planId;
     }
+
     /**
      * Unique identifier of the subscription plan
      *
@@ -127,12 +135,13 @@ class UserSubscription extends \ArrayObject
      *
      * @return self
      */
-    public function setPlanId(string $planId) : self
+    public function setPlanId(string $planId): self
     {
         $this->initialized['planId'] = true;
         $this->planId = $planId;
         return $this;
     }
+
     /**
      * Date the subscription was created, in UNIX timestamp format
      *
@@ -142,6 +151,7 @@ class UserSubscription extends \ArrayObject
     {
         return $this->created;
     }
+
     /**
      * Date the subscription was created, in UNIX timestamp format
      *
@@ -149,12 +159,13 @@ class UserSubscription extends \ArrayObject
      *
      * @return self
      */
-    public function setCreated($created) : self
+    public function setCreated($created): self
     {
         $this->initialized['created'] = true;
         $this->created = $created;
         return $this;
     }
+
     /**
      * Date the subscription expires, in UNIX timestamp format
      *
@@ -164,6 +175,7 @@ class UserSubscription extends \ArrayObject
     {
         return $this->expiresAt;
     }
+
     /**
      * Date the subscription expires, in UNIX timestamp format
      *
@@ -171,21 +183,23 @@ class UserSubscription extends \ArrayObject
      *
      * @return self
      */
-    public function setExpiresAt($expiresAt) : self
+    public function setExpiresAt($expiresAt): self
     {
         $this->initialized['expiresAt'] = true;
         $this->expiresAt = $expiresAt;
         return $this;
     }
+
     /**
      * Status of the subscription
      *
      * @return string
      */
-    public function getStatus() : string
+    public function getStatus(): string
     {
         return $this->status;
     }
+
     /**
      * Status of the subscription
      *
@@ -193,21 +207,23 @@ class UserSubscription extends \ArrayObject
      *
      * @return self
      */
-    public function setStatus(string $status) : self
+    public function setStatus(string $status): self
     {
         $this->initialized['status'] = true;
         $this->status = $status;
         return $this;
     }
+
     /**
      * Provider of the subscription
      *
      * @return string
      */
-    public function getProvider() : string
+    public function getProvider(): string
     {
         return $this->provider;
     }
+
     /**
      * Provider of the subscription
      *
@@ -215,12 +231,13 @@ class UserSubscription extends \ArrayObject
      *
      * @return self
      */
-    public function setProvider(string $provider) : self
+    public function setProvider(string $provider): self
     {
         $this->initialized['provider'] = true;
         $this->provider = $provider;
         return $this;
     }
+
     /**
      * Metadata of the subscription provider. In case the provider is learnworlds, the provider_meta is null
      *
@@ -230,6 +247,7 @@ class UserSubscription extends \ArrayObject
     {
         return $this->providerMeta;
     }
+
     /**
      * Metadata of the subscription provider. In case the provider is learnworlds, the provider_meta is null
      *
@@ -237,7 +255,7 @@ class UserSubscription extends \ArrayObject
      *
      * @return self
      */
-    public function setProviderMeta($providerMeta) : self
+    public function setProviderMeta($providerMeta): self
     {
         $this->initialized['providerMeta'] = true;
         $this->providerMeta = $providerMeta;

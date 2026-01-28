@@ -15,10 +15,12 @@ class Lead extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Email account of the user
      *
@@ -73,15 +75,17 @@ class Lead extends \ArrayObject
      * @var mixed
      */
     protected $pageSubmitted;
+
     /**
      * Email account of the user
      *
      * @return string
      */
-    public function getEmail() : string
+    public function getEmail(): string
     {
         return $this->email;
     }
+
     /**
      * Email account of the user
      *
@@ -89,21 +93,23 @@ class Lead extends \ArrayObject
      *
      * @return self
      */
-    public function setEmail(string $email) : self
+    public function setEmail(string $email): self
     {
         $this->initialized['email'] = true;
         $this->email = $email;
         return $this;
     }
+
     /**
      * First Name of the user
      *
      * @return string
      */
-    public function getFirstName() : string
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
+
     /**
      * First Name of the user
      *
@@ -111,21 +117,23 @@ class Lead extends \ArrayObject
      *
      * @return self
      */
-    public function setFirstName(string $firstName) : self
+    public function setFirstName(string $firstName): self
     {
         $this->initialized['firstName'] = true;
         $this->firstName = $firstName;
         return $this;
     }
+
     /**
      * Last name of the user
      *
      * @return string
      */
-    public function getLastName() : string
+    public function getLastName(): string
     {
         return $this->lastName;
     }
+
     /**
      * Last name of the user
      *
@@ -133,21 +141,23 @@ class Lead extends \ArrayObject
      *
      * @return self
      */
-    public function setLastName(string $lastName) : self
+    public function setLastName(string $lastName): self
     {
         $this->initialized['lastName'] = true;
         $this->lastName = $lastName;
         return $this;
     }
+
     /**
      * Array of the tags of the user
      *
      * @return string[]
      */
-    public function getTags() : array
+    public function getTags(): array
     {
         return $this->tags;
     }
+
     /**
      * Array of the tags of the user
      *
@@ -155,12 +165,13 @@ class Lead extends \ArrayObject
      *
      * @return self
      */
-    public function setTags(array $tags) : self
+    public function setTags(array $tags): self
     {
         $this->initialized['tags'] = true;
         $this->tags = $tags;
         return $this;
     }
+
     /**
      * Indication about whether the user has agreed to receive marketing emails; true if she has agreed and thus should receive marketing emails, or false if she has not.
      *
@@ -170,6 +181,7 @@ class Lead extends \ArrayObject
     {
         return $this->subscribedForMarketingEmails;
     }
+
     /**
      * Indication about whether the user has agreed to receive marketing emails; true if she has agreed and thus should receive marketing emails, or false if she has not.
      *
@@ -177,12 +189,13 @@ class Lead extends \ArrayObject
      *
      * @return self
      */
-    public function setSubscribedForMarketingEmails($subscribedForMarketingEmails) : self
+    public function setSubscribedForMarketingEmails($subscribedForMarketingEmails): self
     {
         $this->initialized['subscribedForMarketingEmails'] = true;
         $this->subscribedForMarketingEmails = $subscribedForMarketingEmails;
         return $this;
     }
+
     /**
      * Indication of whether the user is located in Europe; true if she is, or false if she's not located in Europe.
      *
@@ -192,6 +205,7 @@ class Lead extends \ArrayObject
     {
         return $this->euCustomer;
     }
+
     /**
      * Indication of whether the user is located in Europe; true if she is, or false if she's not located in Europe.
      *
@@ -199,21 +213,23 @@ class Lead extends \ArrayObject
      *
      * @return self
      */
-    public function setEuCustomer($euCustomer) : self
+    public function setEuCustomer($euCustomer): self
     {
         $this->initialized['euCustomer'] = true;
         $this->euCustomer = $euCustomer;
         return $this;
     }
+
     /**
      * Date the lead was created, in UNIX timestamp format
      *
      * @return float
      */
-    public function getCreated() : float
+    public function getCreated(): float
     {
         return $this->created;
     }
+
     /**
      * Date the lead was created, in UNIX timestamp format
      *
@@ -221,12 +237,13 @@ class Lead extends \ArrayObject
      *
      * @return self
      */
-    public function setCreated(float $created) : self
+    public function setCreated(float $created): self
     {
         $this->initialized['created'] = true;
         $this->created = $created;
         return $this;
     }
+
     /**
      * Values of the UTM fields for this user
      *
@@ -236,6 +253,7 @@ class Lead extends \ArrayObject
     {
         return $this->utms;
     }
+
     /**
      * Values of the UTM fields for this user
      *
@@ -243,12 +261,13 @@ class Lead extends \ArrayObject
      *
      * @return self
      */
-    public function setUtms($utms) : self
+    public function setUtms($utms): self
     {
         $this->initialized['utms'] = true;
         $this->utms = $utms;
         return $this;
     }
+
     /**
      * Submitted page of the lead
      *
@@ -258,6 +277,7 @@ class Lead extends \ArrayObject
     {
         return $this->pageSubmitted;
     }
+
     /**
      * Submitted page of the lead
      *
@@ -265,7 +285,7 @@ class Lead extends \ArrayObject
      *
      * @return self
      */
-    public function setPageSubmitted($pageSubmitted) : self
+    public function setPageSubmitted($pageSubmitted): self
     {
         $this->initialized['pageSubmitted'] = true;
         $this->pageSubmitted = $pageSubmitted;

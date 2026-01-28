@@ -15,10 +15,12 @@ class Bundle extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the bundle
      *
@@ -85,15 +87,17 @@ class Bundle extends \ArrayObject
      * @var mixed[]
      */
     protected $paymentPlans;
+
     /**
      * Unique identifier of the bundle
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Unique identifier of the bundle
      *
@@ -101,21 +105,23 @@ class Bundle extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Title of the bundle
      *
      * @return string
      */
-    public function getTitle() : string
+    public function getTitle(): string
     {
         return $this->title;
     }
+
     /**
      * Title of the bundle
      *
@@ -123,21 +129,23 @@ class Bundle extends \ArrayObject
      *
      * @return self
      */
-    public function setTitle(string $title) : self
+    public function setTitle(string $title): self
     {
         $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
+
     /**
      * Products in the bundle
      *
      * @return BundleProducts
      */
-    public function getProducts() : BundleProducts
+    public function getProducts(): BundleProducts
     {
         return $this->products;
     }
+
     /**
      * Products in the bundle
      *
@@ -145,12 +153,13 @@ class Bundle extends \ArrayObject
      *
      * @return self
      */
-    public function setProducts(BundleProducts $products) : self
+    public function setProducts(BundleProducts $products): self
     {
         $this->initialized['products'] = true;
         $this->products = $products;
         return $this;
     }
+
     /**
      * Bundle image (full URL)
      *
@@ -160,6 +169,7 @@ class Bundle extends \ArrayObject
     {
         return $this->image;
     }
+
     /**
      * Bundle image (full URL)
      *
@@ -167,12 +177,13 @@ class Bundle extends \ArrayObject
      *
      * @return self
      */
-    public function setImage($image) : self
+    public function setImage($image): self
     {
         $this->initialized['image'] = true;
         $this->image = $image;
         return $this;
     }
+
     /**
      * Bundle description
      *
@@ -182,6 +193,7 @@ class Bundle extends \ArrayObject
     {
         return $this->description;
     }
+
     /**
      * Bundle description
      *
@@ -189,21 +201,23 @@ class Bundle extends \ArrayObject
      *
      * @return self
      */
-    public function setDescription($description) : self
+    public function setDescription($description): self
     {
         $this->initialized['description'] = true;
         $this->description = $description;
         return $this;
     }
+
     /**
      * Access type of the bundle
      *
      * @return string
      */
-    public function getAccess() : string
+    public function getAccess(): string
     {
         return $this->access;
     }
+
     /**
      * Access type of the bundle
      *
@@ -211,21 +225,23 @@ class Bundle extends \ArrayObject
      *
      * @return self
      */
-    public function setAccess(string $access) : self
+    public function setAccess(string $access): self
     {
         $this->initialized['access'] = true;
         $this->access = $access;
         return $this;
     }
+
     /**
      * Date the bundle was created, in UNIX timestamp format
      *
      * @return float
      */
-    public function getCreated() : float
+    public function getCreated(): float
     {
         return $this->created;
     }
+
     /**
      * Date the bundle was created, in UNIX timestamp format
      *
@@ -233,21 +249,23 @@ class Bundle extends \ArrayObject
      *
      * @return self
      */
-    public function setCreated(float $created) : self
+    public function setCreated(float $created): self
     {
         $this->initialized['created'] = true;
         $this->created = $created;
         return $this;
     }
+
     /**
      * Date the bundle was modified for the last time, in UNIX timestamp format
      *
      * @return float
      */
-    public function getModified() : float
+    public function getModified(): float
     {
         return $this->modified;
     }
+
     /**
      * Date the bundle was modified for the last time, in UNIX timestamp format
      *
@@ -255,21 +273,23 @@ class Bundle extends \ArrayObject
      *
      * @return self
      */
-    public function setModified(float $modified) : self
+    public function setModified(float $modified): self
     {
         $this->initialized['modified'] = true;
         $this->modified = $modified;
         return $this;
     }
+
     /**
      * After purchase navigation settings for this bundle
      *
      * @return BundleAfterPurchase
      */
-    public function getAfterPurchase() : BundleAfterPurchase
+    public function getAfterPurchase(): BundleAfterPurchase
     {
         return $this->afterPurchase;
     }
+
     /**
      * After purchase navigation settings for this bundle
      *
@@ -277,21 +297,23 @@ class Bundle extends \ArrayObject
      *
      * @return self
      */
-    public function setAfterPurchase(BundleAfterPurchase $afterPurchase) : self
+    public function setAfterPurchase(BundleAfterPurchase $afterPurchase): self
     {
         $this->initialized['afterPurchase'] = true;
         $this->afterPurchase = $afterPurchase;
         return $this;
     }
+
     /**
      * Price of the bundle
      *
      * @return float
      */
-    public function getPrice() : float
+    public function getPrice(): float
     {
         return $this->price;
     }
+
     /**
      * Price of the bundle
      *
@@ -299,21 +321,23 @@ class Bundle extends \ArrayObject
      *
      * @return self
      */
-    public function setPrice(float $price) : self
+    public function setPrice(float $price): self
     {
         $this->initialized['price'] = true;
         $this->price = $price;
         return $this;
     }
+
     /**
      * Payment plans associated with the bundle. Customers can pay in two or more installments (and an optional upfront payment).
      *
      * @return mixed[]
      */
-    public function getPaymentPlans() : array
+    public function getPaymentPlans(): array
     {
         return $this->paymentPlans;
     }
+
     /**
      * Payment plans associated with the bundle. Customers can pay in two or more installments (and an optional upfront payment).
      *
@@ -321,7 +345,7 @@ class Bundle extends \ArrayObject
      *
      * @return self
      */
-    public function setPaymentPlans(array $paymentPlans) : self
+    public function setPaymentPlans(array $paymentPlans): self
     {
         $this->initialized['paymentPlans'] = true;
         $this->paymentPlans = $paymentPlans;

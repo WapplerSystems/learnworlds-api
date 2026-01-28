@@ -25,14 +25,17 @@ class SubscriptionPlanNormalizer implements DenormalizerInterface, NormalizerInt
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\SubscriptionPlan';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\SubscriptionPlan';
     }
+
     /**
      * @return mixed
      */
@@ -46,13 +49,13 @@ class SubscriptionPlanNormalizer implements DenormalizerInterface, NormalizerInt
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\SubscriptionPlan();
         if (\array_key_exists('created', $data) && \is_int($data['created'])) {
-            $data['created'] = (double) $data['created'];
+            $data['created'] = (double)$data['created'];
         }
         if (\array_key_exists('modified', $data) && \is_int($data['modified'])) {
-            $data['modified'] = (double) $data['modified'];
+            $data['modified'] = (double)$data['modified'];
         }
         if (\array_key_exists('price', $data) && \is_int($data['price'])) {
-            $data['price'] = (double) $data['price'];
+            $data['price'] = (double)$data['price'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -114,12 +117,13 @@ class SubscriptionPlanNormalizer implements DenormalizerInterface, NormalizerInt
             unset($data['price']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -169,7 +173,7 @@ class SubscriptionPlanNormalizer implements DenormalizerInterface, NormalizerInt
             $data['price'] = $object->getPrice();
         }
         foreach ($object as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value;
             }
         }

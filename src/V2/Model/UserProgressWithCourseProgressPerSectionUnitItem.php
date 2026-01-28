@@ -15,10 +15,12 @@ class UserProgressWithCourseProgressPerSectionUnitItem extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the section
      *
@@ -31,15 +33,17 @@ class UserProgressWithCourseProgressPerSectionUnitItem extends \ArrayObject
      * @var UserProgressWithCourseProgressPerSectionUnitItemUnitsItem[]
      */
     protected $units;
+
     /**
      * Unique identifier of the section
      *
      * @return string
      */
-    public function getSectionId() : string
+    public function getSectionId(): string
     {
         return $this->sectionId;
     }
+
     /**
      * Unique identifier of the section
      *
@@ -47,21 +51,23 @@ class UserProgressWithCourseProgressPerSectionUnitItem extends \ArrayObject
      *
      * @return self
      */
-    public function setSectionId(string $sectionId) : self
+    public function setSectionId(string $sectionId): self
     {
         $this->initialized['sectionId'] = true;
         $this->sectionId = $sectionId;
         return $this;
     }
+
     /**
      * User progress data per unit
      *
      * @return UserProgressWithCourseProgressPerSectionUnitItemUnitsItem[]
      */
-    public function getUnits() : array
+    public function getUnits(): array
     {
         return $this->units;
     }
+
     /**
      * User progress data per unit
      *
@@ -69,7 +75,7 @@ class UserProgressWithCourseProgressPerSectionUnitItem extends \ArrayObject
      *
      * @return self
      */
-    public function setUnits(array $units) : self
+    public function setUnits(array $units): self
     {
         $this->initialized['units'] = true;
         $this->units = $units;

@@ -15,10 +15,12 @@ class SchoolEvent extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Title of the event
      *
@@ -49,15 +51,17 @@ class SchoolEvent extends \ArrayObject
      * @var mixed
      */
     protected $bookingDetails;
+
     /**
      * Title of the event
      *
      * @return string
      */
-    public function getTitle() : string
+    public function getTitle(): string
     {
         return $this->title;
     }
+
     /**
      * Title of the event
      *
@@ -65,21 +69,23 @@ class SchoolEvent extends \ArrayObject
      *
      * @return self
      */
-    public function setTitle(string $title) : self
+    public function setTitle(string $title): self
     {
         $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
+
     /**
      * Start date of the event, in UNIX timestamp format
      *
      * @return float
      */
-    public function getStartDate() : float
+    public function getStartDate(): float
     {
         return $this->startDate;
     }
+
     /**
      * Start date of the event, in UNIX timestamp format
      *
@@ -87,21 +93,23 @@ class SchoolEvent extends \ArrayObject
      *
      * @return self
      */
-    public function setStartDate(float $startDate) : self
+    public function setStartDate(float $startDate): self
     {
         $this->initialized['startDate'] = true;
         $this->startDate = $startDate;
         return $this;
     }
+
     /**
      * Unique identifier of the product
      *
      * @return string
      */
-    public function getProductId() : string
+    public function getProductId(): string
     {
         return $this->productId;
     }
+
     /**
      * Unique identifier of the product
      *
@@ -109,21 +117,23 @@ class SchoolEvent extends \ArrayObject
      *
      * @return self
      */
-    public function setProductId(string $productId) : self
+    public function setProductId(string $productId): self
     {
         $this->initialized['productId'] = true;
         $this->productId = $productId;
         return $this;
     }
+
     /**
      * Type of the event
      *
      * @return string
      */
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type;
     }
+
     /**
      * Type of the event
      *
@@ -131,12 +141,13 @@ class SchoolEvent extends \ArrayObject
      *
      * @return self
      */
-    public function setType(string $type) : self
+    public function setType(string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
+
     /**
      * Booking details of the event. In case of non oneOnOne or group sessions, the bookingDetails is null
      *
@@ -146,6 +157,7 @@ class SchoolEvent extends \ArrayObject
     {
         return $this->bookingDetails;
     }
+
     /**
      * Booking details of the event. In case of non oneOnOne or group sessions, the bookingDetails is null
      *
@@ -153,7 +165,7 @@ class SchoolEvent extends \ArrayObject
      *
      * @return self
      */
-    public function setBookingDetails($bookingDetails) : self
+    public function setBookingDetails($bookingDetails): self
     {
         $this->initialized['bookingDetails'] = true;
         $this->bookingDetails = $bookingDetails;

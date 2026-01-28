@@ -15,10 +15,12 @@ class UserResponseAnswersItem extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the question block inside the assessment
      *
@@ -61,15 +63,17 @@ class UserResponseAnswersItem extends \ArrayObject
      * @var mixed
      */
     protected $answerData;
+
     /**
      * Unique identifier of the question block inside the assessment
      *
      * @return string
      */
-    public function getBlockId() : string
+    public function getBlockId(): string
     {
         return $this->blockId;
     }
+
     /**
      * Unique identifier of the question block inside the assessment
      *
@@ -77,21 +81,23 @@ class UserResponseAnswersItem extends \ArrayObject
      *
      * @return self
      */
-    public function setBlockId(string $blockId) : self
+    public function setBlockId(string $blockId): self
     {
         $this->initialized['blockId'] = true;
         $this->blockId = $blockId;
         return $this;
     }
+
     /**
      * The type of the question block inside the assessment
      *
      * @return string
      */
-    public function getBlockType() : string
+    public function getBlockType(): string
     {
         return $this->blockType;
     }
+
     /**
      * The type of the question block inside the assessment
      *
@@ -99,21 +105,23 @@ class UserResponseAnswersItem extends \ArrayObject
      *
      * @return self
      */
-    public function setBlockType(string $blockType) : self
+    public function setBlockType(string $blockType): self
     {
         $this->initialized['blockType'] = true;
         $this->blockType = $blockType;
         return $this;
     }
+
     /**
      * The text content of the question block
      *
      * @return string
      */
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return $this->description;
     }
+
     /**
      * The text content of the question block
      *
@@ -121,21 +129,23 @@ class UserResponseAnswersItem extends \ArrayObject
      *
      * @return self
      */
-    public function setDescription(string $description) : self
+    public function setDescription(string $description): self
     {
         $this->initialized['description'] = true;
         $this->description = $description;
         return $this;
     }
+
     /**
      * The text content of the user's answer for this question block
      *
      * @return string
      */
-    public function getAnswer() : string
+    public function getAnswer(): string
     {
         return $this->answer;
     }
+
     /**
      * The text content of the user's answer for this question block
      *
@@ -143,12 +153,13 @@ class UserResponseAnswersItem extends \ArrayObject
      *
      * @return self
      */
-    public function setAnswer(string $answer) : self
+    public function setAnswer(string $answer): self
     {
         $this->initialized['answer'] = true;
         $this->answer = $answer;
         return $this;
     }
+
     /**
      * The points for the user's answer for this question block
      *
@@ -158,6 +169,7 @@ class UserResponseAnswersItem extends \ArrayObject
     {
         return $this->points;
     }
+
     /**
      * The points for the user's answer for this question block
      *
@@ -165,12 +177,13 @@ class UserResponseAnswersItem extends \ArrayObject
      *
      * @return self
      */
-    public function setPoints($points) : self
+    public function setPoints($points): self
     {
         $this->initialized['points'] = true;
         $this->points = $points;
         return $this;
     }
+
     /**
      * The maximum points an answer can gather for this question block
      *
@@ -180,6 +193,7 @@ class UserResponseAnswersItem extends \ArrayObject
     {
         return $this->blockMaxScore;
     }
+
     /**
      * The maximum points an answer can gather for this question block
      *
@@ -187,12 +201,13 @@ class UserResponseAnswersItem extends \ArrayObject
      *
      * @return self
      */
-    public function setBlockMaxScore($blockMaxScore) : self
+    public function setBlockMaxScore($blockMaxScore): self
     {
         $this->initialized['blockMaxScore'] = true;
         $this->blockMaxScore = $blockMaxScore;
         return $this;
     }
+
     /**
      *
      *
@@ -202,6 +217,7 @@ class UserResponseAnswersItem extends \ArrayObject
     {
         return $this->answerData;
     }
+
     /**
      *
      *
@@ -209,7 +225,7 @@ class UserResponseAnswersItem extends \ArrayObject
      *
      * @return self
      */
-    public function setAnswerData($answerData) : self
+    public function setAnswerData($answerData): self
     {
         $this->initialized['answerData'] = true;
         $this->answerData = $answerData;

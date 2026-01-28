@@ -15,10 +15,12 @@ class PromotionRequestModel extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      *
      *
@@ -55,15 +57,17 @@ class PromotionRequestModel extends \ArrayObject
      * @var string
      */
     protected $access;
+
     /**
      *
      *
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
+
     /**
      *
      *
@@ -71,21 +75,23 @@ class PromotionRequestModel extends \ArrayObject
      *
      * @return self
      */
-    public function setName(string $name) : self
+    public function setName(string $name): self
     {
         $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
+
     /**
      *
      *
      * @return PromotionRequestModelCouponsItem[]
      */
-    public function getCoupons() : array
+    public function getCoupons(): array
     {
         return $this->coupons;
     }
+
     /**
      *
      *
@@ -93,21 +99,23 @@ class PromotionRequestModel extends \ArrayObject
      *
      * @return self
      */
-    public function setCoupons(array $coupons) : self
+    public function setCoupons(array $coupons): self
     {
         $this->initialized['coupons'] = true;
         $this->coupons = $coupons;
         return $this;
     }
+
     /**
      *
      *
      * @return mixed[][]
      */
-    public function getProductIds() : array
+    public function getProductIds(): array
     {
         return $this->productIds;
     }
+
     /**
      *
      *
@@ -115,21 +123,23 @@ class PromotionRequestModel extends \ArrayObject
      *
      * @return self
      */
-    public function setProductIds(array $productIds) : self
+    public function setProductIds(array $productIds): self
     {
         $this->initialized['productIds'] = true;
         $this->productIds = $productIds;
         return $this;
     }
+
     /**
      *
      *
      * @return string
      */
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type;
     }
+
     /**
      *
      *
@@ -137,21 +147,23 @@ class PromotionRequestModel extends \ArrayObject
      *
      * @return self
      */
-    public function setType(string $type) : self
+    public function setType(string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
+
     /**
      *
      *
      * @return string
      */
-    public function getValue() : string
+    public function getValue(): string
     {
         return $this->value;
     }
+
     /**
      *
      *
@@ -159,21 +171,23 @@ class PromotionRequestModel extends \ArrayObject
      *
      * @return self
      */
-    public function setValue(string $value) : self
+    public function setValue(string $value): self
     {
         $this->initialized['value'] = true;
         $this->value = $value;
         return $this;
     }
+
     /**
      *
      *
      * @return string
      */
-    public function getAccess() : string
+    public function getAccess(): string
     {
         return $this->access;
     }
+
     /**
      *
      *
@@ -181,7 +195,7 @@ class PromotionRequestModel extends \ArrayObject
      *
      * @return self
      */
-    public function setAccess(string $access) : self
+    public function setAccess(string $access): self
     {
         $this->initialized['access'] = true;
         $this->access = $access;

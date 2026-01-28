@@ -13,6 +13,7 @@ class GetUsersIdCoursesCidProgress extends \WapplerSystems\LearnWorldsApi\V2\Run
 {
     protected $id;
     protected $cid;
+
     /**
      * Returns information about the user progress for the user and course specified by the provided user id and course id. The result also includes the breakdown of user progress data per learning activity.
      *
@@ -24,23 +25,29 @@ class GetUsersIdCoursesCidProgress extends \WapplerSystems\LearnWorldsApi\V2\Run
         $this->id = $id;
         $this->cid = $cid;
     }
+
     use \WapplerSystems\LearnWorldsApi\V2\Runtime\Client\EndpointTrait;
-    public function getMethod() : string
+
+    public function getMethod(): string
     {
         return 'GET';
     }
-    public function getUri() : string
+
+    public function getUri(): string
     {
         return str_replace(['{id}', '{cid}'], [$this->id, $this->cid], '/v2/users/{id}/courses/{cid}/progress');
     }
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
+
+    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
-    public function getExtraHeaders() : array
+
+    public function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
+
     /**
      * {@inheritdoc}
      *
@@ -50,12 +57,13 @@ class GetUsersIdCoursesCidProgress extends \WapplerSystems\LearnWorldsApi\V2\Run
     protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
-        $body = (string) $response->getBody();
+        $body = (string)$response->getBody();
         if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserProgress', 'json');
         }
     }
-    public function getAuthenticationScopes() : array
+
+    public function getAuthenticationScopes(): array
     {
         return ['BearerAuth', 'LwClient'];
     }

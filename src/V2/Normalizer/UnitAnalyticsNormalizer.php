@@ -25,14 +25,17 @@ class UnitAnalyticsNormalizer implements DenormalizerInterface, NormalizerInterf
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UnitAnalytics';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UnitAnalytics';
     }
+
     /**
      * @return mixed
      */
@@ -46,13 +49,13 @@ class UnitAnalyticsNormalizer implements DenormalizerInterface, NormalizerInterf
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\UnitAnalytics();
         if (\array_key_exists('avg_study_time', $data) && \is_int($data['avg_study_time'])) {
-            $data['avg_study_time'] = (double) $data['avg_study_time'];
+            $data['avg_study_time'] = (double)$data['avg_study_time'];
         }
         if (\array_key_exists('total_study_time', $data) && \is_int($data['total_study_time'])) {
-            $data['total_study_time'] = (double) $data['total_study_time'];
+            $data['total_study_time'] = (double)$data['total_study_time'];
         }
         if (\array_key_exists('avg_score_rate', $data) && \is_int($data['avg_score_rate'])) {
-            $data['avg_score_rate'] = (double) $data['avg_score_rate'];
+            $data['avg_score_rate'] = (double)$data['avg_score_rate'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -86,12 +89,13 @@ class UnitAnalyticsNormalizer implements DenormalizerInterface, NormalizerInterf
             unset($data['avg_score_rate']);
         }
         foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -120,7 +124,7 @@ class UnitAnalyticsNormalizer implements DenormalizerInterface, NormalizerInterf
             $data['avg_score_rate'] = $object->getAvgScoreRate();
         }
         foreach ($object as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value;
             }
         }

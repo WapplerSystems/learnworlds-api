@@ -15,10 +15,12 @@ class CourseContentSectionsItem extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Unique identifier of the section
      *
@@ -55,15 +57,17 @@ class CourseContentSectionsItem extends \ArrayObject
      * @var CourseContentSectionsItemLearningUnitsItem[]
      */
     protected $learningUnits;
+
     /**
      * Unique identifier of the section
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
+
     /**
      * Unique identifier of the section
      *
@@ -71,21 +75,23 @@ class CourseContentSectionsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
+
     /**
      * Title of the section
      *
      * @return string
      */
-    public function getTitle() : string
+    public function getTitle(): string
     {
         return $this->title;
     }
+
     /**
      * Title of the section
      *
@@ -93,12 +99,13 @@ class CourseContentSectionsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setTitle(string $title) : self
+    public function setTitle(string $title): self
     {
         $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
+
     /**
      * Description of the section
      *
@@ -108,6 +115,7 @@ class CourseContentSectionsItem extends \ArrayObject
     {
         return $this->description;
     }
+
     /**
      * Description of the section
      *
@@ -115,21 +123,23 @@ class CourseContentSectionsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setDescription($description) : self
+    public function setDescription($description): self
     {
         $this->initialized['description'] = true;
         $this->description = $description;
         return $this;
     }
+
     /**
      * Access type of the section
      *
      * @return string
      */
-    public function getAccess() : string
+    public function getAccess(): string
     {
         return $this->access;
     }
+
     /**
      * Access type of the section
      *
@@ -137,12 +147,13 @@ class CourseContentSectionsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setAccess(string $access) : self
+    public function setAccess(string $access): self
     {
         $this->initialized['access'] = true;
         $this->access = $access;
         return $this;
     }
+
     /**
      * Drip feed details of the content. Null value indicates that the course has drip feed option as disabled
      *
@@ -152,6 +163,7 @@ class CourseContentSectionsItem extends \ArrayObject
     {
         return $this->drip;
     }
+
     /**
      * Drip feed details of the content. Null value indicates that the course has drip feed option as disabled
      *
@@ -159,21 +171,23 @@ class CourseContentSectionsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setDrip($drip) : self
+    public function setDrip($drip): self
     {
         $this->initialized['drip'] = true;
         $this->drip = $drip;
         return $this;
     }
+
     /**
      * Learning activities of section
      *
      * @return CourseContentSectionsItemLearningUnitsItem[]
      */
-    public function getLearningUnits() : array
+    public function getLearningUnits(): array
     {
         return $this->learningUnits;
     }
+
     /**
      * Learning activities of section
      *
@@ -181,7 +195,7 @@ class CourseContentSectionsItem extends \ArrayObject
      *
      * @return self
      */
-    public function setLearningUnits(array $learningUnits) : self
+    public function setLearningUnits(array $learningUnits): self
     {
         $this->initialized['learningUnits'] = true;
         $this->learningUnits = $learningUnits;

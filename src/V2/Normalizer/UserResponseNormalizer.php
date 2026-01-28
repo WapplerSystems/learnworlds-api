@@ -25,14 +25,17 @@ class UserResponseNormalizer implements DenormalizerInterface, NormalizerInterfa
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserResponse';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\UserResponse';
     }
+
     /**
      * @return mixed
      */
@@ -46,13 +49,13 @@ class UserResponseNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\UserResponse();
         if (\array_key_exists('created', $data) && \is_int($data['created'])) {
-            $data['created'] = (double) $data['created'];
+            $data['created'] = (double)$data['created'];
         }
         if (\array_key_exists('modified', $data) && \is_int($data['modified'])) {
-            $data['modified'] = (double) $data['modified'];
+            $data['modified'] = (double)$data['modified'];
         }
         if (\array_key_exists('submittedTimestamp', $data) && \is_int($data['submittedTimestamp'])) {
-            $data['submittedTimestamp'] = (double) $data['submittedTimestamp'];
+            $data['submittedTimestamp'] = (double)$data['submittedTimestamp'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -98,12 +101,13 @@ class UserResponseNormalizer implements DenormalizerInterface, NormalizerInterfa
             unset($data['answers']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value_1;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -142,7 +146,7 @@ class UserResponseNormalizer implements DenormalizerInterface, NormalizerInterfa
             $data['answers'] = $values;
         }
         foreach ($object as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value_1;
             }
         }

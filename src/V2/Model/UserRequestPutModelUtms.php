@@ -15,10 +15,12 @@ class UserRequestPutModelUtms extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * First click source
      *
@@ -115,15 +117,17 @@ class UserRequestPutModelUtms extends \ArrayObject
      * @var string
      */
     protected $lcCountry;
+
     /**
      * First click source
      *
      * @return string
      */
-    public function getFcSource() : string
+    public function getFcSource(): string
     {
         return $this->fcSource;
     }
+
     /**
      * First click source
      *
@@ -131,21 +135,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setFcSource(string $fcSource) : self
+    public function setFcSource(string $fcSource): self
     {
         $this->initialized['fcSource'] = true;
         $this->fcSource = $fcSource;
         return $this;
     }
+
     /**
      * First click medium
      *
      * @return string
      */
-    public function getFcMedium() : string
+    public function getFcMedium(): string
     {
         return $this->fcMedium;
     }
+
     /**
      * First click medium
      *
@@ -153,21 +159,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setFcMedium(string $fcMedium) : self
+    public function setFcMedium(string $fcMedium): self
     {
         $this->initialized['fcMedium'] = true;
         $this->fcMedium = $fcMedium;
         return $this;
     }
+
     /**
      * First click campaign
      *
      * @return string
      */
-    public function getFcCampaign() : string
+    public function getFcCampaign(): string
     {
         return $this->fcCampaign;
     }
+
     /**
      * First click campaign
      *
@@ -175,21 +183,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setFcCampaign(string $fcCampaign) : self
+    public function setFcCampaign(string $fcCampaign): self
     {
         $this->initialized['fcCampaign'] = true;
         $this->fcCampaign = $fcCampaign;
         return $this;
     }
+
     /**
      * First click term
      *
      * @return string
      */
-    public function getFcTerm() : string
+    public function getFcTerm(): string
     {
         return $this->fcTerm;
     }
+
     /**
      * First click term
      *
@@ -197,21 +207,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setFcTerm(string $fcTerm) : self
+    public function setFcTerm(string $fcTerm): self
     {
         $this->initialized['fcTerm'] = true;
         $this->fcTerm = $fcTerm;
         return $this;
     }
+
     /**
      * First click content
      *
      * @return string
      */
-    public function getFcContent() : string
+    public function getFcContent(): string
     {
         return $this->fcContent;
     }
+
     /**
      * First click content
      *
@@ -219,21 +231,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setFcContent(string $fcContent) : self
+    public function setFcContent(string $fcContent): self
     {
         $this->initialized['fcContent'] = true;
         $this->fcContent = $fcContent;
         return $this;
     }
+
     /**
      * First click landing
      *
      * @return string
      */
-    public function getFcLanding() : string
+    public function getFcLanding(): string
     {
         return $this->fcLanding;
     }
+
     /**
      * First click landing
      *
@@ -241,21 +255,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setFcLanding(string $fcLanding) : self
+    public function setFcLanding(string $fcLanding): self
     {
         $this->initialized['fcLanding'] = true;
         $this->fcLanding = $fcLanding;
         return $this;
     }
+
     /**
      * First click referrer
      *
      * @return string
      */
-    public function getFcReferrer() : string
+    public function getFcReferrer(): string
     {
         return $this->fcReferrer;
     }
+
     /**
      * First click referrer
      *
@@ -263,21 +279,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setFcReferrer(string $fcReferrer) : self
+    public function setFcReferrer(string $fcReferrer): self
     {
         $this->initialized['fcReferrer'] = true;
         $this->fcReferrer = $fcReferrer;
         return $this;
     }
+
     /**
      * First click country
      *
      * @return string
      */
-    public function getFcCountry() : string
+    public function getFcCountry(): string
     {
         return $this->fcCountry;
     }
+
     /**
      * First click country
      *
@@ -285,21 +303,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setFcCountry(string $fcCountry) : self
+    public function setFcCountry(string $fcCountry): self
     {
         $this->initialized['fcCountry'] = true;
         $this->fcCountry = $fcCountry;
         return $this;
     }
+
     /**
      * Last click source
      *
      * @return string
      */
-    public function getLcSource() : string
+    public function getLcSource(): string
     {
         return $this->lcSource;
     }
+
     /**
      * Last click source
      *
@@ -307,21 +327,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setLcSource(string $lcSource) : self
+    public function setLcSource(string $lcSource): self
     {
         $this->initialized['lcSource'] = true;
         $this->lcSource = $lcSource;
         return $this;
     }
+
     /**
      * Last click medium
      *
      * @return string
      */
-    public function getLcMedium() : string
+    public function getLcMedium(): string
     {
         return $this->lcMedium;
     }
+
     /**
      * Last click medium
      *
@@ -329,21 +351,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setLcMedium(string $lcMedium) : self
+    public function setLcMedium(string $lcMedium): self
     {
         $this->initialized['lcMedium'] = true;
         $this->lcMedium = $lcMedium;
         return $this;
     }
+
     /**
      * Last click campaign
      *
      * @return string
      */
-    public function getLcCampaign() : string
+    public function getLcCampaign(): string
     {
         return $this->lcCampaign;
     }
+
     /**
      * Last click campaign
      *
@@ -351,21 +375,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setLcCampaign(string $lcCampaign) : self
+    public function setLcCampaign(string $lcCampaign): self
     {
         $this->initialized['lcCampaign'] = true;
         $this->lcCampaign = $lcCampaign;
         return $this;
     }
+
     /**
      * Last click term
      *
      * @return string
      */
-    public function getLcTerm() : string
+    public function getLcTerm(): string
     {
         return $this->lcTerm;
     }
+
     /**
      * Last click term
      *
@@ -373,21 +399,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setLcTerm(string $lcTerm) : self
+    public function setLcTerm(string $lcTerm): self
     {
         $this->initialized['lcTerm'] = true;
         $this->lcTerm = $lcTerm;
         return $this;
     }
+
     /**
      * Last click content
      *
      * @return string
      */
-    public function getLcContent() : string
+    public function getLcContent(): string
     {
         return $this->lcContent;
     }
+
     /**
      * Last click content
      *
@@ -395,21 +423,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setLcContent(string $lcContent) : self
+    public function setLcContent(string $lcContent): self
     {
         $this->initialized['lcContent'] = true;
         $this->lcContent = $lcContent;
         return $this;
     }
+
     /**
      * Last click landing
      *
      * @return string
      */
-    public function getLcLanding() : string
+    public function getLcLanding(): string
     {
         return $this->lcLanding;
     }
+
     /**
      * Last click landing
      *
@@ -417,21 +447,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setLcLanding(string $lcLanding) : self
+    public function setLcLanding(string $lcLanding): self
     {
         $this->initialized['lcLanding'] = true;
         $this->lcLanding = $lcLanding;
         return $this;
     }
+
     /**
      * Last click referrer
      *
      * @return string
      */
-    public function getLcReferrer() : string
+    public function getLcReferrer(): string
     {
         return $this->lcReferrer;
     }
+
     /**
      * Last click referrer
      *
@@ -439,21 +471,23 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setLcReferrer(string $lcReferrer) : self
+    public function setLcReferrer(string $lcReferrer): self
     {
         $this->initialized['lcReferrer'] = true;
         $this->lcReferrer = $lcReferrer;
         return $this;
     }
+
     /**
      * Last click country
      *
      * @return string
      */
-    public function getLcCountry() : string
+    public function getLcCountry(): string
     {
         return $this->lcCountry;
     }
+
     /**
      * Last click country
      *
@@ -461,7 +495,7 @@ class UserRequestPutModelUtms extends \ArrayObject
      *
      * @return self
      */
-    public function setLcCountry(string $lcCountry) : self
+    public function setLcCountry(string $lcCountry): self
     {
         $this->initialized['lcCountry'] = true;
         $this->lcCountry = $lcCountry;

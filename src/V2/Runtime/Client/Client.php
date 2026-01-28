@@ -37,6 +37,7 @@ abstract class Client
      * @var StreamFactoryInterface
      */
     protected $streamFactory;
+
     public function __construct(ClientInterface $httpClient, RequestFactoryInterface $requestFactory, SerializerInterface $serializer, StreamFactoryInterface $streamFactory)
     {
         $this->httpClient = $httpClient;
@@ -44,6 +45,7 @@ abstract class Client
         $this->serializer = $serializer;
         $this->streamFactory = $streamFactory;
     }
+
     public function executeEndpoint(Endpoint $endpoint, string $fetch = self::FETCH_OBJECT)
     {
         if (self::FETCH_RESPONSE === $fetch) {
@@ -52,11 +54,13 @@ abstract class Client
         }
         return $endpoint->parseResponse($this->processEndpoint($endpoint), $this->serializer, $fetch);
     }
-    public function executeRawEndpoint(Endpoint $endpoint) : ResponseInterface
+
+    public function executeRawEndpoint(Endpoint $endpoint): ResponseInterface
     {
         return $this->processEndpoint($endpoint);
     }
-    private function processEndpoint(Endpoint $endpoint) : ResponseInterface
+
+    private function processEndpoint(Endpoint $endpoint): ResponseInterface
     {
         [$bodyHeaders, $body] = $endpoint->getBody($this->serializer, $this->streamFactory);
         $queryString = $endpoint->getQueryString();

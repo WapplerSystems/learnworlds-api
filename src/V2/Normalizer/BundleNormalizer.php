@@ -25,14 +25,17 @@ class BundleNormalizer implements DenormalizerInterface, NormalizerInterface, De
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Bundle';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Bundle';
     }
+
     /**
      * @return mixed
      */
@@ -46,13 +49,13 @@ class BundleNormalizer implements DenormalizerInterface, NormalizerInterface, De
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Bundle();
         if (\array_key_exists('created', $data) && \is_int($data['created'])) {
-            $data['created'] = (double) $data['created'];
+            $data['created'] = (double)$data['created'];
         }
         if (\array_key_exists('modified', $data) && \is_int($data['modified'])) {
-            $data['modified'] = (double) $data['modified'];
+            $data['modified'] = (double)$data['modified'];
         }
         if (\array_key_exists('price', $data) && \is_int($data['price'])) {
-            $data['price'] = (double) $data['price'];
+            $data['price'] = (double)$data['price'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -106,12 +109,13 @@ class BundleNormalizer implements DenormalizerInterface, NormalizerInterface, De
             unset($data['paymentPlans']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value_1;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -156,7 +160,7 @@ class BundleNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $data['paymentPlans'] = $values;
         }
         foreach ($object as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value_1;
             }
         }

@@ -15,10 +15,12 @@ class V2PromotionsPostBody extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Promotion name
      *
@@ -49,15 +51,17 @@ class V2PromotionsPostBody extends \ArrayObject
      * @var V2PromotionsPostBodyProductsItem[]
      */
     protected $products;
+
     /**
      * Promotion name
      *
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
+
     /**
      * Promotion name
      *
@@ -65,21 +69,23 @@ class V2PromotionsPostBody extends \ArrayObject
      *
      * @return self
      */
-    public function setName(string $name) : self
+    public function setName(string $name): self
     {
         $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
+
     /**
      * Discount type
      *
      * @return string
      */
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type;
     }
+
     /**
      * Discount type
      *
@@ -87,21 +93,23 @@ class V2PromotionsPostBody extends \ArrayObject
      *
      * @return self
      */
-    public function setType(string $type) : self
+    public function setType(string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
+
     /**
      * Percentage or fixed amount of discount.
      *
      * @return float
      */
-    public function getValue() : float
+    public function getValue(): float
     {
         return $this->value;
     }
+
     /**
      * Percentage or fixed amount of discount.
      *
@@ -109,21 +117,23 @@ class V2PromotionsPostBody extends \ArrayObject
      *
      * @return self
      */
-    public function setValue(float $value) : self
+    public function setValue(float $value): self
     {
         $this->initialized['value'] = true;
         $this->value = $value;
         return $this;
     }
+
     /**
      * All courses and/or bundles that the promotion coupon will be applied to. None indicates that the coupon will not be applied to any course/bundle
      *
      * @return string[]
      */
-    public function getAppliesToAll() : array
+    public function getAppliesToAll(): array
     {
         return $this->appliesToAll;
     }
+
     /**
      * All courses and/or bundles that the promotion coupon will be applied to. None indicates that the coupon will not be applied to any course/bundle
      *
@@ -131,21 +141,23 @@ class V2PromotionsPostBody extends \ArrayObject
      *
      * @return self
      */
-    public function setAppliesToAll(array $appliesToAll) : self
+    public function setAppliesToAll(array $appliesToAll): self
     {
         $this->initialized['appliesToAll'] = true;
         $this->appliesToAll = $appliesToAll;
         return $this;
     }
+
     /**
      * Specific products that the promotion coupon will be applied to
      *
      * @return V2PromotionsPostBodyProductsItem[]
      */
-    public function getProducts() : array
+    public function getProducts(): array
     {
         return $this->products;
     }
+
     /**
      * Specific products that the promotion coupon will be applied to
      *
@@ -153,7 +165,7 @@ class V2PromotionsPostBody extends \ArrayObject
      *
      * @return self
      */
-    public function setProducts(array $products) : self
+    public function setProducts(array $products): self
     {
         $this->initialized['products'] = true;
         $this->products = $products;

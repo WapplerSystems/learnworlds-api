@@ -15,10 +15,12 @@ class BundleAfterPurchase extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      * Type of the after purchase navigation
      *
@@ -31,15 +33,17 @@ class BundleAfterPurchase extends \ArrayObject
      * @var BundleAfterPurchaseSettings
      */
     protected $settings;
+
     /**
      * Type of the after purchase navigation
      *
      * @return string
      */
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type;
     }
+
     /**
      * Type of the after purchase navigation
      *
@@ -47,21 +51,23 @@ class BundleAfterPurchase extends \ArrayObject
      *
      * @return self
      */
-    public function setType(string $type) : self
+    public function setType(string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
+
     /**
      * After purchase navigation URL for this bundle: leading to a school page or a given URL
      *
      * @return BundleAfterPurchaseSettings
      */
-    public function getSettings() : BundleAfterPurchaseSettings
+    public function getSettings(): BundleAfterPurchaseSettings
     {
         return $this->settings;
     }
+
     /**
      * After purchase navigation URL for this bundle: leading to a school page or a given URL
      *
@@ -69,7 +75,7 @@ class BundleAfterPurchase extends \ArrayObject
      *
      * @return self
      */
-    public function setSettings(BundleAfterPurchaseSettings $settings) : self
+    public function setSettings(BundleAfterPurchaseSettings $settings): self
     {
         $this->initialized['settings'] = true;
         $this->settings = $settings;

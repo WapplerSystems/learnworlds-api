@@ -15,10 +15,12 @@ class V2InstallmentsActiveGetResponse200 extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
-    public function isInitialized($property) : bool
+
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
+
     /**
      *
      *
@@ -31,15 +33,17 @@ class V2InstallmentsActiveGetResponse200 extends \ArrayObject
      * @var Meta
      */
     protected $meta;
+
     /**
      *
      *
      * @return Installment[]
      */
-    public function getData() : array
+    public function getData(): array
     {
         return $this->data;
     }
+
     /**
      *
      *
@@ -47,21 +51,23 @@ class V2InstallmentsActiveGetResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setData(array $data) : self
+    public function setData(array $data): self
     {
         $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }
+
     /**
      *
      *
      * @return Meta
      */
-    public function getMeta() : Meta
+    public function getMeta(): Meta
     {
         return $this->meta;
     }
+
     /**
      *
      *
@@ -69,7 +75,7 @@ class V2InstallmentsActiveGetResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setMeta(Meta $meta) : self
+    public function setMeta(Meta $meta): self
     {
         $this->initialized['meta'] = true;
         $this->meta = $meta;

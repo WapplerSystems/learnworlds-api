@@ -25,14 +25,17 @@ class LeadNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+
+    public function supportsDenormalization($data, $type, $format = null): bool
     {
         return $type === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Lead';
     }
-    public function supportsNormalization($data, $format = null) : bool
+
+    public function supportsNormalization($data, $format = null): bool
     {
         return is_object($data) && get_class($data) === 'WapplerSystems\\LearnWorldsApi\\V2\\Model\\Lead';
     }
+
     /**
      * @return mixed
      */
@@ -46,7 +49,7 @@ class LeadNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         }
         $object = new \WapplerSystems\LearnWorldsApi\V2\Model\Lead();
         if (\array_key_exists('created', $data) && \is_int($data['created'])) {
-            $data['created'] = (double) $data['created'];
+            $data['created'] = (double)$data['created'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -92,12 +95,13 @@ class LeadNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             unset($data['page_submitted ']);
         }
         foreach ($data as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $object[$key] = $value_1;
             }
         }
         return $object;
     }
+
     /**
      * @return array|string|int|float|bool|\ArrayObject|null
      */
@@ -136,7 +140,7 @@ class LeadNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $data['page_submitted '] = $object->getPageSubmitted();
         }
         foreach ($object as $key => $value_1) {
-            if (preg_match('/.*/', (string) $key)) {
+            if (preg_match('/.*/', (string)$key)) {
                 $data[$key] = $value_1;
             }
         }
