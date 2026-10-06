@@ -31,15 +31,35 @@ class LearnWorldsClientV2 extends Client
     protected static string $refreshToken;
 
     /**
-     * @param string $school
-     * @param string $clientId
-     * @param string $clientSecret
+     * Fetches an access token and builds a client with it.
+     *
+     * Every call creates a new token at LearnWorlds, and a token stays valid for
+     * a year: callers that run repeatedly (schedulers, queue workers) should
+     * keep the token from requestAccessToken() and use createWithAccessToken()
+     * instead, or the school's token list grows without bound.
+     *
      * @param null $httpClient
-     * @return Client
      * @throws ClientExceptionInterface
      * @throws \JsonException
      */
     public static function createAuthorized(string $school, string $clientId, string $clientSecret, $httpClient = null): Client
+    {
+        $token = self::requestAccessToken($school, $clientId, $clientSecret, $httpClient);
+
+        return self::createWithAccessToken($school, $clientId, $token['token'], $httpClient);
+    }
+
+    /**
+     * Requests a new access token (client credentials grant).
+     *
+     * @param null $httpClient
+     * @return array{token: string, expiresAt: int} expiresAt as unix timestamp;
+     *         one year from now when the response carries no expires_in
+     * @throws ClientExceptionInterface
+     * @throws \JsonException
+     * @throws \RuntimeException when LearnWorlds does not hand out a token
+     */
+    public static function requestAccessToken(string $school, string $clientId, string $clientSecret, $httpClient = null): array
     {
         if (null === $httpClient) {
             $httpClient = Psr18ClientDiscovery::find();
@@ -59,13 +79,40 @@ class LearnWorldsClientV2 extends Client
             ->withBody(Psr17FactoryDiscovery::findStreamFactory()->createStream(json_encode($data, JSON_THROW_ON_ERROR)));
 
         $response = $httpClient->sendRequest($request);
+        $body = (string)$response->getBody();
 
         if ($response->getStatusCode() !== 200) {
-            // throw exception
+            throw new \RuntimeException(sprintf(
+                'LearnWorlds %s refused the access token request: HTTP %d %s',
+                $school,
+                $response->getStatusCode(),
+                substr(trim($body), 0, 200)
+            ), 1791360001);
         }
 
-        $authData = json_decode((string) $response->getBody()->getContents(), null, 512, JSON_THROW_ON_ERROR);
-        $accessToken = $authData->tokenData->access_token;
+        $authData = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
+        $accessToken = (string)($authData['tokenData']['access_token'] ?? '');
+        if ($accessToken === '') {
+            throw new \RuntimeException(sprintf('LearnWorlds %s answered without an access token', $school), 1791360002);
+        }
+        $expiresIn = (int)($authData['tokenData']['expires_in'] ?? 0);
+
+        return [
+            'token' => $accessToken,
+            'expiresAt' => time() + ($expiresIn > 0 ? $expiresIn : 365 * 86400),
+        ];
+    }
+
+    /**
+     * Builds a client around an access token obtained earlier.
+     *
+     * @param null $httpClient
+     */
+    public static function createWithAccessToken(string $school, string $clientId, string $accessToken, $httpClient = null): Client
+    {
+        if (null === $httpClient) {
+            $httpClient = Psr18ClientDiscovery::find();
+        }
 
         $authenticationRegistry = new AuthenticationRegistry([new BearerAuthAuthentication($accessToken), new LwClientAuthentication($clientId)]);
 
